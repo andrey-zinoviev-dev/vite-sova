@@ -1,0 +1,5 @@
+.error-span {
+    color: tomato;
+    min-height: 24px;
+    display: block;
+}

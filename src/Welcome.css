@@ -1,0 +1,23 @@
+.welcome {
+    /* background-color: #2C2A28; */
+}
+
+.welcome h1 {
+    margin: 0;
+}
+
+.welcome__form {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-width: 360px;
+    gap: 15px;
+}
+
+.welcome__form input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 1px solid white;
+}
