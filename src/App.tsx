@@ -7,6 +7,8 @@ import Welcome from './Welcome'
 import ProtectedRoute from './ProtectedRoute'
 import Register from './Register'
 import Login from './Login'
+import Profile from './Profile'
+
 function App() {
 
   return (
@@ -18,8 +20,11 @@ function App() {
               <Route path='register' element={<Register></Register>}></Route>
             </Route>
             <Route element={<ProtectedRoute></ProtectedRoute>}>
-              <Route index element={<Home></Home>} />
-              <Route path='/addCourse' element={<AddCourse></AddCourse>} />
+              <Route path='/' element={<Home></Home>}>
+                <Route index element={<Courses></Courses>}></Route>
+                <Route path='/addCourse' element={<AddCourse></AddCourse>} />
+                <Route path='/me' element={<Profile></Profile>} />
+              </Route>
             </Route>
         </Routes>
       </BrowserRouter>

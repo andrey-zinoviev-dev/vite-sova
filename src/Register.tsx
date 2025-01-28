@@ -1,13 +1,16 @@
 import Form from "./Form";
 import ErrorSpan from "./ErrorSpan";
 import Input from "./Input";
-import { Link } from "react-router";
-import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { useState } from "react";
 import { useRegisterUserMutation } from "./store/features/apiSlice";
 import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
 export default function Register() {
+    //navigate
+    const navigate = useNavigate();
+
     //RTK
-    const [registerUser, {isLoading}] = useRegisterUserMutation();
+    const [registerUser, {isLoading, isSuccess}] = useRegisterUserMutation();
 
     //state
     const [registerData, setRegisterData] = useState<{email: string, password: string, name: string}>({
@@ -20,7 +23,7 @@ export default function Register() {
     
     //functions
     function handleRegisterSubmit() {
-        registerUser(registerData).unwrap()
+        !isSuccess ?  registerUser(registerData).unwrap()
         .then((data) => {
             console.log(data);
         })
@@ -29,11 +32,15 @@ export default function Register() {
             const errMsg = isFetchBaseQueryError(error) &&  error.data;
             setError(errMsg as {message: string});
         })
+
+        :
+
+        navigate("/");
     };
 
     return (
         <>
-            <Form isLoading={isLoading} className="welcome__form" submitFunction={handleRegisterSubmit} text="Зарегистрироваться">
+            <Form isLoading={isLoading} isSuccess={isSuccess} className="welcome__form" submitFunction={handleRegisterSubmit} text="Зарегистрироваться">
                 <ErrorSpan text={error.message} />
                 <Input type="email" updateValue={setRegisterData} name="email" placeholder="Почта"></Input> 
                 <Input type="password" hidden updateValue={setRegisterData} name="password" placeholder="Пароль"></Input>

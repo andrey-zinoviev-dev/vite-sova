@@ -1,8 +1,9 @@
 .welcome {
+    max-width: 360px;
     /* background-color: #2C2A28; */
 }
 
-.welcome h1 {
+.welcome h1, .welcome p {
     margin: 0;
 }
 
@@ -11,6 +12,7 @@
     grid-template-columns: 1fr;
     min-width: 360px;
     gap: 15px;
+    margin: 10px 0 0 0;
 }
 
 .welcome__form input {

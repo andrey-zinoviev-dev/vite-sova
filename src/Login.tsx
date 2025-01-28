@@ -5,11 +5,13 @@ import { useLoginUserMutation } from "./store/features/apiSlice";
 import { errorWithMessage, isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
 import { useEffect, useState } from "react";
 import ErrorSpan from "./ErrorSpan";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 export default function Login() {
+    //navigate
+    const navigate = useNavigate();
     //RTK
-    const [submitLoginFunction, {isLoading}] = useLoginUserMutation();
+    const [submitLoginFunction, {isLoading, isSuccess}] = useLoginUserMutation();
     const [error, setError] = useState<{message: string}>({message: ""});
 
     //state
@@ -18,12 +20,11 @@ export default function Login() {
         password: "",
     });
     //functions
-    
     function submitLogin() {
 
         submitLoginFunction(logindData).unwrap()
         .then((data) => {
-            console.log(data);
+            navigate("/");
         })
         .catch((error) => {
             const errMsg = isFetchBaseQueryError(error) &&  error.data;
@@ -33,7 +34,7 @@ export default function Login() {
 
     return (
         <>
-            <Form isLoading={isLoading} className="welcome__form" submitFunction={submitLogin} text="Войти">
+            <Form isSuccess={isSuccess} isLoading={isLoading} className="welcome__form" submitFunction={submitLogin} text="Войти">
                 <ErrorSpan text={error.message} />
                 <Input type="email" updateValue={setLoginData} name="email" placeholder="Почта"></Input> 
                 <Input type="password" updateValue={setLoginData} name="password" placeholder="Пароль"></Input>

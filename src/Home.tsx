@@ -1,9 +1,13 @@
 import { Outlet } from "react-router";
+import Header from "./Header";
+import Footer from "./Footer";
 
 export default function Home() {
     return (
-        <section>
+        <>
+            <Header></Header>
             <Outlet></Outlet>
-        </section>
+            <Footer></Footer>
+        </>
     )
 }

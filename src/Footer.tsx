@@ -1,5 +1,7 @@
 export default function Footer() {
     return (
-        <footer></footer>
+        <footer>
+            <p>Футер</p>
+        </footer>
     )
 }

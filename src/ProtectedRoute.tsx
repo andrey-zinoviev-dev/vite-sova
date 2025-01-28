@@ -10,6 +10,7 @@ export default function ProtectedRoute() {
     const userLoggedIn = useAppSelector((state) => {
         return state.user.loggedIn;
     });
+    console.log(userLoggedIn);
 
     return (
         <>
