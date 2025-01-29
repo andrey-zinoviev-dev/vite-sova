@@ -2,8 +2,8 @@ import Form from "./Form";
 import Input from "./Input";
 // import "./Login.css";
 import { useLoginUserMutation } from "./store/features/apiSlice";
-import { errorWithMessage, isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
-import { useEffect, useState } from "react";
+import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
+import { useState } from "react";
 import ErrorSpan from "./ErrorSpan";
 import { Link, useNavigate } from "react-router";
 
@@ -23,7 +23,7 @@ export default function Login() {
     function submitLogin() {
 
         submitLoginFunction(logindData).unwrap()
-        .then((data) => {
+        .then(() => {
             navigate("/main");
         })
         .catch((error) => {

@@ -8,31 +8,25 @@ import ProtectedRoute from './ProtectedRoute'
 import Register from './Register'
 import Login from './Login'
 import Profile from './Profile'
-
+import { login, UserInterface } from "./store/features/userSlice"
+import { useShowCurrentUserQuery } from "./store/features/apiSlice"
+import { useEffect } from "react";
+import { useAppDispatch } from './hooks'
 // import { login } from './store/features/userSlice'
 
 // import { useEffect } from 'react'
-import { addSomtheing, login, UserInterface } from "./store/features/userSlice"
-import { useShowCurrentUserQuery } from "./store/features/apiSlice"
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks";
+
 
 
 function App() {
   const dispatch = useAppDispatch();
     
-  const {data = {} as UserInterface } = useShowCurrentUserQuery();
+  const {data = {} as UserInterface} = useShowCurrentUserQuery();
 
-  const user = useAppSelector((state) => {
-    return state.user;
-  });
-
-  console.log(user);
-  
   useEffect(() => {
-      if(data._id) {
-        dispatch(login(data));
-      }
+    if(data._id) {
+      dispatch(login(data));
+    }
   }, [data]);
 
   return (
@@ -45,7 +39,7 @@ function App() {
             </Route>
             <Route element={<ProtectedRoute></ProtectedRoute>}>
             <Route path='/main' element={<Home></Home>}>
-                {/* <Route index element={<Courses></Courses>}></Route> */}
+                <Route index element={<Courses></Courses>}></Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='me' element={<Profile></Profile>} />
               </Route>

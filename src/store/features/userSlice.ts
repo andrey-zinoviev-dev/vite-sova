@@ -30,6 +30,7 @@ export const userSlice = createSlice({
             state.loggedIn = action.payload.loggedIn;
             // return state;
         },
+
         // registerUser: (state, action: PayloadAction<UserInterface>) => {
         //     state._id = action.payload._id;
         //     state.loggedIn = action.payload.loggedIn;
@@ -42,12 +43,12 @@ export const userSlice = createSlice({
                 state.loggedIn = action.payload.loggedIn;
             },
         );
-        // builder.addMatcher(
-        //     sliceApi.endpoints.showCurrentUser.matchFulfilled, (state, action) => {
-        //         state.loggedIn = true;
-        //         state._id = action.payload._id;
-        //     },
-        // )
+        builder.addMatcher(
+            sliceApi.endpoints.showCurrentUser.matchFulfilled, (state, action) => {
+                state.loggedIn = true;
+                state._id = action.payload._id;
+            },
+        )
     }
 });
 

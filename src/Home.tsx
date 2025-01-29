@@ -7,7 +7,7 @@ export default function Home() {
     const user = useAppSelector((state) => {
         return state.user;
     })
-    console.log(user);
+    // console.log(user);
     return (
         <>
             <Header></Header>
