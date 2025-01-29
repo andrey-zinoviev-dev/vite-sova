@@ -1,7 +1,14 @@
 import { Outlet } from "react-router"
-import Login from "./Login"
+
 import "./Welcome.css"
+
+
+
+
 export default function Welcome() {
+    // const navigate = useNavigate();
+
+
     return (
         <section className="welcome">
             <h1>Sasha sova</h1>

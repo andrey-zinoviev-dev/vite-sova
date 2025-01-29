@@ -5,7 +5,13 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { useRegisterUserMutation } from "./store/features/apiSlice";
 import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
+import { useAppSelector } from "./hooks";
 export default function Register() {
+    //redux
+    const user = useAppSelector((state) => {
+        return state.user;
+    })
+    console.log(user);
     //navigate
     const navigate = useNavigate();
 
@@ -23,19 +29,19 @@ export default function Register() {
     
     //functions
     function handleRegisterSubmit() {
-        !isSuccess ?  registerUser(registerData).unwrap()
-        .then((data) => {
-            console.log(data);
-        })
-        .catch((error) => {
-            // console.log(error);
-            const errMsg = isFetchBaseQueryError(error) &&  error.data;
-            setError(errMsg as {message: string});
-        })
+        // !isSuccess ?  registerUser(registerData).unwrap()
+        // .then((data) => {
+        //     console.log(data);
+        // })
+        // .catch((error) => {
+        //     // console.log(error);
+        //     const errMsg = isFetchBaseQueryError(error) &&  error.data;
+        //     setError(errMsg as {message: string});
+        // })
 
-        :
+        // :
 
-        navigate("/");
+        // navigate("/");
     };
 
     return (

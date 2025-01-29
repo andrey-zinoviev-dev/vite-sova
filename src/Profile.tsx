@@ -4,12 +4,8 @@ import { skipToken } from "@reduxjs/toolkit/query";
 import { UserInterface } from "./store/features/userSlice";
 
 export default function Profile() {
-    const userLoggedIn = useAppSelector((state) => {
-        return state.user.loggedIn
-    });
-
     //RTK
-    const { data = {} as UserInterface } = useShowCurrentUserQuery(!userLoggedIn ?? skipToken)
+    const { data = {} as UserInterface } = useShowCurrentUserQuery()
     
     return (
         <>

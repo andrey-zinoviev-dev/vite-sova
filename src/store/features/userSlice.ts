@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
-import type { PayloadAction } from "@reduxjs/toolkit";
+// import type { PayloadAction } from "@reduxjs/toolkit";
 import { sliceApi } from "./apiSlice";
 
 export interface UserInterface {
@@ -8,24 +8,28 @@ export interface UserInterface {
     email: string | null,
     courses: [],
     loggedIn: boolean,
+    accessToken: string | null,
+    name: string,
 }
 
 const initialState:UserInterface = {
     _id: null,
     email: null,
     courses: [],
-    loggedIn: localStorage.getItem("loggedIn") ? true : false,
+    loggedIn: false,
+    accessToken: null,
+    name: "",
 };
 
 export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        // login: (state, action: PayloadAction<UserInterface>) => {
-        //     state._id = action.payload._id;
-        //     state.loggedIn = action.payload.loggedIn;
-        //     return state;
-        // },
+        login: (state, action: PayloadAction<UserInterface>) => {
+            state._id = action.payload._id;
+            state.loggedIn = action.payload.loggedIn;
+            // return state;
+        },
         // registerUser: (state, action: PayloadAction<UserInterface>) => {
         //     state._id = action.payload._id;
         //     state.loggedIn = action.payload.loggedIn;
@@ -35,38 +39,19 @@ export const userSlice = createSlice({
     extraReducers: (builder) => {
         builder.addMatcher(
             sliceApi.endpoints.loginUser.matchFulfilled, (state, action) => {
-                // console.log(action);
                 state.loggedIn = action.payload.loggedIn;
-                localStorage.setItem("loggedIn", "true");
-            }
-        ),
-        builder.addMatcher(
-            sliceApi.endpoints.showCurrentUser.matchFulfilled, (state, action) => {
-                state._id = action.payload._id;
-                state.email = action.payload.email;
             },
-        ),
-        builder.addMatcher(
-                sliceApi.endpoints.showCurrentUser.matchRejected, (state, action) => {
-                if(action.payload?.status === 403) {
-                    state.loggedIn = false;
-                    localStorage.removeItem("loggedIn");
-                }
-                    // state._id = action.payload._id;
-                // state.email = action.payload.email;
-            },
-        )
+        );
         // builder.addMatcher(
-        //     sliceApi.endpoints.showCurrentUser.matchRejected, (state, action) => {
-        //         console.log(action);
-        //         // state._id = action.payload._id;
-        //         // state.email = action.payload.email;
+        //     sliceApi.endpoints.showCurrentUser.matchFulfilled, (state, action) => {
+        //         state.loggedIn = true;
+        //         state._id = action.payload._id;
         //     },
-        // ),
+        // )
     }
 });
 
-// export const { login, registerUser } = userSlice.actions;
+export const { login } = userSlice.actions;
 
 export const userLoggedIn = (state: RootState) => state.user;
 

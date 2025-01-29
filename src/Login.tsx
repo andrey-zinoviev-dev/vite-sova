@@ -24,7 +24,7 @@ export default function Login() {
 
         submitLoginFunction(logindData).unwrap()
         .then((data) => {
-            navigate("/");
+            navigate("/main");
         })
         .catch((error) => {
             const errMsg = isFetchBaseQueryError(error) &&  error.data;

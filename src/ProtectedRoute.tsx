@@ -1,20 +1,24 @@
 import { Navigate, Outlet } from "react-router";
+import { useShowCurrentUserQuery } from './store/features/apiSlice'
+import { UserInterface } from "./store/features/userSlice";
 import { useAppSelector } from "./hooks";
-
 // interface ProtectedRouteInterface {
 
 // }
 
 export default function ProtectedRoute() {
-    //redux
-    const userLoggedIn = useAppSelector((state) => {
-        return state.user.loggedIn;
-    });
-    console.log(userLoggedIn);
-
+    //dispatch
+    // const dispatch = useDispatch();
+    const user = useAppSelector((state) => {
+        return state.user;
+    })
+    console.log(user);
     return (
+
         <>
-            {!userLoggedIn ? <Navigate to={"welcome"} /> : <Outlet />}
+            {/* <h1>Защита маршрутов</h1> */}
+            <Outlet></Outlet>
+            {/* {!user._id ? <Navigate to={"/"} /> : <Outlet />} */}
         </>
         // {!userLoggedIn ? <Navigate></Navigate>}
         // <Outlet>
