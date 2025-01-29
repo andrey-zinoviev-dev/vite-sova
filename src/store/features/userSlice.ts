@@ -47,6 +47,7 @@ export const userSlice = createSlice({
             sliceApi.endpoints.showCurrentUser.matchFulfilled, (state, action) => {
                 state.loggedIn = true;
                 state._id = action.payload._id;
+                state.name = action.payload.name;
             },
         )
     }

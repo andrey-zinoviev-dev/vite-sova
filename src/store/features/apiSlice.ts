@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { UserInterface } from "./userSlice";
+import { CourseInterface } from "./courseSlice";
 // import { RootState } from "../store";
 
 export const sliceApi = createApi({
@@ -40,7 +41,13 @@ export const sliceApi = createApi({
                 credentials: "include",
             })
         }),
+        showCourses: builder.query<CourseInterface[], void>({
+            query: () => ({
+                url: "/coursesList",
+                credentials: "include",
+            })
+        })
     })
 })
 
-export const { useLoginUserMutation, useRegisterUserMutation, useShowCurrentUserQuery } = sliceApi;
+export const { useLoginUserMutation, useRegisterUserMutation, useShowCurrentUserQuery, useShowCoursesQuery } = sliceApi;

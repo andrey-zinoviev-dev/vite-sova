@@ -33,12 +33,12 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={<Welcome></Welcome>}>
+            <Route path='/welcome' element={<Welcome></Welcome>}>
               <Route index element={<Login></Login>}></Route>
               <Route path='register' element={<Register></Register>}></Route>
             </Route>
             <Route element={<ProtectedRoute></ProtectedRoute>}>
-            <Route path='/main' element={<Home></Home>}>
+              <Route path='/' element={<Home></Home>}>
                 <Route index element={<Courses></Courses>}></Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='me' element={<Profile></Profile>} />
