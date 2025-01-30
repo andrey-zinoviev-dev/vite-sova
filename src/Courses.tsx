@@ -1,7 +1,9 @@
+import CoursesList from "./CoursesList";
+// import GenericList from "./GenericList";
 import { useAppSelector } from "./hooks"
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./store/features/courseSlice";
-import { CoursesInterface } from "./store/features/coursesSlice";
+// import { CoursesInterface } from "./store/features/coursesSlice";
 
 export default function Courses() {
     const user = useAppSelector((state) => {
@@ -16,15 +18,7 @@ export default function Courses() {
                 <h3>С возвращением, {user.name}</h3>
                 <span>Что хотите изучить сегодня?</span>
             </div>
-
-            <ul>
-                {data.map((course) => {
-                    return <li key={course._id}>
-                        <button>{course.title}</button>
-                    </li>
-                })}
-            </ul>
-            
+            <CoursesList courses={data}></CoursesList>
         </section>
     )
 }

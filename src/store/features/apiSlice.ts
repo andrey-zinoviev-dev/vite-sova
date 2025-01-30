@@ -5,6 +5,7 @@ import { CourseInterface } from "./courseSlice";
 
 export const sliceApi = createApi({
     reducerPath: "api",
+    tagTypes: ["User"],
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:3000", 
         // // prepareHeaders: (headers, { getState }) => {
@@ -24,6 +25,7 @@ export const sliceApi = createApi({
                 body: {email, password},
                 credentials: "include",
             }),
+            invalidatesTags: ["User"],
             // transformResponse: (response: {data: UserInterface}) => response.data,
         }),
         registerUser: builder.mutation<UserInterface,  {email: string, password: string, name: string}>({
@@ -39,13 +41,14 @@ export const sliceApi = createApi({
             query: () => ({
                 url: "/currentUser",
                 credentials: "include",
-            })
+            }),
+            providesTags: ["User"],
         }),
         showCourses: builder.query<CourseInterface[], void>({
             query: () => ({
                 url: "/coursesList",
                 credentials: "include",
-            })
+            }),
         })
     })
 })

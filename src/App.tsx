@@ -8,10 +8,7 @@ import ProtectedRoute from './ProtectedRoute'
 import Register from './Register'
 import Login from './Login'
 import Profile from './Profile'
-import { login, UserInterface } from "./store/features/userSlice"
-import { useShowCurrentUserQuery } from "./store/features/apiSlice"
-import { useEffect } from "react";
-import { useAppDispatch } from './hooks'
+
 // import { login } from './store/features/userSlice'
 
 // import { useEffect } from 'react'
@@ -19,15 +16,15 @@ import { useAppDispatch } from './hooks'
 
 
 function App() {
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
     
-  const {data = {} as UserInterface} = useShowCurrentUserQuery();
+  // const {data = {} as UserInterface} = useShowCurrentUserQuery();
 
-  useEffect(() => {
-    if(data._id) {
-      dispatch(login(data));
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if(data._id) {
+  //     dispatch(login(data));
+  //   }
+  // }, [data]);
 
   return (
     <>

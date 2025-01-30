@@ -27,7 +27,7 @@ export const userSlice = createSlice({
     reducers: {
         login: (state, action: PayloadAction<UserInterface>) => {
             state._id = action.payload._id;
-            state.loggedIn = action.payload.loggedIn;
+            state.loggedIn = true;
             // return state;
         },
 
