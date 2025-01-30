@@ -1,5 +1,5 @@
 import logo from "./assets/image 2.svg";
-import { useAppSelector } from "./hooks";
+import "./Header.css"
 
 export default function Header() {
     // const user = useAppSelector((state) => {
@@ -7,7 +7,7 @@ export default function Header() {
     // });
 
     return (
-        <header>
+        <header className="header">
             <img src={logo}></img>
             <button>Личный кабинет</button>
         </header>

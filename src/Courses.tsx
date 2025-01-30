@@ -11,11 +11,12 @@ export default function Courses() {
     });
 
     const { data = [] as CourseInterface[]} = useShowCoursesQuery();
+    console.log(data);
 
     return (
-        <section>
+        <section className="courses">
             <div>
-                <h3>С возвращением, {user.name}</h3>
+                <h1>{}</h1>
                 <span>Что хотите изучить сегодня?</span>
             </div>
             <CoursesList courses={data}></CoursesList>

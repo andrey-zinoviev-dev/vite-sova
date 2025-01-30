@@ -9,7 +9,7 @@ interface CoursesListInterface {
 export default function CoursesList({courses}: CoursesListInterface) {
   return (
     <GenericList className={"main-crouses-ul"} items={courses} renderItem={(course) => {
-      return <CourseButton title={course.title} author={course.author}></CourseButton>
+      return <CourseButton available={course.available} title={course.title} author={course.author}></CourseButton>
     }}></GenericList>
   )
 };

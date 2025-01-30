@@ -5,6 +5,7 @@ export interface CourseInterface {
     author: {
         name: string
     },
+    available: boolean,
     // modules: string[],
     // lessons: string[]
 };
