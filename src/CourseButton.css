@@ -8,7 +8,7 @@
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    padding: 15px 15px;
+    padding: 30px 20px;
   transition: all 0.15s ease-in-out;
   pointer-events: all;
   gap: 15px;

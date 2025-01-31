@@ -1,0 +1,29 @@
+.footer img {
+  max-width: 25px;
+}
+
+.footer__wrapper {
+  display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      background-color: #151618;
+      box-sizing: border-box;
+      padding: 30px 15px;
+      border-radius: 10px;
+      /* padding: 5px 0; */
+      /* border-top: 1px solid white; */
+}
+
+.footer__wrapper-logo-wrapper {
+  display: flex;
+      align-items: center;
+      gap: 15px;
+}
+
+.footer__links {
+  display: flex;
+  gap: 15px;
+      /* font-size: 16px; */
+  margin: 0;
+}
