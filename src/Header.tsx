@@ -13,11 +13,14 @@ export default function Header() {
 
     return (
         <header className="header">
-            <img className="header__logo" src={logo}></img>
-            <div className="header__search">
-                <FontAwesomeIcon icon={faMagnifyingGlass} />
-                <Input type="text" updateValue={() => {}} placeholder="Поиск курса"></Input>
+            <div>
+                <img className="header__logo" src={logo}></img>
+                <div className="header__search">
+                    <FontAwesomeIcon icon={faMagnifyingGlass} />
+                    <Input type="text" updateValue={() => {}} placeholder="Поиск курса"></Input>
+                </div>
             </div>
+
             <Link to={"../profile"}><FontAwesomeIcon size="2x" icon={faUserCircle} />
                 <div className="header__user-wrapper">
                     <span>{user.name}</span>
