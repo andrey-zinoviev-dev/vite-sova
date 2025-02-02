@@ -8,6 +8,7 @@ import ProtectedRoute from './ProtectedRoute'
 import Register from './Register'
 import Login from './Login'
 import Profile from './Profile'
+import Course from './Course'
 
 // import { login } from './store/features/userSlice'
 
@@ -39,6 +40,7 @@ function App() {
                 <Route index element={<Courses></Courses>}></Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='profile' element={<Profile></Profile>} />
+                <Route path='courses/:courseId' element={<Course></Course>} />
               </Route>
             </Route>
             

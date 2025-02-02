@@ -11,7 +11,7 @@
     padding: 30px 20px;
   transition: all 0.15s ease-in-out;
   pointer-events: all;
-  gap: 15px;
+  gap: 30px;
 }
 
 .course-button:disabled {
@@ -30,6 +30,14 @@
   gap: 5px;
   grid-template-columns: 1fr;
   width: 100%;
+}
+
+.course-button__category {
+  box-sizing: border-box;
+  padding: 5px;
+  border-radius: 24px;
+  background-color: #646cff;
+  line-height: 1;
 }
 
 .course-button__title {
@@ -68,6 +76,47 @@
 .course-button__cover {
   width: 100%;
   border-radius: 4px;
+}
+
+.course-button__desc {
+  font-size: 14px;
+  text-align: left;
+}
+
+.course-button__progress-wrapper {
+  width: 100%;
+  text-align: left;
+}
+
+.course-button__progress {
+  display: flex
+;
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
+}
+
+.course-button__progress-div {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 100%;
+  height: 3px;
+}
+
+.course-button:hover .course-button__progress-div-inner{
+  background-color: black;
+}
+
+.course-button__progress-div-inner {
+  position: absolute;
+  height: 3px;
+  /* width: 35%; */
+  background-color: #646cff;
+  transition: all 0.15s ease-in-out;
+
 }
 
 .course-button__bot-wrapper {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CourseInterface } from "./courseSlice";
-import { sliceApi } from "./apiSlice";
+// import { sliceApi } from "./apiSlice";
 
 export interface CoursesInterface {
     courses: CourseInterface[]
@@ -14,7 +14,7 @@ export const coursesSlice = createSlice({
     name: "courses",
     initialState,
     reducers: {},
-    extraReducers: (builder) => {
-        // builder.addMatcher(sliceApi.endpoints.)
-    }
+    // extraReducers: (builder) => {
+    //     // builder.addMatcher(sliceApi.endpoints.)
+    // }
 })
