@@ -1,4 +1,4 @@
-import CoursesList from "./CoursesList";
+// import CoursesList from "./CoursesList";
 // import GenericList from "./GenericList";
 
 import "./Courses.css";
@@ -24,7 +24,6 @@ export default function Courses() {
 
     return (
         <section className="courses">
-            {/* <CoursesList courses={data}></CoursesList> */}
             <Outlet></Outlet>
         </section>
     )

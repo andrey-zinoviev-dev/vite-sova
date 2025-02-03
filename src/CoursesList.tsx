@@ -1,14 +1,13 @@
 import CourseButton from "./CourseButton";
 import GenericList from "./GenericList";
-import { CourseInterface } from "./store/features/courseSlice";
 import "./CoursesList.css"
 import { useAppSelector } from "./hooks";
 
 export default function CoursesList() {
   const courses = useAppSelector((state) => {
     return state.courses.courses;
+  });
 
-  })
   return (
     <>
       <h2>Доступные курсы</h2>

@@ -14,11 +14,13 @@ export default function Course() {
     })
   });
 
+  // console.log(data);
+
   return (
     <>
       <h3>{data.title}</h3>
-      <h3>Модули курса</h3>
-      <RowList items={data.modules}></RowList>
+      {/* <h3>Модули курса</h3> */}
+      {data.modules && <RowList items={data.modules}></RowList>}
     </>
   )
 }

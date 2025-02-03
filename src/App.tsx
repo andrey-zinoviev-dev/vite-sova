@@ -44,8 +44,6 @@ function App() {
                   <Route path='courses/:courseId/' element={<Course></Course>}>
                   </Route>
                   <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>}></Route>
-
-                  {/* <Route path='/courses/:courseId' */}
                 </Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='profile' element={<Profile></Profile>} />
