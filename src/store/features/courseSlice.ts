@@ -7,6 +7,7 @@ export interface CourseInterface {
     },
     available: boolean,
     description: string,
+    modules: {title: string}[],
     // modules: string[],
     // lessons: string[]
 };

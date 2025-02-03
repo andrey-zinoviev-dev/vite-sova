@@ -1,7 +1,8 @@
 import { useParams } from "react-router";
-
+import "./Course.css";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./store/features/courseSlice";
+import RowList from "./RowList";
 
 export default function Course() {
   const { courseId } = useParams();
@@ -13,16 +14,11 @@ export default function Course() {
     })
   });
 
-  console.log(data);
-
   return (
     <>
-      <h3>Курс {data.title}</h3>
-      {}
-      {/* <RowList items={}></RowList> */}
-      {/* <GenericList className="" items={[{title: "Модуль 1", author: {name: "Дрис ван Зандт"}, available: true}, {title: "Модуль 2", author: {name: "Дрис ван Зандт"}, available: true}, {title: "Модуль 3", author: {name: "Дрис ван Зандт"}, available: false}, {title: "Модуль 4", author: {name: "Дрис ван Зандт"}, available: false}, {title: "Модуль 5", author: {name: "Дрис ван Зандт"}, available: false}]} renderItem={(module) => {
-        return <CourseButton author={module.author} title={module.title} available={module.available}></CourseButton>
-      }}></GenericList> */}
+      <h3>{data.title}</h3>
+      <h3>Модули курса</h3>
+      <RowList items={data.modules}></RowList>
     </>
   )
 }

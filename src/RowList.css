@@ -1,0 +1,7 @@
+.list-row {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+}

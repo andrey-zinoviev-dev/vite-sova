@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { CourseInterface } from "./courseSlice";
 // import { sliceApi } from "./apiSlice";
 
@@ -13,8 +13,16 @@ const initialState:CoursesInterface = {
 export const coursesSlice = createSlice({
     name: "courses",
     initialState,
-    reducers: {},
+    reducers: {
+        setCourses: (state, action: PayloadAction<CourseInterface[]>) => {
+            state.courses = action.payload;
+        }
+    },
     // extraReducers: (builder) => {
     //     // builder.addMatcher(sliceApi.endpoints.)
     // }
-})
+});
+
+export const {setCourses} = coursesSlice.actions;
+
+export default coursesSlice.reducer;

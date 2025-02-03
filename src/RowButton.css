@@ -1,0 +1,30 @@
+.button-row {
+    width: 100%;
+    background-color: transparent;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 20px 40px;
+    font-size: 18px;
+}
+
+.button-row__title-wrapper {
+    display: flex
+;
+    gap: 30px;
+}
+
+.button-row__index {
+    min-width: 30px;
+}
+
+.button-row__svg-wrapper {
+    font-size: 14px;
+    display: flex
+;
+    align-items: center;
+    gap: 30px;
+}
