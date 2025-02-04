@@ -7,7 +7,9 @@ export interface CourseInterface {
     },
     available: boolean,
     description: string,
-    modules: {title: string}[],
+    modules: ModuleInterface[],
     // modules: string[],
     // lessons: string[]
 };
+
+export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">

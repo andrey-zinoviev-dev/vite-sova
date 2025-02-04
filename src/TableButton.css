@@ -1,4 +1,4 @@
-.course-button {
+.button-table {
   width: 100%;
   height: 100%;
   /* aspect-ratio: 1 / 1; */
@@ -14,17 +14,16 @@
   gap: 30px;
 }
 
-.course-button:disabled {
+.button-table:disabled {
   pointer-events: none;
   filter: contrast(0.5);
 }
 
-.course-button:hover {
-  /* color: black; */
+.button-table:hover {
   background-color: #646cff;
 }
 
-.course-button__top-wrapper {
+.button-table__top-wrapper {
   display: grid;
   text-align: left;
   gap: 5px;
@@ -32,7 +31,7 @@
   width: 100%;
 }
 
-.course-button__category {
+.button-table__category {
   box-sizing: border-box;
   padding: 5px;
   border-radius: 24px;
@@ -40,7 +39,7 @@
   line-height: 1;
 }
 
-.course-button__title {
+.button-table__title {
   /* min-height: 98px; */
   min-height: 49px;
   font-size: 18px;
@@ -50,45 +49,45 @@
   justify-content: space-between;
 }
 
-.course-button__svg {
+.button-table__svg {
   rotate: -45deg;
 }
 
-.course-button__svg-color {
+.button-table__svg-color {
   color: #646cff;
 
 }
 
-.course-button .course-button__svg-color {
+.button-table .button-tablen__svg-color {
   transition: all 0.15s ease-in-out;
 }
 
-.course-button:hover .course-button__svg-color {
+.button-table:hover .button-table__svg-color {
   color: white;
 }
 
-.course-button__author {
+.button-table__author {
   font-size: 14px;
     color: #d6d7d7;
     /* font-weight: 700; */
 }
 
-.course-button__cover {
+.button-tablen__cover {
   width: 100%;
   border-radius: 4px;
 }
 
-.course-button__desc {
+.button-table__desc {
   font-size: 14px;
   text-align: left;
 }
 
-.course-button__progress-wrapper {
+.button-table__progress-wrapper {
   width: 100%;
   text-align: left;
 }
 
-.course-button__progress {
+.button-table__progress {
   display: flex
 ;
     width: 100%;
@@ -97,7 +96,7 @@
     align-items: center;
 }
 
-.course-button__progress-div {
+.button-table__progress-div {
   position: relative;
   background-color: white;
   border-radius: 5px;
@@ -106,11 +105,11 @@
   height: 3px;
 }
 
-.course-button:hover .course-button__progress-div-inner{
+.button-table:hover .button-table__progress-div-inner{
   background-color: black;
 }
 
-.course-button__progress-div-inner {
+.button-table__progress-div-inner {
   position: absolute;
   height: 3px;
   /* width: 35%; */
@@ -119,7 +118,7 @@
 
 }
 
-.course-button__bot-wrapper {
+.button-table__bot-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
