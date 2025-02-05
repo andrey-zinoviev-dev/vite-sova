@@ -1,21 +1,23 @@
-import GenericList from "./GenericList"
+// import GenericList from "./GenericList"
 import { CourseInterface, ModuleInterface } from "./store/features/courseSlice";
-import TableButton from "./TableButton"
+// import TableButton from "./TableButton"
 // import { useNavigate } from "react-router"
 import "./TableComp.css"
 
 interface TableCompInterface<T> {
   items: T[],
+  renderItem: (item: T, index: number) => React.ReactNode,
 }
 
-export default function TableComp<T extends CourseInterface | ModuleInterface>({ items }: TableCompInterface<T>){
-  // const navigate = useNavigate();
+export default function TableComp<T extends CourseInterface | ModuleInterface>({ items, renderItem }: TableCompInterface<T>){
 
   return (
-    <GenericList className={"table-ul"} items={items} renderItem={(item) => {
-            return <TableButton item={item} handleClick={() => {
-            }} disabled={item.available}>
-            </TableButton>
-    }}></GenericList>
+    <ul className="table-ul">
+      {items.map((item, index) => {
+        return <li key={item._id}>
+          {renderItem(item, index)}
+        </li>
+      })}
+  </ul>
   )
 }

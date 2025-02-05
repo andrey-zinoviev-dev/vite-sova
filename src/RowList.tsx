@@ -1,16 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import GenericList from "./GenericList";
-import { faArrowRight, faCheck } from "@fortawesome/free-solid-svg-icons";
-import RowButton from "./RowButton";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowRight, faCheck } from "@fortawesome/free-solid-svg-icons";
 import "./RowList.css"
 interface RowListInterface<T> {
   items: T[],
+  // handleClick: (item: T) => void,
+  renderItem: (item: T, index: number) => React.ReactNode,
 }
 
-export default function RowList<T extends {title: string}>({items}: RowListInterface<T>) {
+export default function RowList<T extends {title: string, _id: string}>({items, renderItem}: RowListInterface<T>) {
   return (
-    <GenericList className="list-row" items={items} renderItem={(item, index) => {
-      return <RowButton index={index} item={item}></RowButton>
-    }}></GenericList>
+    <ul className="list-row">
+      {items.map((item, index) => {
+        return <li key={item._id}>
+          {renderItem(item, index)}
+        </li>
+      })}
+    </ul>
   )
 }

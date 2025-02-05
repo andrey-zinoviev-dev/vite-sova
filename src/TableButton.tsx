@@ -1,7 +1,7 @@
 interface TableButton<T> {
   item: T,
   // children: React.ReactNode | React.ReactNode[],
-  handleClick: () => void,
+  handleClick: (item: T) => void,
   disabled: boolean,
 };
 
@@ -13,7 +13,7 @@ import { CourseInterface, ModuleInterface } from "./store/features/courseSlice";
 
 export default function TableButton<T extends CourseInterface | ModuleInterface>({ item, disabled, handleClick }: TableButton<T>) {
   return (
-    <button disabled={!disabled} className="button-table" onClick={handleClick}>
+    <button disabled={!disabled} className="button-table" onClick={() => handleClick(item)}>
       <span className="button-table__category">Вокал</span>
       <div className="button-table__top-wrapper">
         <span className="button-table__title">{item.title}

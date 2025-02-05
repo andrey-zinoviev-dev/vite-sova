@@ -7,9 +7,16 @@ export interface CourseInterface {
     },
     available: boolean,
     description: string,
-    modules: ModuleInterface[],
+    modules: ModuleExtInterface[],
     // modules: string[],
     // lessons: string[]
 };
 
-export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">
+export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">;
+
+export interface ModuleExtInterface extends ModuleInterface {
+    lessons: {
+        _id: string,
+        title: string,
+    }[]
+}

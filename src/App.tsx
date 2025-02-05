@@ -11,6 +11,7 @@ import Profile from './Profile'
 import Course from './Course'
 import CoursesList from './CoursesList'
 import Module from './Module'
+import Lesson from './Lesson'
 
 // import { login } from './store/features/userSlice'
 
@@ -45,8 +46,10 @@ function App() {
                   </Route>
                   <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>}></Route>
                 </Route>
+                <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}></Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='profile' element={<Profile></Profile>} />
+
               </Route>
             </Route>
             

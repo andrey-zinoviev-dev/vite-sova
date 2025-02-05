@@ -20,7 +20,6 @@ export default function Courses() {
             dispatch(setCourses(data));
         }
     }, [data])
-    // console.log(data);
 
     return (
         <section className="courses">

@@ -1,27 +1,32 @@
-import CourseButton from "./CourseButton";
-import GenericList from "./GenericList";
+// import CourseButton from "./CourseButton";
+// import GenericList from "./GenericList";
 import "./CoursesList.css"
 import { useAppSelector } from "./hooks";
-import TableButton from "./TableButton";
+// import TableButton from "./TableButton";
 import { useNavigate } from "react-router";
-
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
+import TableComp from "./TableComp";
+// import { CourseInterface } from "./store/features/courseSlice";
+import TableButton from "./TableButton";
 export default function CoursesList() {
   const courses = useAppSelector((state) => {
     return state.courses.courses;
   });
+
+  // const location = useLocation();
 
   const navigate = useNavigate();
 
   return (
     <>
       <h2>Доступные курсы</h2>
-      <GenericList className={"main-crouses-ul"} items={courses} renderItem={(course) => {
-        return <TableButton item={course} handleClick={() => {
-          navigate(`./courses/${course._id}`)
-        }} disabled={course.available}>
-        </TableButton>
-        // return <CourseButton _id={course._id} description={course.description} available={course.available} title={course.title} author={course.author}></CourseButton>
-      }}></GenericList>
+
+      <TableComp items={courses} renderItem={(item, index) => {
+        return <TableButton item={item} handleClick={() => {
+          navigate(`./courses/${item._id}`)
+        }} disabled={item.available}></TableButton>
+      }}></TableComp>
     </>
     
   )
