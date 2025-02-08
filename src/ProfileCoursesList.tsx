@@ -8,11 +8,12 @@ interface ProfileCoursesList {
 
 export default function ProfileCoursesList({ courses }: ProfileCoursesList) {
     return (
-        <GenericList className="" items={courses} renderItem={(course) => {
-            return <button>
-                <span>{course.title}</span>
-                <span>Студентов на курсе: {course.students.length}</span>
-            </button>
-        }}></GenericList>
+        <></>
+        // <GenericList className="" items={courses} renderItem={(course) => {
+        //     return <button>
+        //         <span>{course.title}</span>
+        //         <span>Студентов на курсе: {course.students.length}</span>
+        //     </button>
+        // }}></GenericList>
     )
 };

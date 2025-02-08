@@ -1,0 +1,27 @@
+.lesson {
+    /* min-height: 70svh; */
+    height: 100svh;
+    display: grid
+;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    position: relative;
+    overflow: auto;
+    gap: 30px;
+    box-sizing: border-box;
+    padding: 50px 0;
+}
+
+.lesson__content {
+    box-sizing: border-box;
+    padding: 30px;
+    text-align: left;
+    background-color: #151618;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lesson__content img {
+    width: 100%;
+}

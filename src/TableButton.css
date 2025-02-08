@@ -33,7 +33,7 @@
 
 .button-table__category {
   box-sizing: border-box;
-  padding: 5px;
+  padding: 10px;
   border-radius: 24px;
   background-color: #646cff;
   line-height: 1;
@@ -80,6 +80,7 @@
 .button-table__desc {
   font-size: 14px;
   text-align: left;
+  min-height: 98px;
 }
 
 .button-table__progress-wrapper {

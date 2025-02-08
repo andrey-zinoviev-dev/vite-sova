@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import TableComp from "./TableComp";
 import TableButton from "./TableButton";
+import BackButton from "./BackButton";
 
 export default function Course() {
   const { courseId } = useParams();
@@ -27,17 +28,13 @@ export default function Course() {
 
   return (
     <>
-      <button onClick={() => {
-        navigate(-1);
-      }}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        Назад к курсам
-      </button>
+      <BackButton text="Назад к курсам"></BackButton>
 
       <h3>{data.title}</h3>
 
       {data.modules && <TableComp items={data.modules} renderItem={(item, index) => {
         return <TableButton item={item} disabled={item.available} handleClick={() => {
+          // console.log(item);
           navigate(`${location.pathname}/modules/${item._id}`);
         }}></TableButton>
       }}></TableComp>}

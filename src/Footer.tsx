@@ -11,9 +11,9 @@ export default function Footer() {
                     <span>2023-2025 SOVA</span>
                 </div>
                 <span>Самый легкий путь в экстрим вокал</span>
-                <GenericList items={["vk", "inst", "tg", "zoom"]} className="footer__links" renderItem={(item) => {
+                {/* <GenericList items={["vk", "inst", "tg", "zoom"]} className="footer__links" renderItem={(item) => {
                     return <span>{item}</span>
-                }}></GenericList>
+                }}></GenericList> */}
             </div>
 
         </footer>

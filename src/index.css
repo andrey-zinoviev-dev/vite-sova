@@ -33,6 +33,10 @@ body {
   background-color: #2C2A28;
 }
 
+section {
+  min-height: 70svh;
+}
+
 h1 {
   font-size: 3.2em;
   line-height: 1.1;

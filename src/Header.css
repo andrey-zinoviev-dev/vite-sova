@@ -5,10 +5,6 @@
         align-items: center;
 }
 
-.header__logo {
-    max-width: 25px;
-}
-
 .header__left-wrapper {
     display: flex;
         gap: 15px;

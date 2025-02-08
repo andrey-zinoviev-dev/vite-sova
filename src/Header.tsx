@@ -1,10 +1,10 @@
 import { Link } from "react-router";
-import logo from "./assets/image 2.svg";
 import "./Header.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import Input from "./Input";
 import { useAppSelector } from "./hooks";
+import Logo from "./Logo";
 
 export default function Header() {
     const user = useAppSelector((state) => {
@@ -14,7 +14,8 @@ export default function Header() {
     return (
         <header className="header">
             <div className="header__left-wrapper">
-                <img className="header__logo" src={logo}></img>
+                <Logo></Logo>
+                {/* <img className="header__logo" src={logo}></img> */}
                 <div className="header__search">
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                     <Input type="text" updateValue={() => {}} placeholder="Поиск курса"></Input>

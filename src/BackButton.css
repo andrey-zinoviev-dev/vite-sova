@@ -1,0 +1,6 @@
+.button-back {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 18px;
+}

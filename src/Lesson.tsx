@@ -1,7 +1,39 @@
+import { useShowCoursesQuery } from "./store/features/apiSlice";
+import { useParams } from "react-router";
+import { CourseInterface } from "./store/features/courseSlice";
+import SideBar from "./SideBar";
+
+import "./Lesson.css"
+
 export default function Lesson() {
+  const { courseId, moduleId, lessonId } = useParams();
+
+  const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
+    selectFromResult: ({data}) => ({
+        data: data?.find((course) => {
+          return course._id === courseId;
+      })
+    })
+  });
+
+  const module = data.modules && data.modules.find((module) => {
+    return module._id === moduleId;
+  });
+
+  const lesson = module?.lessons.find((lesson) => {
+    return lesson._id === lessonId;
+  });
+
   return (
-    <section>
-      <p>Урок</p>
+    <section className="lesson">
+      <SideBar></SideBar>
+      <h3>{lesson?.title}</h3>
+      <div className="lesson__content">
+        <h4>Обратите внимание на произношение сложных, парных согласных и продолжайте работать над песнями, исходя из этого. Песни на ваш выбор тоже можно, если нет проблем по работе с диапазоном.</h4>
+        <img src="https://cdn.mohen-tohen.ru/IMG_20241127_232821_046.jpg"></img>
+        <p>Вот тут еще текст</p>
+        <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img>
+      </div>
     </section>
   )
 }

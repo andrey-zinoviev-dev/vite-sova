@@ -46,11 +46,12 @@ function App() {
                   </Route>
                   <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>}></Route>
                 </Route>
-                <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}></Route>
                 <Route path='addCourse' element={<AddCourse></AddCourse>} />
                 <Route path='profile' element={<Profile></Profile>} />
 
               </Route>
+              <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}></Route>
+
             </Route>
             
         </Routes>
