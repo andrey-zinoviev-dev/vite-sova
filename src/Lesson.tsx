@@ -4,6 +4,7 @@ import { CourseInterface } from "./store/features/courseSlice";
 import SideBar from "./SideBar";
 
 import "./Lesson.css"
+import CourseLocation from "./CourseLocation";
 
 export default function Lesson() {
   const { courseId, moduleId, lessonId } = useParams();
@@ -26,7 +27,8 @@ export default function Lesson() {
 
   return (
     <section className="lesson">
-      <SideBar></SideBar>
+      {module && <SideBar module={module}></SideBar>}
+      {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
       <h3>{lesson?.title}</h3>
       <div className="lesson__content">
         <h4>Обратите внимание на произношение сложных, парных согласных и продолжайте работать над песнями, исходя из этого. Песни на ваш выбор тоже можно, если нет проблем по работе с диапазоном.</h4>

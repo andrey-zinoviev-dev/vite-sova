@@ -1,6 +1,9 @@
 .welcome {
     max-width: 360px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     /* background-color: #2C2A28; */
 }
 

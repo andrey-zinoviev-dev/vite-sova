@@ -1,14 +1,21 @@
 .button-row {
     width: 100%;
     background-color: transparent;
+    /* border: none; */
     border-bottom: 1px solid #888;
     border-radius: 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    padding: 20px 40px;
+    /* padding: 20px 40px; */
+    padding: 20px 10px;
     font-size: 18px;
+    color: white;
+}
+
+.button-row:hover {
+    background-color: #646cff;
 }
 
 .button-row__title-wrapper {
