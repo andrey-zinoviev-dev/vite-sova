@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router";
 import "./Sidebar.css"
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { ModuleExtInterface } from "./store/features/courseSlice";
 import RowList from "./RowList";
 import RowButton from "./RowButton";
@@ -22,8 +22,10 @@ export default function SideBar({ module }: SideBarInterface){
                 <Logo></Logo>
                 <button onClick={() => {
                     setOpenedSideBar(true);
-                }}>Меню</button>
-                <button>
+                }}>
+                    <FontAwesomeIcon icon={faBars} />
+                </button>
+                <button className="sidebar__chat-btn">
                     <FontAwesomeIcon icon={faMessage} />
                 </button>
 

@@ -56,3 +56,11 @@
     margin: 0;
     font-weight: 500;
 }
+
+@media screen and (max-width: 1023px) {
+    .sidebar__chat-btn {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+    }
+}
