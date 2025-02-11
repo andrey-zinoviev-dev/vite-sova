@@ -25,9 +25,11 @@ export default function Lesson() {
     return lesson._id === lessonId;
   });
 
+  // console.log(lesson);
+
   return (
     <section className="lesson">
-      {module && <SideBar module={module}></SideBar>}
+      {data.title && module && <SideBar course={data} module={module}></SideBar>}
       {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
       <h3>{lesson?.title}</h3>
       <div className="lesson__content">
@@ -36,6 +38,9 @@ export default function Lesson() {
         <p>Вот тут еще текст</p>
         <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img>
       </div>
+      <button>
+        Следующий урок
+      </button>
     </section>
   )
 }

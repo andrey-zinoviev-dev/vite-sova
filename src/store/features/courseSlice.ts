@@ -15,8 +15,10 @@ export interface CourseInterface {
 export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">;
 
 export interface ModuleExtInterface extends ModuleInterface {
-    lessons: {
-        _id: string,
-        title: string,
-    }[]
+    lessons: LessonInterface[]
+}
+
+export interface LessonInterface {
+    _id: string,
+    title: string,
 }

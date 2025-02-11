@@ -4,17 +4,25 @@ import "./Sidebar.css"
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { ModuleExtInterface } from "./store/features/courseSlice";
+import { CourseInterface, ModuleExtInterface } from "./store/features/courseSlice";
 import RowList from "./RowList";
 import RowButton from "./RowButton";
+import NavigationModule from "./NavigationModule";
+import LessonButton from "./LessonButton";
+import NavigationLink from "./NavigationLink";
 
 interface SideBarInterface {
+    course: CourseInterface,
     module: ModuleExtInterface,
 };
 
-export default function SideBar({ module }: SideBarInterface){
+export default function SideBar({ course }: SideBarInterface){
+
     const [ openedSideBar, setOpenedSideBar ] = useState<boolean>(false);
-    const { courseId, moduleId } = useParams();
+
+    // const { courseId } = useParams();
+
+    // console.log(course);
 
     return (
         <div className="sidebar">
@@ -34,20 +42,23 @@ export default function SideBar({ module }: SideBarInterface){
             {openedSideBar && <div className="sidebar__right">
                 <div className="sidebar__right-navigation">
                     <div className="sidebar__right-close">
-                        <h3>{module.title}</h3>
+                        <h3>{course.title}</h3>
                         <button onClick={() => {
                             setOpenedSideBar(false);
                         }}>
                             <FontAwesomeIcon icon={faXmark} />
                         </button>
                     </div>
-                    <RowList items={module.lessons} renderItem={(item, index) => {
-                        return <Link to={`../courses/${courseId}/modules/${moduleId}/lessons/${item._id}`} reloadDocument>
-                            <RowButton item={item} index={index + 1} handleClick={() => {}}></RowButton>
-
-                        </Link>
-                    }}> 
-                    </RowList>
+                    {course.modules && <RowList items={course.modules} renderItem={(item) => {
+                        return <NavigationModule module={item}>
+                            <RowList items={item.lessons} renderItem={(lesson, index) => {
+                                return <NavigationLink to={`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`}>
+                                    <LessonButton item={lesson} index={index + 1}></LessonButton>
+                                </NavigationLink>
+                            }}></RowList>
+                        </NavigationModule>
+                    }}>
+                    </RowList>}
                 </div>
             </div>}
         </div>

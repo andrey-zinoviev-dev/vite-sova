@@ -1,30 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheck, faArrowRight } from "@fortawesome/free-solid-svg-icons"
+// import { Link, useNavigate } from "react-router";
 import "./RowButton.css";
-// import { useNavigate } from "react-router";
 
-interface RowButtonInterface<T> {
-    item: T,
-    index: number,
-    handleClick: (item: T) => void,
+interface RowButtonInterface {
+    handleClick?: () => void,
+    children: React.ReactNode | React.ReactNode[],
+    // to: string,
 }
 
 
-export default function RowButton<T extends {title: string}>({item, index, handleClick}: RowButtonInterface<T>) {
+export default function RowButton({ handleClick, children }: RowButtonInterface) {
+    //navigate
     // const navigate = useNavigate();
 
     return (
-        <button onClick={() => {
-            handleClick(item);
-        }} className="button-row">
-            <div className="button-row__title-wrapper">
-                <span className="button-row__index">0{index}.</span>
-                <span>{item.title}</span>
-            </div>
-            <div className="button-row__svg-wrapper">
-                <FontAwesomeIcon icon={faCheck} />
-                <FontAwesomeIcon icon={faArrowRight} />
-            </div>
+        <button onClick={handleClick && handleClick}>
+            {children}
         </button>
     )
 }

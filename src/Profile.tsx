@@ -1,8 +1,7 @@
-import GenericList from "./GenericList";
 import { useAppSelector } from "./hooks";
 import ProfileCoursesList from "./ProfileCoursesList";
-import { useShowCurrentUserQuery } from "./store/features/apiSlice";
-import { UserInterface } from "./store/features/userSlice";
+import ProfileStats from "./ProfileStats";
+import "./Profile.css"
 
 export default function Profile() {
     const user = useAppSelector((state) => {
@@ -10,12 +9,15 @@ export default function Profile() {
     });
 
     return (
-        <>
-            <h2>С возвращением, {user.email}</h2>
+        <section className="profile">
             <div>
-                <span>Ваши курсы</span>
-                <ProfileCoursesList courses={user.courses}></ProfileCoursesList>
+                <h2>С возвращением, {user.email}</h2>
+                <div>
+                    <span>Ваши курсы</span>
+                    <ProfileCoursesList courses={user.courses}></ProfileCoursesList>
+                </div>
             </div>
-        </>
+            <ProfileStats></ProfileStats>
+        </section>
     )
 }
