@@ -1,0 +1,11 @@
+.link {
+    pointer-events: all;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 10px 0;
+    border-bottom: 1px solid #888;
+}

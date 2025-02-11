@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import "./Sidebar.css"
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,12 +17,17 @@ interface SideBarInterface {
 };
 
 export default function SideBar({ course }: SideBarInterface){
-
+    //state
     const [ openedSideBar, setOpenedSideBar ] = useState<boolean>(false);
 
-    // const { courseId } = useParams();
+    //navigate
+    const navigate = useNavigate();
 
-    // console.log(course);
+    //functions
+    function closeAndNavigate(link: string) {
+        navigate(link);
+        setOpenedSideBar(false);
+    }
 
     return (
         <div className="sidebar">
@@ -36,9 +41,7 @@ export default function SideBar({ course }: SideBarInterface){
                 <button className="sidebar__chat-btn">
                     <FontAwesomeIcon icon={faMessage} />
                 </button>
-
             </div>
-
             {openedSideBar && <div className="sidebar__right">
                 <div className="sidebar__right-navigation">
                     <div className="sidebar__right-close">
@@ -52,9 +55,10 @@ export default function SideBar({ course }: SideBarInterface){
                     {course.modules && <RowList items={course.modules} renderItem={(item) => {
                         return <NavigationModule module={item}>
                             <RowList items={item.lessons} renderItem={(lesson, index) => {
-                                return <NavigationLink to={`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`}>
-                                    <LessonButton item={lesson} index={index + 1}></LessonButton>
-                                </NavigationLink>
+                                // return <RowButton></RowButton>
+                                // return <NavigationLink available={lesson.available} to={`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`}>
+                                //     <LessonButton available={lesson.available} item={lesson} index={index + 1}></LessonButton>
+                                // </NavigationLink>
                             }}></RowList>
                         </NavigationModule>
                     }}>

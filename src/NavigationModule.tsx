@@ -17,7 +17,7 @@ export default function NavigationModule ({ module, children }: NavigationModule
       <RowButton handleClick={() => {
         setOpened(!opened);
       }}>
-        <ModuleButton module={module}></ModuleButton>
+        <ModuleButton opened={opened} module={module}></ModuleButton>
       </RowButton>
 
       {opened && children}

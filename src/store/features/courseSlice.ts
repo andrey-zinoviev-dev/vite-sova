@@ -21,4 +21,5 @@ export interface ModuleExtInterface extends ModuleInterface {
 export interface LessonInterface {
     _id: string,
     title: string,
+    available: boolean,
 }

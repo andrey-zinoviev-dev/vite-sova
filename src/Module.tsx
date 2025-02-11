@@ -1,4 +1,4 @@
-import { useParams } from "react-router"
+import { useNavigate, useParams } from "react-router"
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface, ModuleExtInterface } from "./store/features/courseSlice";
 import RowList from "./RowList";
@@ -6,9 +6,13 @@ import RowList from "./RowList";
 import BackButton from "./BackButton";
 import LessonButton from "./LessonButton";
 import NavigationLink from "./NavigationLink";
-
+import RowButton from "./RowButton";
+// import LessonButton from "./LessonButton";
 export default function Module() {
     const { courseId, moduleId } = useParams();
+
+    const navigate = useNavigate();
+
     const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
         selectFromResult: ({data}) => ({
         data: data?.find((course) => {
@@ -26,8 +30,8 @@ export default function Module() {
             <BackButton text="Назад к модулям"></BackButton>
             <span>Модуль</span>
             {courseModule && courseModule.lessons && <RowList items={courseModule.lessons} renderItem={(item, index) => {
-                return <NavigationLink to={`./lessons/${item._id}`}>
-                    <LessonButton item={item} index={index + 1}></LessonButton>
+                return <NavigationLink to={`./lessons/${item._id}`} available={item.available}>
+                       <LessonButton item={item} index={index + 1} available={item.available}></LessonButton>
                 </NavigationLink>
             }}></RowList>}
         </>

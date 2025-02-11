@@ -1,12 +1,13 @@
 import { ModuleExtInterface } from "./store/features/courseSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCheck } from "@fortawesome/free-solid-svg-icons"
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { faCaretDown, faCaretRight, faCheck, faLock } from "@fortawesome/free-solid-svg-icons"
+// import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
 interface ModuleButtonInterface {
-  module: ModuleExtInterface
+  module: ModuleExtInterface,
+  opened: boolean,
 }
 
-export default function ModuleButton({ module }: ModuleButtonInterface) {
+export default function ModuleButton({ module, opened }: ModuleButtonInterface) {
   return (
     <>
       <div className="button-row__title-wrapper">
@@ -16,7 +17,7 @@ export default function ModuleButton({ module }: ModuleButtonInterface) {
       <div className="button-row__svg-wrapper">
         <span>уроки: {module.lessons.length}</span>
         {/* <FontAwesomeIcon icon={faCheck} /> */}
-        <FontAwesomeIcon icon={faArrowRight} />
+        {module.available ? <FontAwesomeIcon icon={opened ? faCaretDown : faCaretRight} /> : <FontAwesomeIcon icon={faLock} />}
       </div>
     </>
   )

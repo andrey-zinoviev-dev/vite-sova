@@ -1,13 +1,14 @@
 import { LessonInterface } from "./store/features/courseSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons"
 
 interface LessonButtonInterface {
   item: LessonInterface,
   index: number,
+  available: boolean,
 }
 
-export default function LessonButton({ item, index }: LessonButtonInterface) {
+export default function LessonButton({ item, index, available }: LessonButtonInterface) {
   return (
     <>
       <div className="button-row__title-wrapper">
@@ -16,7 +17,7 @@ export default function LessonButton({ item, index }: LessonButtonInterface) {
       </div>
       <div className="button-row__svg-wrapper">
         {/* <FontAwesomeIcon icon={faCheck} /> */}
-        <FontAwesomeIcon icon={faArrowRight} />
+        <FontAwesomeIcon icon={available ?  faArrowRight : faLock} />
       </div>
     </>
   )
