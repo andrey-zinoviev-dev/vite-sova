@@ -6,8 +6,7 @@ import { CourseInterface } from "./store/features/courseSlice";
 
 // import TableComp from "./TableComp";
 // import GenericList from "./GenericList";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 import TableComp from "./TableComp";
 import TableButton from "./TableButton";
 import BackButton from "./BackButton";
@@ -32,7 +31,7 @@ export default function Course() {
 
       <h3>{data.title}</h3>
 
-      {data.modules && <TableComp items={data.modules} renderItem={(item, index) => {
+      {data.modules && <TableComp items={data.modules} renderItem={(item) => {
         return <TableButton item={item} disabled={item.available} handleClick={() => {
           // console.log(item);
           navigate(`${location.pathname}/modules/${item._id}`);

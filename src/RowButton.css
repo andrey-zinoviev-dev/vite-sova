@@ -14,12 +14,15 @@
     /* color: white; */
     outline: none;
     border: none;
+    /* color: white; */
     color: #888;
     pointer-events: all;
+    border-radius: 0;
 }
 
 .button-row:disabled {
     pointer-events: none;
+    color: #888;
     /* background-color: red; */
 }
 
@@ -29,6 +32,7 @@
 
 .button-row:hover {
     color: white;
+    border-color: white;
     /* background-color: #646cff;
     color: white; */
 }

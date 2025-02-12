@@ -1,15 +1,15 @@
 import { useState } from "react"
-import { Link, useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import "./Sidebar.css"
 import Logo from "./Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { CourseInterface, ModuleExtInterface } from "./store/features/courseSlice";
 import RowList from "./RowList";
-import RowButton from "./RowButton";
+// import RowButton from "./RowButton";
 import NavigationModule from "./NavigationModule";
 import LessonButton from "./LessonButton";
-import NavigationLink from "./NavigationLink";
+// import NavigationLink from "./NavigationLink";
 
 interface SideBarInterface {
     course: CourseInterface,
@@ -17,6 +17,7 @@ interface SideBarInterface {
 };
 
 export default function SideBar({ course }: SideBarInterface){
+
     //state
     const [ openedSideBar, setOpenedSideBar ] = useState<boolean>(false);
 
@@ -55,10 +56,9 @@ export default function SideBar({ course }: SideBarInterface){
                     {course.modules && <RowList items={course.modules} renderItem={(item) => {
                         return <NavigationModule module={item}>
                             <RowList items={item.lessons} renderItem={(lesson, index) => {
-                                // return <RowButton></RowButton>
-                                // return <NavigationLink available={lesson.available} to={`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`}>
-                                //     <LessonButton available={lesson.available} item={lesson} index={index + 1}></LessonButton>
-                                // </NavigationLink>
+                                return <LessonButton item={lesson} index={index + 1} handleClick={() => {
+                                    closeAndNavigate(`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`);
+                                }} available={lesson.available}></LessonButton>
                             }}></RowList>
                         </NavigationModule>
                     }}>

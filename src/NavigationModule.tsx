@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ModuleExtInterface } from "./store/features/courseSlice";
-import RowButton from "./RowButton";
 import ModuleButton from "./ModuleButton";
+import { useParams } from "react-router";
 
 interface NavigationModuleInterface {
   module: ModuleExtInterface
@@ -9,16 +9,16 @@ interface NavigationModuleInterface {
 }
 
 export default function NavigationModule ({ module, children }: NavigationModuleInterface) {
+  const { moduleId } = useParams();
+
   //state
-  const [opened, setOpened] = useState<boolean>(false);
+  const [opened, setOpened] = useState<boolean>(moduleId === module._id ? true : false);
 
   return (
     <>
-      <RowButton handleClick={() => {
+      <ModuleButton handleClick={() => {
         setOpened(!opened);
-      }}>
-        <ModuleButton opened={opened} module={module}></ModuleButton>
-      </RowButton>
+      }} module={module} opened={opened}></ModuleButton>
 
       {opened && children}
     </>
