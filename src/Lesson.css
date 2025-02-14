@@ -12,34 +12,3 @@
     padding: 50px 0;
 }
 
-.lesson__content {
-    box-sizing: border-box;
-    padding: 30px;
-    text-align: left;
-    background-color: #151618;
-    border-radius: 12px;
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.lesson__content img {
-    width: 100%;
-}
-
-@media screen and (max-width: 1279px) {
-    .lesson__content {
-        max-width: 720px;
-    }
-}
-
-@media screen and (max-width: 1023px) {
-    .lesson__content {
-        max-width: 600px;
-    }
-}
-
-@media screen and (max-width: 767px) {
-    .lesson__content {
-        max-width: 360px;
-    }
-}

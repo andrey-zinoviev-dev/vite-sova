@@ -1,0 +1,42 @@
+.lesson__content {
+    box-sizing: border-box;
+    padding: 30px;
+    text-align: left;
+    background-color: #151618;
+    border-radius: 12px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.lesson__content img {
+    width: 100%;
+}
+
+.lesson__chat-button {
+    position: sticky;
+    bottom: 0px;
+    right: 50px;
+    width: fit-content;
+    margin: 0 0 0 auto;
+    background-color: #646cff;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+}
+
+@media screen and (max-width: 1279px) {
+    .lesson__content {
+        max-width: 720px;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .lesson__content {
+        max-width: 600px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .lesson__content {
+        max-width: 360px;
+    }
+}

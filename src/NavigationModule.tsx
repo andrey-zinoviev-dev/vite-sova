@@ -16,7 +16,7 @@ export default function NavigationModule ({ module, children }: NavigationModule
 
   return (
     <>
-      <ModuleButton handleClick={() => {
+      <ModuleButton available={module.available} handleClick={() => {
         setOpened(!opened);
       }} module={module} opened={opened}></ModuleButton>
 

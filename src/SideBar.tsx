@@ -39,9 +39,9 @@ export default function SideBar({ course }: SideBarInterface){
                 }}>
                     <FontAwesomeIcon icon={faBars} />
                 </button>
-                <button className="sidebar__chat-btn">
+                {/* <button className="sidebar__chat-btn">
                     <FontAwesomeIcon icon={faMessage} />
-                </button>
+                </button> */}
             </div>
             {openedSideBar && <div className="sidebar__right">
                 <div className="sidebar__right-navigation">

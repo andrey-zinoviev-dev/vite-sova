@@ -1,0 +1,17 @@
+.chat {
+    max-width: 900px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 580px;
+    background-color: #1a1a1a;
+    border-radius: 12px;
+    display: grid
+;
+    grid-template-columns: 210px 1fr;
+    align-items: flex-start;
+}
+
+.chat__right-wrapper {
+    height: 100%;
+    border-left: 1px solid #888;
+}

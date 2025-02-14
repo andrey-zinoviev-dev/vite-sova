@@ -1,3 +1,8 @@
 .button-lesson {
   border-bottom: 1px solid #888;
+  position: relative;
+}
+
+.button-lesson_active {
+  color: white;
 }
