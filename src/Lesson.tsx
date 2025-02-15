@@ -5,10 +5,6 @@ import SideBar from "./SideBar";
 
 import "./Lesson.css"
 import CourseLocation from "./CourseLocation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
-import Chat from "./Chat";
 
 export default function Lesson() {
   const { courseId, moduleId, lessonId } = useParams();
@@ -29,16 +25,11 @@ export default function Lesson() {
     return lesson._id === lessonId;
   });
 
-  //state
-  // const [chatOn, setChatOn] = useState<boolean>(false);
-
-  // console.log(lesson);
-
   return (
     <section className="lesson">
-      {data.title && module && <SideBar course={data} module={module}></SideBar>}
+      {/* {data.title && module && <SideBar course={data} module={module}></SideBar>} */}
       {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
-      <h3>{lesson?.title}</h3>
+      <h2>{lesson?.title}</h2>
       <Outlet></Outlet>
       {/* {!chatOn ? <>
         <div className="lesson__content">

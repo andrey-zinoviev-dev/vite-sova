@@ -18,7 +18,7 @@
     right: 50px;
     width: fit-content;
     margin: 0 0 0 auto;
-    background-color: #646cff;
+    /* background-color: #646cff; */
     aspect-ratio: 1 / 1;
     border-radius: 50%;
 }

@@ -23,7 +23,7 @@ export default function LessonButton({ item, index, available, handleClick }: Le
 
   const { lessonId } = useParams();
 
-  const classStr = lessonId === item._id ? `button-lesson_active button-lesson button-row` : "button-lesson button-row";
+  const classStr = lessonId === item._id ? `button-lesson_active button-lesson` : "button-lesson";
   // console.log(classStr);
 
   return (

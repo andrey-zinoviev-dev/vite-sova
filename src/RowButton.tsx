@@ -4,6 +4,7 @@ import "./RowButton.css";
 
 type RowButtonType = ComponentPropsWithoutRef<"button"> & {
     children:  React.ReactNode | React.ReactNode[],
+    // className?: string,
 }
 
 // interface RowButtonInterface {
@@ -17,13 +18,14 @@ type RowButtonType = ComponentPropsWithoutRef<"button"> & {
 
 
 export default function RowButton({ children, ...props }: RowButtonType) {
-    const { className } = props;
+    const { className, ...rest } = props;
     const buttonClass = "button-row " + (className || "");
+    
     //navigate
     // const navigate = useNavigate();
 
     return (
-        <button className={buttonClass} {...props}>
+        <button className={buttonClass} {...rest}>
             {children}
         </button>
     )

@@ -1,0 +1,28 @@
+.contact-button {
+  padding: 10px 15px;
+  font-size: 14px;
+  gap: 10px;
+}
+
+.contact-button__img {
+  width: 100%;
+  max-width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+
+.contact-button__receiver-wrapper {
+  display: grid
+;
+    text-align: left;
+    gap: 5px;
+    width: 100%;
+}
+
+.contact-button__name {
+  font-size: 16px;
+}
+
+.contact-button__last-message {
+  font-size: 12px;
+}
