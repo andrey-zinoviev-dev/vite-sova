@@ -2,12 +2,15 @@ type InputBaseType = React.ComponentPropsWithoutRef<"input">;
 
 interface InputInterface<T> extends InputBaseType {
     updateValue: React.Dispatch<React.SetStateAction<T>>,
-    type: string,
+    // type: string,
+    // focus?: boolean,
 }
 
-export default function Input<T>({ placeholder, type, name, updateValue}: InputInterface<T> ) {
+export default function Input<T>({ updateValue, ...props }: InputInterface<T> ) {
+    const { name } = props;
+
     return (
-        <input type={type} placeholder={placeholder} onChange={(evt) => {
+        <input { ...props } onChange={(evt) => {
             name && updateValue((prevValue) => {
                 return {...prevValue, [name]: evt.target.value}
             })

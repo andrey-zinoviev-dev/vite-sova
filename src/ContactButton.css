@@ -1,12 +1,16 @@
 .contact-button {
-  padding: 10px 15px;
+  padding: 15px 30px;
   font-size: 14px;
   gap: 10px;
 }
 
+.contact-button_active {
+  color: white;
+}
+
 .contact-button__img {
   width: 100%;
-  max-width: 30px;
+  max-width: 40px;
   aspect-ratio: 1/1;
   border-radius: 50%;
 }
