@@ -1,5 +1,5 @@
 // import { useNavigate } from "react-router"
-import Form from "./Form";
+// import Form from "./Form";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import "./Chat.css"
@@ -12,7 +12,7 @@ import Input from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-import FormWithFile from "./FormWithFile";
+import ChatForm from "./ChatForm";
 export default function Chat() {
     // const navigate = useNavigate();
     //state
@@ -41,7 +41,7 @@ export default function Chat() {
         <>
             {/* <h3>Чат</h3> */}
             <div className="chat">
-                <RowList items={testItems} renderItem={(item, index) => {
+                <RowList items={testItems} renderItem={(item) => {
                     return <ContactButton active={item._id === selectedUser?._id} handleClick={() => {
                         setSelectedUser(item);
                     }} contact={item}></ContactButton>
@@ -58,28 +58,7 @@ export default function Chat() {
                                 <span>{selectedUser.name}</span>
                             </div>
                             <span className="chat__selectect-initial-span">Сообщений нет</span>
-                            <FormWithFile>
-                                <div className="chat__form-wrapper">
-                                    <button>
-                                        <FontAwesomeIcon icon={faPaperclip} />
-                                    </button>
-                                    {/* <Input autoFocus placeholder="Введите сообщение..." type="text" updateValue={() => {}}></Input> */}
-                                    <button type="submit">
-                                        <FontAwesomeIcon icon={faPaperPlane} />
-                                    </button>
-                                </div>
-                            </FormWithFile>
-                            {/* <Form className="chat__form" submitFunction={() => {
-                                console.log("send message here"); 
-                            }} icon={faPaperPlane} isLoading={false} isSuccess={false}>
-                                <div className="chat__form-wrapper">
-                                    <button>
-                                        <FontAwesomeIcon icon={faPaperclip} />
-                                    </button>
-                                    <Input autoFocus placeholder="Введите сообщение..." type="text" updateValue={() => {}}></Input>
-                                </div>
-                            </Form> */}
-                          
+                            <ChatForm />
                         </>
                     }
 

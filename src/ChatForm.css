@@ -1,0 +1,19 @@
+.form_file__input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    height: 100%;
+    font-size: 16px;
+    caret-color: #888;
+    color: white;
+}
+
+.form_file input[type="file"] {
+    display: none;
+}
+
+.form_file button {
+    background-color: transparent;
+    color: white;
+    font-size: 18px;
+}

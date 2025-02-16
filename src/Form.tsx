@@ -1,8 +1,9 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import './Form.css'
 
 type FormType = React.ComponentPropsWithoutRef<"form"> & {
-    submitFunction: () => void,
+    // submitFunction: () => void,
     text?: string,
     children: React.ReactNode | React.ReactNode[],
     className: string,
@@ -21,18 +22,14 @@ type FormType = React.ComponentPropsWithoutRef<"form"> & {
 //     icon? : IconProp,
 // }
 
-export default function Form({children, isLoading, isSuccess, icon, text, submitFunction, ...props }: FormType) {
+export default function Form({children, isLoading, isSuccess, icon, text, ...props }: FormType) {
 
-    const { className, onSubmit, ...rest } = props;
+    const { className, ...rest } = props;
 
     const classStr = "form " + (className || "");
 
-
     return (
-        <form className={classStr} onSubmit={(evt) => {
-            evt.preventDefault();
-            submitFunction();
-        }} {...rest}>
+        <form className={classStr} {...rest}>
             {children}
             <button style={{pointerEvents: isLoading ? "none" : "all"}} disabled={isLoading}>{isSuccess ? "Успешно" : icon ? <FontAwesomeIcon icon={icon} /> : text}</button>
         </form>
