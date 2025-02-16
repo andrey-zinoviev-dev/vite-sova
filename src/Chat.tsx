@@ -8,9 +8,9 @@ import RowList from "./RowList";
 // import LessonButton from "./LessonButton";
 import ContactButton from "./ContactButton";
 import { UserInterface } from "./store/features/userSlice";
-import Input from "./Input";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+// import Input from "./Input";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ChatForm from "./ChatForm";
 export default function Chat() {

@@ -1,7 +1,17 @@
 import { createPortal } from "react-dom";
+import "./Popup.css"
 
-export default function Popup() {
+interface PopupInterface {
+  children: React.ReactNode | React.ReactNode[],
+}
+
+export default function Popup({ children }: PopupInterface) {
   // const rootEl = document.getElementById("#root");
 
-  return createPortal(<h3>Попап окно</h3>, document.body);
+  return createPortal(<section className="popup">
+    <div>
+      <h3>Попап окно</h3>
+      {children}
+    </div>
+  </section>, document.body);
 }

@@ -5,7 +5,7 @@ import "./ChatForm.css"
 import Input from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import Popup from "./Popup";
+import FilePopup from "./FilePopup";
 
 // interface FormWithFileInterface {
 //     icon: IconProp,
@@ -46,7 +46,7 @@ export default function ChatForm() {
                 <input accept="video/*,audio/*" onChange={handleFileUpdate} ref={inputFileRef} type="file"></input>
             </Form>
 
-            {openenFiles && <Popup></Popup>}
+            {openenFiles && <FilePopup />}
         </>
     )
 }
