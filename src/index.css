@@ -52,6 +52,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: white;
 }
 /* button:hover {
   border-color: #646cff;
@@ -66,9 +67,9 @@ ul {
   list-style: none;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
-    /* color: #213547; */
+    color: #213547;
     color: #ffffff;
     background-color: #ffffff;
   }
@@ -78,4 +79,4 @@ ul {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

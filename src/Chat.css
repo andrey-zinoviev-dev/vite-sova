@@ -14,7 +14,7 @@
 .chat__right-wrapper {
     height: 100%;
     border-left: 3px solid #2C2A28;
-    /* background-color: #151618; */
+    background-color: #151618;
     display: flex
     ;
         align-items: flex-start;
@@ -33,6 +33,7 @@
     padding: 15px 30px;
     border-bottom: 3px solid #2C2A28;
     font-size: 18px;
+    background-color: #1a1a1a;
 }
 
 .chat__selectect-initial-span {

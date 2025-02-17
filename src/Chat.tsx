@@ -49,6 +49,7 @@ export default function Chat() {
                 <div className="chat__right-wrapper">
                     {
                         !selectedUser ? <>
+                            {/* <div></div> */}
                             <span className="chat__selectect-initial-span">Выберите, кому написать</span>
                         </>
                         :

@@ -1,4 +1,8 @@
-.form_file__input {
+.form_chat {
+    background-color: #1a1a1a;
+}
+
+.form_chat__input {
     background-color: transparent;
     border: none;
     outline: none;
@@ -8,12 +12,20 @@
     color: white;
 }
 
-.form_file input[type="file"] {
+.form_chat input[type="file"] {
     display: none;
 }
 
-.form_file button {
+.form_chat button {
     background-color: transparent;
     color: white;
     font-size: 18px;
+}
+
+.form_chat__file {
+    width: 100%;
+}
+
+.popup_file__wrapper {
+    max-width: 540px;
 }

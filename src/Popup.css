@@ -4,7 +4,21 @@
   height: 100%;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(1px);
   z-index: 250;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup__container {
+  /* min-width: 360px; */
+  /* min-height: 380px; */
+  /* border: 2px solid white; */
+  max-width: 1024px;
+  background-color: #2C2A28;
+  box-sizing: border-box;
+  padding: 15px 30px;
+  border-radius: 15px;
 }

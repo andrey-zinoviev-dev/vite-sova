@@ -11,7 +11,7 @@
     margin: 0;
 }
 
-.welcome__form {
+.welcome form {
     display: grid;
     grid-template-columns: 1fr;
     min-width: 360px;
@@ -26,4 +26,6 @@
     border-radius: 5px;
     background-color: transparent;
     border: 1px solid white;
+    color: white;
+    caret-color: white;
 }

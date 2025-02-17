@@ -46,7 +46,7 @@ export default function Register() {
 
     return (
         <>
-            <Form isLoading={isLoading} isSuccess={isSuccess} className="welcome__form" text="Зарегистрироваться">
+            <Form isLoading={isLoading} isSuccess={isSuccess} className="" text="Зарегистрироваться">
                 <ErrorSpan text={error.message} />
                 <Input type="email" updateValue={setRegisterData} name="email" placeholder="Почта"></Input> 
                 <Input type="password" hidden updateValue={setRegisterData} name="password" placeholder="Пароль"></Input>

@@ -9,8 +9,8 @@ export default function Popup({ children }: PopupInterface) {
   // const rootEl = document.getElementById("#root");
 
   return createPortal(<section className="popup">
-    <div>
-      <h3>Попап окно</h3>
+    <div className="popup__container">
+      {/* <h3>Попап окно</h3> */}
       {children}
     </div>
   </section>, document.body);
