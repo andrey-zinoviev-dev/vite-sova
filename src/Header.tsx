@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import "./Header.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faMagnifyingGlass, faUserCircle } from "@fortawesome/free-solid-svg-icons";
@@ -11,15 +11,17 @@ export default function Header() {
         return state.user;
     });
 
+    const location = useLocation();
+
     return (
         <header className="header">
             <div className="header__left-wrapper">
                 <Logo></Logo>
                 {/* <img className="header__logo" src={logo}></img> */}
-                <div className="header__search">
+                {location.pathname.length === 1 && <div className="header__search">
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                     <Input type="text" updateValue={() => {}} placeholder="Поиск курса"></Input>
-                </div>
+                </div>}
             </div>
             <div className="header__right-wrapper">
                 <div className="header__notif-wrapper">

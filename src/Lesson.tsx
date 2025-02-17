@@ -5,6 +5,13 @@ import SideBar from "./SideBar";
 
 import "./Lesson.css"
 import CourseLocation from "./CourseLocation";
+import Logo from "./Logo";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import LessonHeader from "./LessonHeader.tsx";
+import Header from "./Header";
+import { useState } from "react";
+import Popup from "./Popup.tsx";
 
 export default function Lesson() {
   const { courseId, moduleId, lessonId } = useParams();
@@ -25,30 +32,24 @@ export default function Lesson() {
     return lesson._id === lessonId;
   });
 
+  //state
+  const [sideOpened, setSideOpened] = useState<boolean>(false);
+
   return (
     <section className="lesson">
-      {/* {data.title && module && <SideBar course={data} module={module}></SideBar>} */}
-      {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
+      <LessonHeader>
+        {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
+        <button onClick={() => {
+          setSideOpened(!sideOpened);
+        }}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+      </LessonHeader>
       <h2>{lesson?.title}</h2>
       <Outlet></Outlet>
-      {/* {!chatOn ? <>
-        <div className="lesson__content">
-          <h4>Обратите внимание на произношение сложных, парных согласных и продолжайте работать над песнями, исходя из этого. Песни на ваш выбор тоже можно, если нет проблем по работе с диапазоном.</h4>
-          <img src="https://cdn.mohen-tohen.ru/IMG_20241127_232821_046.jpg"></img>
-          <p>Вот тут еще текст</p>
-          <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img>
-        </div>
-        <button>
-          Следующий урок
-        </button>
-        <button onClick={() => {
-          setChatOn(true);
-        }} className="lesson__chat-button">
-          <FontAwesomeIcon icon={faMessage} />
-        </button>
-      </>
-      :
-      <Chat />} */}
+      {sideOpened && <Popup>
+        <h3>навигация по курсу</h3>  
+      </Popup>}
     </section>
   )
 }
