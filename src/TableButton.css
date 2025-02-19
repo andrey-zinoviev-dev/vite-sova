@@ -37,6 +37,12 @@
   border-radius: 24px;
   background-color: #646cff;
   line-height: 1;
+  width: fit-content;
+}
+
+.button-table:hover .button-table__category {
+  background-color: white;
+  color: black;
 }
 
 .button-table__title {
@@ -47,6 +53,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 5px;
 }
 
 .button-table__svg {

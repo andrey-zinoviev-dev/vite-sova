@@ -12,3 +12,9 @@
     padding: 0 0 50px 0;
 }
 
+.popup__close-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}

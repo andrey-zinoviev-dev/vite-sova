@@ -17,11 +17,11 @@ export default function LessonContent() {
             <button>
                 Следующий урок
             </button>
-            <button className="lesson__chat-button" onClick={() => {
+            {/* <button className="lesson__chat-button" onClick={() => {
                 navigate("./chat")
             }}>
                 <FontAwesomeIcon icon={faMessage} />
-            </button>
+            </button> */}
         </>
     )
 }

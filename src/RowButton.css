@@ -9,7 +9,8 @@
     align-items: center;
     box-sizing: border-box;
     /* padding: 20px 40px; */
-    padding: 20px 0px;
+    /* padding: 20px 0px; */
+    padding: 20px 10px;
     font-size: 18px;
     /* color: white; */
     outline: none;

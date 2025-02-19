@@ -23,6 +23,8 @@ export default function ChatForm() {
     const [message, setMessage] = useState<{ message: string } | null>(null);
     // const [openenFiles, setOpenedFiles] = useState<boolean>(false);
     const [files, setFiles] = useState<ExtFileType[]>([]);
+    const [initiateUplaod, setInitiateUpload] = useState<boolean>(false);
+    const [uploadingFile, setUplaodingFile] = useState<ExtFileType | null>(null);
 
     //ref
     const inputFileRef = useRef<HTMLInputElement | null>(null);
@@ -35,7 +37,8 @@ export default function ChatForm() {
         if(file) {
             setFiles((prevValue) => {
                 return [...prevValue, file]
-            })
+            });
+            // setUplaodingFile()
             // setFiles((prevValue) => {
             //     return [...prevValue, file];
             // })
@@ -43,7 +46,7 @@ export default function ChatForm() {
     };
 
     function defineFileType(file: ExtFileType) {
-        console.log(file);
+        // console.log(file);
         const filePath = window.URL.createObjectURL(file);
 
         if(file.type.includes("audio")) {
@@ -53,6 +56,10 @@ export default function ChatForm() {
         if(file.type.includes("video")) {
             return <video className="form_chat__file" src={filePath} controls></video>
         }
+
+        // if(file.type.includes("image")) {
+        //     return <img className="form_chat__file" src={filePath}></img>
+        // }
     } 
 
     return (
@@ -69,61 +76,61 @@ export default function ChatForm() {
                     </button>
                     <Input className="form_chat__input" name="message" placeholder="Введите сообщение" updateValue={setMessage} type="text" autoFocus ></Input>
                 </div>
-                <input accept=".mp4, .mp3, .ogg, .wav, .m4v" onChange={handleFileUpdate} ref={inputFileRef} type="file"></input>
+                <input accept=".png, .mp4, .mp3, .ogg, .wav, .m4v" onChange={handleFileUpdate} ref={inputFileRef} type="file"></input>
             </Form>
 
             {files.length > 0 && <Popup>
                 <div className="popup_file__wrapper">
-                    <RowList items={files} renderItem={(file) => {
-                        return  <div>
-                            <span>{file.name}</span>
-                            <button onClick={() => {
-                                setFiles((prevValue) => {
-                                    return prevValue.filter((prevFile) => {
-                                        return prevFile.name !== file.name;
-                                    })
-                                })
-                            }}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                        {defineFileType(file)}
-                    </div>
-                    }}>
-
-                    </RowList>
-                    {/* <ul>
-                        {files.map((file) => {
-                            const itemId = new Date().getMilliseconds() + file.name;
-                            const htmlDoc = defineFileType(file);
-                            return <li key={itemId}>
-                                <div>
-                                    <span>{file.name}</span>
-                                    <button onClick={() => {
-                                        setFiles((prevValue) => {
-                                            return prevValue.filter((prevFile) => {
-                                                return file.name !== prevFile.name;
-                                            });
+                    {!initiateUplaod ? <>
+                        <RowList items={files} renderItem={(file) => {
+                            return  <div>
+                                <span>{file.name}</span>
+                                <button onClick={() => {
+                                    setFiles((prevValue) => {
+                                        return prevValue.filter((prevFile) => {
+                                            return prevFile.name !== file.name;
                                         })
-                                    }}>
-                                        <FontAwesomeIcon icon={faTrash} />
-                                    </button>
-                                </div>
-                                {htmlDoc}
-                            </li>
-                        })}
-                    </ul> */}
-                    <div>
-                        <button onClick={() => {
-                            inputFileRef.current?.click();
+                                    })
+                                }}>
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </button>
+                            {defineFileType(file)}
+                        </div>
                         }}>
-                            Добавить
-                        </button>
-                        <button onClick={() => {
-                            // setOpenedFiles(false);
-                            setFiles([]);
-                        }}>Отменить</button>
-                        <button>Отправить</button>
-                    </div>
+
+                        </RowList>
+                        <div>
+                            <button onClick={() => {
+                                inputFileRef.current?.click();
+                            }}>
+                                Добавить
+                            </button>
+                            <button onClick={() => {
+                                // setOpenedFiles(false);
+                                setFiles([]);
+                            }}>Отменить</button>
+                            <button onClick={() => {
+                                setInitiateUpload(true);
+                                setUplaodingFile(files[0]);
+                            }}>Отправить</button>
+                        </div>
+                    
+                    </>
+                    :
+                    <>
+                        <span>{uploadingFile?.name}</span>
+                        <progress max={100} value={36}></progress>
+                        <span>1/6</span>
+                        {/* <RowList items={files} renderItem={(file) => {
+                            return  <div>
+                                <span>{file.name}</span>
+                                <progress max={100} value={36}></progress>
+                            
+                        </div>
+                        }}>
+
+                        </RowList> */}
+                    </>}
                 </div>
             </Popup>}
         </>
