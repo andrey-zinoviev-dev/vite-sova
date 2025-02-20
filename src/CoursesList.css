@@ -1,6 +1,13 @@
-.main-crouses-ul {
+.courses-list-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+/* .main-crouses-ul {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
   gap: 30px;
   width: 100%;
-}
+} */

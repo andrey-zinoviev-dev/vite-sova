@@ -1,0 +1,32 @@
+.profile-data {
+    display: grid
+;
+    /* grid-template-columns: 1fr 210px; */
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+.profile-data__courses-wrapper {
+    display: flex
+    ;
+        align-items: center;
+        /* gap: 15px; */
+        justify-content: space-between;
+}
+
+.profile-data__headline {
+    margin: 0;
+    font-size: 32px;
+}
+
+.profile-data__addCourse-button {
+    background-color: #646cff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 18px;
+}
+
+.profile-data__addCourse-button:hover {
+    background-color: #1a1a1a;
+}

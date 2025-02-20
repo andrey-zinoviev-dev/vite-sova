@@ -1,6 +1,8 @@
 .profile {
-  display: flex
+  /* display: flex
   ;
       align-items: flex-start;
-      justify-content: space-between;
+      justify-content: space-between; */
+  /* display: grid;
+  grid-template-columns: 1fr 280px; */
 }

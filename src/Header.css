@@ -1,4 +1,11 @@
-.header {
+/* .header {
+    display: flex
+    ;
+        justify-content: space-between;
+        align-items: center;
+} */
+
+.header__content {
     display: flex
     ;
         justify-content: space-between;
@@ -10,7 +17,8 @@
         gap: 15px;
         align-items: center;
         width: 100%;
-        max-width: 360px;
+        max-width: 460px;
+        /* max-width: 360px; */
 }
 
 .header__search {

@@ -45,7 +45,8 @@ export default function Lesson() {
 
   return (
     <section className="lesson">
-      <LessonHeader>
+      <Header></Header>
+      {/* <LessonHeader>
         {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
         {location.pathname.includes("chat") 
         ? 
@@ -65,7 +66,7 @@ export default function Lesson() {
         }}>
           <FontAwesomeIcon icon={faBars} />
         </button>
-      </LessonHeader>
+      </LessonHeader> */}
       <h2>{lesson?.title}</h2>
       <Outlet></Outlet>
       {sideOpened && <PopupRight>

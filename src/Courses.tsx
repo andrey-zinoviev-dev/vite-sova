@@ -8,6 +8,7 @@ import { CourseInterface } from "./store/features/courseSlice";
 import { useEffect } from "react";
 import { useAppDispatch } from "./hooks";
 import { setCourses } from "./store/features/coursesSlice";
+import { Container } from "./Container";
 // import { CoursesInterface } from "./store/features/coursesSlice";
 
 export default function Courses() {
@@ -23,7 +24,9 @@ export default function Courses() {
 
     return (
         <section className="courses">
-            <Outlet></Outlet>
+            <Container>
+                <Outlet></Outlet>
+            </Container>
         </section>
     )
 }

@@ -19,7 +19,7 @@ export default function CoursesList() {
   const navigate = useNavigate();
 
   return (
-    <>
+    <div className="courses-list-wrapper">
       <h2>Доступные курсы</h2>
 
       <TableComp items={courses} renderItem={(item, index) => {
@@ -27,7 +27,7 @@ export default function CoursesList() {
           navigate(`./courses/${item._id}`)
         }} disabled={item.available}></TableButton>
       }}></TableComp>
-    </>
+    </div>
     
   )
 };

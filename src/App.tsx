@@ -15,6 +15,7 @@ import Lesson from './Lesson'
 import LessonContent from './LessonContent'
 import Chat from './Chat'
 import ProfileData from './ProfileData'
+import Header from './Header'
 
 // import { login } from './store/features/userSlice'
 
@@ -60,7 +61,7 @@ function App() {
                 <Route index element={<LessonContent></LessonContent>} />
                 <Route path='chat' element={<Chat />} />
               </Route>
-
+              {/* <Route path='/' element={<Header></Header>}></Route> */}
             </Route>
             
         </Routes>
