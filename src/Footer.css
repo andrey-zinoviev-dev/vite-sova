@@ -1,3 +1,7 @@
+.footer {
+  background-color: #151618;
+}
+
 .footer img {
   max-width: 25px;
 }
@@ -6,8 +10,8 @@
   display: flex;
       align-items: center;
       justify-content: space-between;
-      box-sizing: border-box;
-      background-color: #151618;
+      /* box-sizing: border-box; */
+
       box-sizing: border-box;
       padding: 30px 15px;
       border-radius: 10px;

@@ -45,9 +45,27 @@ export default function Lesson() {
 
   return (
     <section className="lesson">
-      <Header></Header>
+      <Header>
+      {location.pathname.includes("chat") 
+        ? 
+        <button onClick={() => {
+          navigate(-1);
+        }}>
+          <FontAwesomeIcon icon={faBook} />
+        </button> 
+        : 
+        <button onClick={() => {
+          navigate("./chat")
+        }}>
+          <FontAwesomeIcon icon={faMessage} />
+        </button>}
+        <button onClick={() => {
+          setSideOpened(!sideOpened);
+        }}>
+          <FontAwesomeIcon icon={faBars} />
+        </button>
+      </Header>
       {/* <LessonHeader>
-        {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
         {location.pathname.includes("chat") 
         ? 
         <button onClick={() => {
@@ -67,6 +85,8 @@ export default function Lesson() {
           <FontAwesomeIcon icon={faBars} />
         </button>
       </LessonHeader> */}
+      {/* {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>} */}
+
       <h2>{lesson?.title}</h2>
       <Outlet></Outlet>
       {sideOpened && <PopupRight>
