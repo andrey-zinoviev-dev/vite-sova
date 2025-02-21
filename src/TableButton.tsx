@@ -9,14 +9,14 @@ import "./TableButton.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
-import { CourseInterface, ModuleInterface } from "./store/features/courseSlice";
+import { CourseInterface, ModuleInterface, StudentCourseInterface } from "./store/features/courseSlice";
 
-export default function TableButton<T extends CourseInterface | ModuleInterface>({ item, disabled, handleClick }: TableButton<T>) {
+export default function TableButton<T extends CourseInterface | ModuleInterface | StudentCourseInterface>({ item, disabled, handleClick }: TableButton<T>) {
   return (
     <button disabled={!disabled} className="button-table" onClick={() => handleClick(item)}>
       <span className="button-table__category">Вокал</span>
       <div className="button-table__top-wrapper">
-        <span className="button-table__title">{item.title}
+        <span className="button-table__title">{item.title }
           <FontAwesomeIcon className={item.available ? "button-table__svg button-table__svg-color" : ""} icon={item.available ? faArrowRight : faLock} />
         </span>
         {/* <span className="button-table__author">{item.author.name}</span> */}

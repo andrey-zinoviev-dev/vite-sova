@@ -1,21 +1,31 @@
 // import CourseButton from "./CourseButton";
 // import GenericList from "./GenericList";
 import { useNavigate } from "react-router";
-import { CourseInterface } from "./store/features/courseSlice";
+// import { StudentCourseInterface } from "./store/features/courseSlice";
 import TableButton from "./TableButton";
 import TableComp from "./TableComp";
+import { useAppSelector } from "./hooks";
+// interface ProfileCoursesList {
+//     courses: {
+//         course: StudentCourseInterface,
+//     }[]
+// };
 
-interface ProfileCoursesList {
-    courses: CourseInterface[],
-};
-
-export default function ProfileCoursesList({ courses }: ProfileCoursesList) {
+export default function ProfileCoursesList() {
     //navigate
     const navigate = useNavigate();
-    // console.log(courses);
-    return (
     
-            <TableComp items={courses} renderItem={(item) => {
+    const user = useAppSelector((state) => {
+        return state.user;
+    });
+
+    const userCourses = user.courses.map((course) => {
+        return course.course;
+    });
+
+    return (
+    // <></>
+            <TableComp items={userCourses} renderItem={(item) => {
                 return <TableButton item={item} disabled={item.available} handleClick={() => {
                     navigate(`../courses/${item._id}`)
                 }} />

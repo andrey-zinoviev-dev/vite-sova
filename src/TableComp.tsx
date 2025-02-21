@@ -1,5 +1,5 @@
 // import GenericList from "./GenericList"
-import { CourseInterface, ModuleInterface } from "./store/features/courseSlice";
+import { CourseInterface, ModuleInterface, StudentCourseInterface } from "./store/features/courseSlice";
 // import TableButton from "./TableButton"
 // import { useNavigate } from "react-router"
 import "./TableComp.css"
@@ -9,7 +9,7 @@ interface TableCompInterface<T> {
   renderItem: (item: T, index: number) => React.ReactNode,
 }
 
-export default function TableComp<T extends CourseInterface | ModuleInterface>({ items, renderItem }: TableCompInterface<T>){
+export default function TableComp<T extends CourseInterface | ModuleInterface | StudentCourseInterface>({ items, renderItem }: TableCompInterface<T>){
 
   return (
     <ul className="table-ul">

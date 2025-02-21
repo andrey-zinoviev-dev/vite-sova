@@ -4,7 +4,7 @@ import "./ChatForm.css"
 // import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import Input from "./Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFile, faPaperclip, faPaperPlane, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faPaperclip, faPaperPlane, faTrash } from "@fortawesome/free-solid-svg-icons";
 // import FilePopup from "./FilePopup";
 import Popup from "./Popup";
 import RowList from "./RowList";

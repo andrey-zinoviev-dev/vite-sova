@@ -1,18 +1,22 @@
 import ProfileCoursesList from "./ProfileCoursesList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import ProfileStats from "./ProfileStats";
+// import ProfileStats from "./ProfileStats";
 import { useNavigate } from "react-router";
-import { useAppSelector } from "./hooks";
+// import { useAppSelector } from "./hooks";
 import "./ProfileData.css"
 
 export default function ProfileData() {
     //navigate
     const navigate = useNavigate();
 
-    const user = useAppSelector((state) => {
-        return state.user;
-    });
+    // const user = useAppSelector((state) => {
+    //     return state.user;
+    // });
+
+    // const profileCourses = user.courses.map((course) => {
+    //     // return course
+    // })
 
     return (
         <div className="profile-data">
@@ -25,7 +29,7 @@ export default function ProfileData() {
                         <span>Добавить новый курс</span>
                     </button>
                 </div>
-                <ProfileCoursesList courses={user.courses}></ProfileCoursesList>
+                <ProfileCoursesList></ProfileCoursesList>
         </div>
 
     )
