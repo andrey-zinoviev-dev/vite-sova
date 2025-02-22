@@ -15,7 +15,9 @@ import Lesson from './Lesson'
 import LessonContent from './LessonContent'
 import Chat from './Chat'
 import ProfileData from './ProfileData'
-import Header from './Header'
+
+// import { useShowCurrentUserQuery } from './store/features/apiSlice'
+// import Header from './Header'
 
 // import { login } from './store/features/userSlice'
 
@@ -42,27 +44,42 @@ function App() {
               <Route index element={<Login></Login>}></Route>
               <Route path='register' element={<Register></Register>}></Route>
             </Route>
-            <Route element={<ProtectedRoute></ProtectedRoute>}>
-              <Route path='/' element={<Home></Home>}>
+            <Route path='/' element={<Home></Home>}>
                 <Route path='/' element={<Courses></Courses>}>
-                  <Route index element={<CoursesList></CoursesList>} />
-                  <Route path='courses/:courseId/' element={<Course></Course>}>
+                  <Route path='/' element={<CoursesList></CoursesList>} />
+                </Route>
+                <Route element={<ProtectedRoute></ProtectedRoute>}>
+                    <Route path='courses/:courseId/' element={<Course></Course>} />
+                    
+                    <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>} />
+
+                    <Route path='profile' element={<Profile></Profile>}>
+                      <Route index element={<ProfileData></ProfileData>} />
+                      <Route path='addCourse' element={<AddCourse></AddCourse>} />
+                    </Route>
+
+
                   </Route>
-                  <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>}></Route>
-                </Route>
-                <Route path='profile' element={<Profile></Profile>}>
-                  <Route index element={<ProfileData></ProfileData>} />
-                  <Route path='addCourse' element={<AddCourse></AddCourse>} />
-
-                </Route>
-
-              </Route>
+            </Route>
+            <Route element={<ProtectedRoute></ProtectedRoute>}>
               <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}>
                 <Route index element={<LessonContent></LessonContent>} />
                 <Route path='chat' element={<Chat />} />
               </Route>
-              {/* <Route path='/' element={<Header></Header>}></Route> */}
             </Route>
+
+
+            {/* <Route element={<ProtectedRoute></ProtectedRoute>}>
+              <Route path='profile' element={<Profile></Profile>}>
+                <Route index element={<ProfileData></ProfileData>} />
+                <Route path='addCourse' element={<AddCourse></AddCourse>} />
+              </Route>
+
+              <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}>
+                <Route index element={<LessonContent></LessonContent>} />
+                <Route path='chat' element={<Chat />} />
+              </Route>
+            </Route> */}
             
         </Routes>
       </BrowserRouter>

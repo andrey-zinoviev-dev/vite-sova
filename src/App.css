@@ -12,8 +12,8 @@
   text-align: center;
   width: 100%;
   font-family: "Manrope", serif;
-  display: grid;
-  grid-template-columns: 1fr;
+  /* display: grid;
+  grid-template-columns: 1fr; */
   gap: 30px;
 }
 

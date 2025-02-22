@@ -1,6 +1,6 @@
 .lesson {
     /* min-height: 70svh; */
-    height: 100svh;
+    /* height: 100svh; */
     display: grid
 ;
     grid-template-columns: 1fr;

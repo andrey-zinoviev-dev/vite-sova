@@ -1,5 +1,5 @@
 .courses {
-    min-height: 75svh;
+    /* min-height: 75svh; */
     box-sizing: border-box;
     padding: 50px 0 0 0;
     display: flex;

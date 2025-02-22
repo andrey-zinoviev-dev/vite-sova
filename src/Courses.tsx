@@ -3,30 +3,35 @@
 
 import "./Courses.css";
 import { Outlet } from "react-router";
-import { useShowCoursesQuery } from "./store/features/apiSlice";
-import { CourseInterface } from "./store/features/courseSlice";
-import { useEffect } from "react";
-import { useAppDispatch } from "./hooks";
-import { setCourses } from "./store/features/coursesSlice";
+// import { useShowCoursesQuery } from "./store/features/apiSlice";
+// import { CourseInterface } from "./store/features/courseSlice";
+// import { useEffect } from "react";
+// import { useAppDispatch } from "./hooks";
+// import { setCourses } from "./store/features/coursesSlice";
 import { Container } from "./Container";
+import Header from "./Header";
 // import { CoursesInterface } from "./store/features/coursesSlice";
 
 export default function Courses() {
-    const { data = [] as CourseInterface[]} = useShowCoursesQuery();
+    // const { data = [] as CourseInterface[]} = useShowCoursesQuery();
 
-    const dispatch = useAppDispatch();
+    // const dispatch = useAppDispatch();
 
-    useEffect(() => {
-        if(data.length > 0) {
-            dispatch(setCourses(data));
-        }
-    }, [data])
+    // useEffect(() => {
+    //     if(data.length > 0) {
+    //         dispatch(setCourses(data));
+    //     }
+    // }, [data])
 
     return (
-        <section className="courses">
-            <Container>
-                <Outlet></Outlet>
-            </Container>
-        </section>
+        <>
+            {/* <Header></Header> */}
+            <section className="courses">
+                <Container>
+                    <Outlet></Outlet>
+                </Container>
+            </section>
+        </>
+
     )
 }

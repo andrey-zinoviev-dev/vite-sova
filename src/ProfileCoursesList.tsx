@@ -23,6 +23,8 @@ export default function ProfileCoursesList() {
         return course.course;
     });
 
+    console.log(userCourses);
+
     return (
     // <></>
             <TableComp items={userCourses} renderItem={(item) => {

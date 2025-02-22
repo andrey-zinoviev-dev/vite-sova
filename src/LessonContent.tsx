@@ -1,9 +1,9 @@
-import { faMessage } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router";
+// import { faMessage } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { useNavigate } from "react-router";
 import "./LessonContent.css"
 export default function LessonContent() {
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     return (
         <>

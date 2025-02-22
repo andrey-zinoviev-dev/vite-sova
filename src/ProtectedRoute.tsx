@@ -10,7 +10,9 @@ export default function ProtectedRoute() {
     const {data = {} as UserInterface, isError, isLoading, isSuccess} = useShowCurrentUserQuery();
 
     if(isSuccess) {
-        return <Outlet></Outlet>
+        return <>
+            <Outlet></Outlet>
+        </>
     }
 
     if(isLoading) {
