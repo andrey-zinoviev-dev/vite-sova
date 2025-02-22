@@ -10,7 +10,7 @@ export default function Home() {
     return (
         <>
                 <Header>
-                    
+                    <></>
                 </Header>
                 <Outlet></Outlet>
                 <Footer></Footer>

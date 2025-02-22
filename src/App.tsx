@@ -47,9 +47,9 @@ function App() {
             <Route path='/' element={<Home></Home>}>
                 <Route path='/' element={<Courses></Courses>}>
                   <Route path='/' element={<CoursesList></CoursesList>} />
-                </Route>
-                <Route element={<ProtectedRoute></ProtectedRoute>}>
-                    <Route path='courses/:courseId/' element={<Course></Course>} />
+
+                  <Route element={<ProtectedRoute></ProtectedRoute>}>
+                    <Route path='courses/:courseId' element={<Course></Course>} />
                     
                     <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>} />
 
@@ -60,6 +60,8 @@ function App() {
 
 
                   </Route>
+                </Route>
+
             </Route>
             <Route element={<ProtectedRoute></ProtectedRoute>}>
               <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}>

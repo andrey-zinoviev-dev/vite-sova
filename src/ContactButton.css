@@ -30,3 +30,9 @@
 .contact-button__last-message {
   font-size: 12px;
 }
+
+@media screen and (max-width: 1023px) {
+  .contact-button {
+    padding: 15px 10px;
+  }
+}

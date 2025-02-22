@@ -1,14 +1,17 @@
 .chat {
-    max-width: 900px;
+    /* max-width: 900px; */
     margin: 0 auto;
     width: 100%;
     min-height: 580px;
     background-color: #1a1a1a;
-    border-radius: 12px;
+    /* border-radius: 12px; */
     display: grid
 ;
     grid-template-columns: 290px 1fr;
     align-items: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+    border-top: 3px solid #2C2A28;
 }
 
 .chat__right-wrapper {
@@ -77,4 +80,10 @@
 
 .chat__form button:hover {
     color: #646cff;
+}
+
+@media screen and (max-width: 1023px) {
+    .chat {
+        grid-template-columns: 220px 1fr;
+    }
 }

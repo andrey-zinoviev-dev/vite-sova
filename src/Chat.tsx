@@ -13,7 +13,29 @@ import { UserInterface } from "./store/features/userSlice";
 // import { faPaperclip, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import ChatForm from "./ChatForm";
+import { useParams } from "react-router";
+import { useShowCoursesQuery } from "./store/features/apiSlice";
+import { CourseInterface, ModuleExtInterface, LessonInterface } from "./store/features/courseSlice";
+import CourseLocation from "./CourseLocation";
 export default function Chat() {
+    const { courseId, moduleId, lessonId } = useParams();
+
+
+    const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
+        selectFromResult: ({data}) => ({
+            data: data?.find((course) => {
+              return course._id === courseId;
+          })
+        })
+      });
+    
+      const module = data.modules && data.modules.find((module) => {
+        return module._id === moduleId;
+      }) as ModuleExtInterface;
+    
+      const lesson = module?.lessons.find((lesson) => {
+        return lesson._id === lessonId;
+      }) as LessonInterface;
     // const navigate = useNavigate();
     //state
     const [selectedUser, setSelectedUser] = useState<UserInterface | null>(null);
@@ -57,6 +79,7 @@ export default function Chat() {
                             <div className="chat__contact-selected">
                                 <img className="contact-button__img" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png?20150327203541"></img>
                                 <span>{selectedUser.name}</span>
+                                {/* {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson} />} */}
                             </div>
                             <span className="chat__selectect-initial-span">Сообщений нет</span>
                             <ChatForm />

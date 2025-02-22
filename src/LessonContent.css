@@ -1,3 +1,18 @@
+.lesson {
+    /* height: 100svh; */
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    position: relative;
+    overflow: auto;
+    gap: 30px;
+    box-sizing: border-box;
+    padding: 50px 0;
+    /* max-height: calc(100svh - 85px);
+    overflow: auto; */
+}
+
 .lesson__content {
     box-sizing: border-box;
     padding: 30px;
@@ -13,9 +28,9 @@
 }
 
 .lesson__chat-button {
-    position: sticky;
-    bottom: 0px;
-    right: 50px;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
     width: fit-content;
     margin: 0 0 0 auto;
     /* background-color: #646cff; */

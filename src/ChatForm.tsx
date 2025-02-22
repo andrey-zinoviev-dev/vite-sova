@@ -79,7 +79,9 @@ export default function ChatForm() {
                 <input accept=".png, .mp4, .mp3, .ogg, .wav, .m4v" onChange={handleFileUpdate} ref={inputFileRef} type="file"></input>
             </Form>
 
-            {files.length > 0 && <Popup>
+            {files.length > 0 && <Popup closePoup={() => {
+                setFiles([]);
+            }}>
                 <div className="popup_file__wrapper">
                     {!initiateUplaod ? <>
                         <RowList items={files} renderItem={(file) => {

@@ -26,6 +26,7 @@
     /* background-color: rgba(0, 0, 0, 0.5); */
     /* border-left: 2px solid #888; */
     box-sizing: border-box;
+    min-width: 320px;
     /* padding: 50px 5px; */
     /* width: calc(100vw - 90px); */
 }

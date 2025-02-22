@@ -2,19 +2,20 @@ import { useState } from "react"
 
 interface WizardInterface {
     children: React.ReactNode[],
+    step: number,
 }
 
-export default function Wizard({children}: WizardInterface) {
+export default function Wizard({ children, step }: WizardInterface) {
 
-    const [currentStep, setCurrentStep] = useState<number>(0);
+    // const [currentStep, setCurrentStep] = useState<number>(0);
 
-    const childToRender = Array.from(children)[currentStep];
+    const childToRender = Array.from(children)[step];
 
     return (
         <div>
             {childToRender}
-            <span>{currentStep}</span>
-            <button className="" disabled={currentStep === 0} onClick={() => {
+            {/* <span>{currentStep}</span> */}
+            {/* <button className="" disabled={currentStep === 0} onClick={() => {
                 setCurrentStep((prevValue) => {
                     return prevValue - 1;
                 })
@@ -23,7 +24,7 @@ export default function Wizard({children}: WizardInterface) {
                 setCurrentStep((prevValue) => {
                     return prevValue + 1;
                 })
-            }}>Далее</button>
+            }}>Далее</button> */}
         </div>
     )
 }
