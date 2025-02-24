@@ -16,7 +16,7 @@ export const coursesSlice = createSlice({
     reducers: {
         setCourses: (state, action: PayloadAction<CourseInterface[]>) => {
             state.courses = action.payload;
-        }
+        },
     },
     // extraReducers: (builder) => {
     //     // builder.addMatcher(sliceApi.endpoints.)

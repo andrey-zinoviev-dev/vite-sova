@@ -1,21 +1,30 @@
 import { useState } from "react"
+import "./Wizard.css"
 
 interface WizardInterface {
     children: React.ReactNode[],
-    step: number,
+    // step: number,
 }
 
-export default function Wizard({ children, step }: WizardInterface) {
+export default function Wizard({ children }: WizardInterface) {
 
-    // const [currentStep, setCurrentStep] = useState<number>(0);
+    const [currentStep, setCurrentStep] = useState<number>(0);
 
-    const childToRender = Array.from(children)[step];
+    const childToRender = Array.from(children)[currentStep];
 
     return (
-        <div>
+        <>
+            <ul className="wizard-progress">
+                {children.map((child, index) => {
+                    return <li key={index}>
+                        <span className={currentStep === index ? "wizard-progress__span_active wizard-progress__span" : currentStep > index ? "wizard-progress__span_completed wizard-progress__span" : "wizard-progress__span"}>{index + 1}</span>
+                        <div className={currentStep === index ? "wizard-progress__dash_active wizard-progress__dash" : currentStep > index ? "wizard-progress__dash_completed wizard-progress__dash" : "wizard-progress__dash"}></div>
+                    </li>
+                })}
+            </ul>
             {childToRender}
             {/* <span>{currentStep}</span> */}
-            {/* <button className="" disabled={currentStep === 0} onClick={() => {
+            <button className="" disabled={currentStep === 0} onClick={() => {
                 setCurrentStep((prevValue) => {
                     return prevValue - 1;
                 })
@@ -24,7 +33,7 @@ export default function Wizard({ children, step }: WizardInterface) {
                 setCurrentStep((prevValue) => {
                     return prevValue + 1;
                 })
-            }}>Далее</button> */}
-        </div>
+            }}>Далее</button>
+        </>
     )
 }

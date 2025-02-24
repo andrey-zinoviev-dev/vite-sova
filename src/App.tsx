@@ -53,15 +53,17 @@ function App() {
                     
                     <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>} />
 
-                    <Route path='profile' element={<Profile></Profile>}>
-                      <Route index element={<ProfileData></ProfileData>} />
-                      <Route path='addCourse' element={<AddCourse></AddCourse>} />
-                    </Route>
+                    
 
 
                   </Route>
                 </Route>
-
+                <Route element={<ProtectedRoute></ProtectedRoute>}>
+                  <Route path='profile' element={<Profile></Profile>}>
+                      <Route index element={<ProfileData></ProfileData>} />
+                      <Route path='addCourse' element={<AddCourse></AddCourse>} />
+                    </Route>
+                </Route>
             </Route>
             <Route element={<ProtectedRoute></ProtectedRoute>}>
               <Route path='courses/:courseId/modules/:moduleId/lessons/:lessonId' element={<Lesson></Lesson>}>

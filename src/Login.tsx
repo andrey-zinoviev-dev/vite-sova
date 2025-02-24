@@ -41,8 +41,8 @@ export default function Login() {
                 submitLogin();
             }} isSuccess={isSuccess} isLoading={isLoading} className="" text="Войти">
                 <ErrorSpan text={error.message} />
-                <Input type="email" updateValue={setLoginData} name="email" placeholder="Почта"></Input> 
-                <Input type="password" updateValue={setLoginData} name="password" placeholder="Пароль"></Input>
+                {/* <Input type="email" updateValue={setLoginData} name="email" placeholder="Почта"></Input> 
+                <Input type="password" updateValue={setLoginData} name="password" placeholder="Пароль"></Input> */}
                 <Link to="./register">Нет учетной записи? Зарегистрируйтесь!</Link>
             </Form>
        

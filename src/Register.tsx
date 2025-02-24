@@ -48,9 +48,9 @@ export default function Register() {
         <>
             <Form isLoading={isLoading} isSuccess={isSuccess} className="" text="Зарегистрироваться">
                 <ErrorSpan text={error.message} />
-                <Input type="email" updateValue={setRegisterData} name="email" placeholder="Почта"></Input> 
+                {/* <Input type="email" updateValue={setRegisterData} name="email" placeholder="Почта"></Input> 
                 <Input type="password" hidden updateValue={setRegisterData} name="password" placeholder="Пароль"></Input>
-                <Input type="text" updateValue={setRegisterData} name="name" placeholder="Имя"></Input>
+                <Input type="text" updateValue={setRegisterData} name="name" placeholder="Имя"></Input> */}
                 <Link to="..">Есть учетная запись? Войдите!</Link>
             </Form>
         </>
