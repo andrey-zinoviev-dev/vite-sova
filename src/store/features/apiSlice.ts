@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { UserInterface } from "./userSlice";
-import { CourseInterface } from "./courseSlice";
+import { CourseInterface } from "../../intefaces/intefaces";
 // import { RootState } from "../store";
 
 export const sliceApi = createApi({

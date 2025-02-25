@@ -1,10 +1,10 @@
-import { useState } from "react"
+// import { useState } from "react"
 import { useNavigate } from "react-router";
 import "./Sidebar.css"
-import Logo from "./Logo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { CourseInterface, ModuleExtInterface, LessonInterface } from "./store/features/courseSlice";
+// import Logo from "./Logo";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { } from "@fortawesome/free-solid-svg-icons";
+import { CourseInterface } from "./intefaces/intefaces";
 import RowList from "./RowList";
 // import RowButton from "./RowButton";
 import NavigationModule from "./NavigationModule";

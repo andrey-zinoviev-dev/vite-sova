@@ -2,9 +2,9 @@ import { faMessage } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { useNavigate } from "react-router";
 import "./LessonContent.css"
-import CourseLocation from "./CourseLocation";
+// import CourseLocation from "./CourseLocation";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
-import { CourseInterface, LessonInterface, ModuleExtInterface } from "./store/features/courseSlice";
+import { CourseInterface, LessonInterface, ModuleExtInterface } from "./intefaces/intefaces";
 import { useParams, useNavigate } from "react-router";
 
 export default function LessonContent() {

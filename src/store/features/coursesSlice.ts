@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CourseInterface } from "./courseSlice";
+import { CourseInterface } from "../../intefaces/intefaces";
 // import { sliceApi } from "./apiSlice";
 
 export interface CoursesInterface {

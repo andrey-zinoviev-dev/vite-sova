@@ -1,5 +1,5 @@
 // import GenericList from "./GenericList"
-import { CourseInterface, ModuleInterface, StudentCourseInterface } from "./store/features/courseSlice";
+import { CourseInterface, ModuleInterface, StudentCourseInterface } from "./intefaces/intefaces";
 // import TableButton from "./TableButton"
 // import { useNavigate } from "react-router"
 import "./TableComp.css"

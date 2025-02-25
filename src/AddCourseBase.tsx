@@ -89,20 +89,7 @@ export default function AddCourseBase() {
                             <FontAwesomeIcon icon={faTrash} />
                         </button>
                 </>
-                // return <TableButton item={item}></TableButton>
             }}></TableComp>
-            {/* <ul>
-                {newCourseState.tarifs.map((tarif) => {
-                    return <li key={tarif.title}>
-
-                        <span>{tarif.title}</span>
-                        <span>доступ заканчивается {tarif.end}</span>
-                        <button onClick={() => { deleteTarif(tarif) }}>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </button>
-                    </li>
-                })}            
-            </ul> */}
         </div>
     )
 }
