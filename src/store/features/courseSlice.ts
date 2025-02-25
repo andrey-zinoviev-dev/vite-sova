@@ -8,6 +8,11 @@ export interface CourseInterface {
     available: boolean,
     description: string,
     modules: ModuleExtInterface[],
+    tarifs: {
+        title: string,
+        end: string,
+        _id: string
+    }[]
     // modules: string[],
     // lessons: string[]
 };

@@ -9,7 +9,11 @@ interface TableCompInterface<T> {
   renderItem: (item: T, index: number) => React.ReactNode,
 }
 
-export default function TableComp<T extends CourseInterface | ModuleInterface | StudentCourseInterface>({ items, renderItem }: TableCompInterface<T>){
+export default function TableComp<T extends CourseInterface | ModuleInterface | StudentCourseInterface |  {
+  title: string,
+  end: string,
+  _id: string
+}>({ items, renderItem }: TableCompInterface<T>){
 
   return (
     <ul className="table-ul">
