@@ -32,14 +32,11 @@ const newCourse = createSlice({
 
             return state;
         },
-        addTarif: (state, action: PayloadAction<{
-            tarif: { 
-                title: string,
-                end: string,
-            },
-            _id: string,
-        }>) => {
-            state.tarifs = [...state.tarifs, {title: action.payload.tarif.title, end: action.payload.tarif.end, _id: action.payload._id}]
+        addTarif: (state, action: PayloadAction<{tarif: { 
+            title: string,
+            end: string,
+        }, _id: string}>) => {
+            state.tarifs = [...state.tarifs, {...action.payload.tarif, _id: action.payload._id}]
         },
         removeTarif: (state, action: PayloadAction<string>) => {
             state.tarifs = state.tarifs.filter((tarif) => {

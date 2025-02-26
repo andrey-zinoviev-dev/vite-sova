@@ -13,7 +13,7 @@ export default function Wizard({ children }: WizardInterface) {
     const childToRender = Array.from(children)[currentStep];
 
     return (
-        <>
+        <div className="wizard">
             <ul className="wizard-progress">
                 {children.map((child, index) => {
                     return <li key={index}>
@@ -34,6 +34,6 @@ export default function Wizard({ children }: WizardInterface) {
                     return prevValue + 1;
                 })
             }}>Далее</button>
-        </>
+        </div>
     )
 }

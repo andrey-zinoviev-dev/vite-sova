@@ -1,0 +1,14 @@
+.tarif-new {
+    display: grid;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    grid-template-columns: 1fr;
+}
+
+.tarif-new__button-submit {
+    margin: 0 auto 0 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

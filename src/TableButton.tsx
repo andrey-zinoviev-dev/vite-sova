@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
 import { CourseInterface, ModuleInterface, StudentCourseInterface } from "./intefaces/intefaces";
 
-export default function TableButton<T extends CourseInterface | ModuleInterface | StudentCourseInterface>({ item, disabled, handleClick }: TableButton<T>) {
+export default function TableButton<T extends CourseInterface | ModuleInterface | StudentCourseInterface >({ item, disabled, handleClick }: TableButton<T>) {
   return (
     <button disabled={!disabled} className="button-table" onClick={() => handleClick(item)}>
       <span className="button-table__category">Вокал</span>

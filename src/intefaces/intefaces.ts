@@ -8,11 +8,7 @@ export interface CourseInterface {
   available: boolean,
   description: string,
   modules: ModuleExtInterface[],
-  tarifs: {
-      title: string,
-      end: string,
-      _id: string
-  }[],
+  tarifs: TarifInterface[],
   startDate: string,
   // modules: string[],
   // lessons: string[]
@@ -30,4 +26,10 @@ export interface LessonInterface {
   _id: string,
   title: string,
   available: boolean,
+}
+
+export interface TarifInterface {
+  title: string,
+  end: string,
+  _id: string
 }
