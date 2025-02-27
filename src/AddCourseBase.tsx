@@ -12,8 +12,13 @@ import TableElement from "./TableElement"
 // import Form from "./Form"
 import "./AddCourseBase.css";
 import Label from "./Label"
+import Textarea from "./Textarea"
 
-export default function AddCourseBase() {
+interface AddCourseBaseInterface {
+    handleNext: () => void,
+}
+
+export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
     //redux
     const newCourseState = useAppSelector((state) => {
         return state.newCourse;
@@ -28,7 +33,7 @@ export default function AddCourseBase() {
 
     
     //functions
-    function handleInputChange(evt: React.ChangeEvent<HTMLInputElement>) {
+    function handleInputChange(evt: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
         dispatch(addBaseInfo({key: evt.target.name, value: evt.target.value}))
     };
 
@@ -55,7 +60,8 @@ export default function AddCourseBase() {
             </Label>
             <Label>
                 О чем будет новый курс?
-                <Input defaultValue={newCourseState.description} name="description" onChange={handleInputChange} placeholder="Описание курса"></Input>
+                <Textarea name="description" defaultValue={newCourseState.description} onChange={handleInputChange} placeholder="Описание курса"></Textarea>
+                {/* <Input defaultValue={newCourseState.description} name="description" onChange={handleInputChange} placeholder="Описание курса"></Input> */}
             </Label>
             <Label>
                 Начало курса
@@ -75,6 +81,7 @@ export default function AddCourseBase() {
                     </div>
                 </TableElement>
             }}></TableComp>}
+            <button onClick={handleNext}>Далее</button>
         </div>
     )
 }
