@@ -1,7 +1,7 @@
 import { useLocation, useNavigate, useParams } from "react-router";
 import "./Course.css";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
-import { CourseInterface } from "./store/features/courseSlice";
+import { CourseInterface } from "./intefaces/intefaces";
 
 
 // import TableComp from "./TableComp";
@@ -32,10 +32,14 @@ export default function Course() {
       <h3>{data.title}</h3>
 
       {data.modules && <TableComp items={data.modules} renderItem={(item) => {
-        return <TableButton item={item} disabled={item.available} handleClick={() => {
-          // console.log(item);
-          navigate(`${location.pathname}/modules/${item._id}`);
-        }}></TableButton>
+        return <TableButton>
+          <></>
+        </TableButton>
+        // return <TableButton item={item} disabled={item.available} handleClick={() => {
+        //   // console.log(item);
+        //   navigate(`${location.pathname}/modules/${item._id}`);
+        // }}></TableButton>
+
       }}></TableComp>}
     </>
   )

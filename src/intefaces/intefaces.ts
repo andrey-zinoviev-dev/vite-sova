@@ -14,7 +14,7 @@ export interface CourseInterface {
   // lessons: string[]
 };
 
-export type StudentCourseInterface = Pick<CourseInterface, "_id" | "title" | "available" | "description" | 'modules'>
+export type StudentCourseInterface = Pick<CourseInterface, "_id" | "title" | "available" | "description" | 'modules' | "startDate">
 
 export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">;
 

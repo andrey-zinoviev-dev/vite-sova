@@ -10,7 +10,9 @@ import TableComp from "./TableComp";
 // import { CourseInterface } from "./store/features/courseSlice";
 import TableButton from "./TableButton";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
-import { CourseInterface } from "./store/features/courseSlice";
+import { CourseInterface } from "./intefaces/intefaces";
+import TableElement from "./TableElement";
+import MainPageCourseData from "./MainPageCourseData";
 export default function CoursesList() {
   // const courses = useAppSelector((state) => {
   //   return state.courses.courses;
@@ -27,9 +29,16 @@ export default function CoursesList() {
       <h2>Доступные курсы</h2>
 
       <TableComp items={data} renderItem={(item, index) => {
-        return <TableButton item={item} handleClick={() => {
-          // navigate(`./courses/${item._id}`)
-        }} disabled={item.available}></TableButton>
+        // return <TableElement>
+        //   {/* <TableButton item={item} handleClick={() => {
+        //     navigate(`./courses/${item._id}`)
+        //   }}></TableButton> */}
+        // </TableElement>
+        return <TableButton onClick={() => {
+          navigate(`./courses/${item._id}`)
+        }}>
+          <MainPageCourseData item={item} />
+        </TableButton>
       }}></TableComp>
     </div>
     
