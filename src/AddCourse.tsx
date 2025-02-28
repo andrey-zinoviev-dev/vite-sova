@@ -2,13 +2,24 @@ import Wizard from "./Wizard";
 
 import AddCourseBase from "./AddCourseBase";
 import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router";
 
 export default function AddCourse() {
     //state
     const [step, setStep] = useState<number>(0);
 
+    const navigate = useNavigate();
+
     return (
         <>
+            <button onClick={() => {
+                navigate(-1);
+            }}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                Назад в профиль
+            </button>
             <h1>Добавление нового курса</h1>
             <Wizard currentStep={step}>
                 <AddCourseBase handleNext={() => {

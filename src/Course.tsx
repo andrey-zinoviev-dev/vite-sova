@@ -1,15 +1,12 @@
-import { useLocation, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import "./Course.css";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./intefaces/intefaces";
 
-
-// import TableComp from "./TableComp";
-// import GenericList from "./GenericList";
-
 import TableComp from "./TableComp";
 import TableButton from "./TableButton";
 import BackButton from "./BackButton";
+import ModuleData from "./ModuleData";
 
 export default function Course() {
   const { courseId } = useParams();
@@ -21,25 +18,20 @@ export default function Course() {
     })
   });
 
-  const location = useLocation();
-
   const navigate = useNavigate();
 
   return (
     <>
-      <BackButton text="Назад к курсам"></BackButton>
+      <BackButton text="Назад"></BackButton>
 
       <h3>{data.title}</h3>
 
       {data.modules && <TableComp items={data.modules} renderItem={(item) => {
-        return <TableButton>
-          <></>
+        return <TableButton onClick={() => {
+          navigate(`./${item._id}`);
+        }}>
+          <ModuleData item={item}></ModuleData>
         </TableButton>
-        // return <TableButton item={item} disabled={item.available} handleClick={() => {
-        //   // console.log(item);
-        //   navigate(`${location.pathname}/modules/${item._id}`);
-        // }}></TableButton>
-
       }}></TableComp>}
     </>
   )

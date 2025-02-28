@@ -12,6 +12,7 @@
   transition: all 0.15s ease-in-out;
   pointer-events: all;
   gap: 30px;
+  text-align: left;
 }
 
 .button-table:disabled {

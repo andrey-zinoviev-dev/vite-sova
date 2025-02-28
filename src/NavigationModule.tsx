@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { ModuleExtInterface } from "./store/features/courseSlice";
+import { ModuleExtInterface } from "./intefaces/intefaces";
 import ModuleButton from "./ModuleButton";
 import { useParams } from "react-router";
 

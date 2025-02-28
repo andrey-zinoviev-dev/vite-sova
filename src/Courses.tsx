@@ -8,8 +8,8 @@ import { Outlet } from "react-router";
 // import { useEffect } from "react";
 // import { useAppDispatch } from "./hooks";
 // import { setCourses } from "./store/features/coursesSlice";
-import { Container } from "./Container";
-import Header from "./Header";
+// import { Container } from "./Container";
+// import Header from "./Header";
 // import { CoursesInterface } from "./store/features/coursesSlice";
 
 export default function Courses() {
@@ -27,9 +27,7 @@ export default function Courses() {
         <>
             {/* <Header></Header> */}
             <section className="courses">
-                <Container>
-                    <Outlet></Outlet>
-                </Container>
+                <Outlet></Outlet>
             </section>
         </>
 
