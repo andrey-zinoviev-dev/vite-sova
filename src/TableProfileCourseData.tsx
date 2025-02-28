@@ -10,6 +10,7 @@ interface TableProfleButtonInterface {
 }
 
 export default function TableProfleCourseData({ item }: TableProfleButtonInterface) {
+    console.log(item);
     return (
         // <button className="button-table" onClick={handleClick}>
         <>
@@ -45,7 +46,7 @@ export default function TableProfleCourseData({ item }: TableProfleButtonInterfa
             </div>
             <div className="button-table__bot-wrapper">
                 <span>Старт курса</span>
-                <span>30.01.2025</span>
+                <span>{item.startDate}</span>
             </div>
         </>
 

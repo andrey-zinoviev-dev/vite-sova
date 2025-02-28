@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import Input from "./Input"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrash } from "@fortawesome/free-solid-svg-icons"
@@ -40,16 +39,6 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
     function deleteTarif(tarifId: string) {
         dispatch(removeTarif(tarifId))
     }
-
-    useEffect(() => {
-        const unloadCallback = (event: BeforeUnloadEvent) => {
-          event.preventDefault();
-          return "";
-        };
-      
-        window.addEventListener("beforeunload", unloadCallback);
-        return () => window.removeEventListener("beforeunload", unloadCallback);
-      }, []);
 
     return (
         <div className="addStep">

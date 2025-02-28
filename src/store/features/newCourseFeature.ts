@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CourseInterface } from "../../intefaces/intefaces";
+import { CourseInterface, ModuleExtInterface } from "../../intefaces/intefaces";
 
 type NewCourseType = Omit<CourseInterface, "_id">
 
@@ -42,10 +42,20 @@ const newCourse = createSlice({
             state.tarifs = state.tarifs.filter((tarif) => {
                 return tarif._id !== action.payload;
             });
+        },
+        addModule: (state, action: PayloadAction<ModuleExtInterface>) => {
+            state.modules = [...state.modules, action.payload];
+            return state;
+        },
+        removeModule: (state, action: PayloadAction<string>) => {
+            state.modules = state.modules.filter((module) => {
+                return module.title !== action.payload;
+            });
+            return state;
         }
     },
 });
 
-export const { addBaseInfo, addTarif, removeTarif } = newCourse.actions;
+export const { addBaseInfo, addTarif, removeTarif, addModule, removeModule } = newCourse.actions;
 
 export default newCourse.reducer;
