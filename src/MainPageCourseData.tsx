@@ -15,7 +15,7 @@ export default function MainPageCourseData({ item }: MainPageCourseDataInterface
 
     return (
         <>
-            <span className="button-table__category">Вокал</span>
+            <span className="button-table__category">Поток: Britney</span>
             <div className="button-table__top-wrapper">
                 <span className="button-table__title">{item.title}</span>
                 <span className="button-table__author">{item.author.name}</span>

@@ -50,11 +50,11 @@ function App() {
                   <Route path='/' element={<CoursesList></CoursesList>} />
 
                   <Route path='/courses/:courseId' element={<CourseInfo></CourseInfo>}></Route>
-
-                  <Route element={<ProtectedRoute></ProtectedRoute>}>
-                    <Route path='courses/:courseId/modules' element={<Course></Course>} />
+                  <Route path='courses/:courseId/modules' element={<Course></Course>} />
                     
                     <Route path='courses/:courseId/modules/:moduleId' element={<Module></Module>} />
+                  <Route element={<ProtectedRoute></ProtectedRoute>}>
+
 
                     
 

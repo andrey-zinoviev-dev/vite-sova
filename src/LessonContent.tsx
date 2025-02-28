@@ -46,7 +46,8 @@ export default function LessonContent() {
             <button className="lesson__chat-button" onClick={() => {
                 navigate("./chat")
             }}>
-                <FontAwesomeIcon icon={faMessage} />
+                выполнить задание
+                {/* <FontAwesomeIcon icon={faMessage} /> */}
             </button>
         </section>
     )

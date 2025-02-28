@@ -35,7 +35,7 @@ export default function CoursesList() {
         //   }}></TableButton> */}
         // </TableElement>
         return <TableButton onClick={() => {
-          navigate(`./courses/${item._id}`)
+          navigate(`./courses/${item._id}/modules`)
         }}>
           <MainPageCourseData item={item} />
         </TableButton>
