@@ -1,0 +1,9 @@
+.button-action {
+    background-color: #646cff;
+    color: white;
+}
+
+.button-action:hover {
+    background-color: white;
+    color: black;
+}

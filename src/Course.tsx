@@ -4,9 +4,9 @@ import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./intefaces/intefaces";
 
 import TableComp from "./TableComp";
-import TableButton from "./TableButton";
 import BackButton from "./BackButton";
 import ModuleData from "./ModuleData";
+import TableElement from "./TableElement";
 
 export default function Course() {
   const { courseId } = useParams();
@@ -27,11 +27,14 @@ export default function Course() {
       <h3>{data.title}</h3>
 
       {data.modules && <TableComp items={data.modules} renderItem={(item) => {
-        return <TableButton onClick={() => {
-          navigate(`./${item._id}`);
-        }}>
+        return <TableElement>
           <ModuleData item={item}></ModuleData>
-        </TableButton>
+        </TableElement>
+        // return <TableButton onClick={() => {
+        //   navigate(`./${item._id}`);
+        // }}>
+        //   <ModuleData item={item}></ModuleData>
+        // </TableButton>
       }}></TableComp>}
     </>
   )

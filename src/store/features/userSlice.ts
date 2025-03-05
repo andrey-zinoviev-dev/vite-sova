@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 // import type { PayloadAction } from "@reduxjs/toolkit";
 import { sliceApi } from "./apiSlice";
-import { StudentCourseInterface } from "./courseSlice";
+import { StudentCourseInterface } from "../../intefaces/intefaces";
 
 export interface UserInterface {
     _id: string | null,
     email: string | null,
-    courses: {course: StudentCourseInterface}[],
+    courses: {course: StudentCourseInterface, tarif: string}[],
     loggedIn: boolean,
     accessToken: string | null,
     name: string,

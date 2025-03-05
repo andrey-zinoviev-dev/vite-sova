@@ -2,19 +2,21 @@
     box-sizing: border-box;
     padding: 10px;
     border-radius: 24px;
-    background-color: #646cff;
+    /* background-color: #646cff; */
+    background-color: white;
+    color: black;
     line-height: 1;
     width: fit-content;
   }
   
-  .button-table:hover .button-table__category {
+  /* .button-table:hover .button-table__category {
     background-color: white;
     color: black;
-  }
+  } */
   
   .button-table__title {
     /* min-height: 98px; */
-    min-height: 49px;
+    min-height: 54px;
     font-size: 18px;
     font-weight: 500;
     display: flex;
@@ -54,7 +56,7 @@
   .button-table__desc {
     font-size: 14px;
     text-align: left;
-    min-height: 75px;
+    min-height: 84px;
     margin: 0;
   }
   
@@ -95,14 +97,33 @@
   }
   
   .button-table__bot-wrapper {
-    width: 100%;
+    width: fit-content;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+    /* gap: 0px; */
+    background-color: white;
+    color: black;
+    box-sizing: border-box;
+    padding: 5px 10px;
+    font-size: 16px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: flex-start;
   }
   
 .course__description-wrapper {
     display: grid;
     gap: 10px;
     text-align: left;
+}
+
+.course-data__button_inverted-colors {
+  background-color: #646cff;
+  color: white;
+}
+
+.course-data__button_inverted-colors:hover {
+  background-color: white;
+  color: black;
 }

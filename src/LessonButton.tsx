@@ -1,9 +1,10 @@
-import { LessonInterface } from "./store/features/courseSlice"
+import { LessonInterface } from "./intefaces/intefaces"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons"
+import { faArrowRight, faGear, faLock } from "@fortawesome/free-solid-svg-icons"
 import RowButton from "./RowButton"
 import "./LessonButton.css"
 import { useParams } from "react-router"
+import ActionButton from "./ActionButton"
 
 interface LessonButtonInterface {
   item: LessonInterface | {
@@ -13,11 +14,12 @@ interface LessonButtonInterface {
   index: number,
   available: boolean,
   handleClick: () => void,
+  edit?: boolean
   // active?: boolean
   // to?: string,
 }
 
-export default function LessonButton({ item, index, available, handleClick }: LessonButtonInterface) {
+export default function LessonButton({ item, index, available, handleClick, edit }: LessonButtonInterface) {
   //navigate
   // const navigate = useNavigate();
 
@@ -36,6 +38,9 @@ export default function LessonButton({ item, index, available, handleClick }: Le
       <div className="button-row__svg-wrapper">
          {/* <FontAwesomeIcon icon={faCheck} /> */}
         <FontAwesomeIcon icon={available ?  faArrowRight : faLock} />
+        {edit && <ActionButton>
+          <FontAwesomeIcon icon={faGear} />  
+        </ActionButton>}
       </div>
     </RowButton>
   )

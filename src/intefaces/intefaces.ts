@@ -1,6 +1,6 @@
 export interface CourseInterface {
   _id: string | null,
-  title: string | null,
+  title: string,
   students: string[],
   author: {
       name: string

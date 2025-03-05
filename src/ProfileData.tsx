@@ -5,9 +5,9 @@ import { useNavigate } from "react-router";
 import { useAppSelector } from "./hooks";
 import "./ProfileData.css"
 import TableComp from "./TableComp";
-import TableButton from "./TableButton";
 import TableProfleCourseData from "./TableProfileCourseData";
 import { StudentCourseInterface } from "./intefaces/intefaces";
+import TableElement from "./TableElement";
 
 export default function ProfileData() {
     //navigate
@@ -17,9 +17,15 @@ export default function ProfileData() {
         return state.user.courses;
     });
 
+    // console.log(userCourses);
+
     const profileCourses = userCourses.map((course) => {
         return course.course;
     }) as StudentCourseInterface[];
+
+    const tarifs = userCourses.map((course) => {
+        return course.tarif;
+    }) as string[];
 
     // const userTarifs
 
@@ -34,12 +40,17 @@ export default function ProfileData() {
                     <span>Добавить новый курс</span>
                 </button>
             </div>
-            <TableComp items={profileCourses} renderItem={(item) => {
-                return <TableButton onClick={() => {
-                    navigate(`../courses/${item._id}/modules`)
-                }}>
-                    <TableProfleCourseData item={item} />
-                </TableButton>
+            <TableComp items={profileCourses} renderItem={(item, index) => {
+                const tarif = tarifs[index];
+                
+                return <TableElement>
+                    <TableProfleCourseData item={item} tarif={tarif} />
+                </TableElement>
+                // return <TableButton onClick={() => {
+                //     navigate(`../courses/${item._id}/modules`)
+                // }}>
+                //     <TableProfleCourseData item={item} />
+                // </TableButton>
             }}></TableComp>
         </div>
 

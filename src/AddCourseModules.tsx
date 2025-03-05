@@ -14,7 +14,7 @@ export default function AddCourseModules() {
     const newModules = useAppSelector((state) => {
         return state.newCourse.modules;
     });
-    console.log(newModules);
+    // console.log(newModules);
 
     //state
     const [popupSideOpened, setPopupSideOpened] = useState<boolean>(false);
