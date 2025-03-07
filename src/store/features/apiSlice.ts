@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { UserInterface } from "./userSlice";
-import { CourseInterface } from "../../intefaces/intefaces";
+import { CourseInterface, LessonInterface } from "../../intefaces/intefaces";
 // import { RootState } from "../store";
 
 export const sliceApi = createApi({
@@ -49,8 +49,15 @@ export const sliceApi = createApi({
                 url: "/coursesList",
                 credentials: "include",
             }),
+        }),
+        completeLesson: builder.mutation<LessonInterface, {courseId: string, moduleId: string, lessonId: string}>({
+            query: (location) => ({
+                url: `lesson/${location.lessonId}/complete`,
+                method: "PUT",
+                credentials: "include"
+            })
         })
     })
 })
 
-export const { useLoginUserMutation, useRegisterUserMutation, useShowCurrentUserQuery, useShowCoursesQuery } = sliceApi;
+export const { useLoginUserMutation, useRegisterUserMutation, useShowCurrentUserQuery, useShowCoursesQuery, useCompleteLessonMutation } = sliceApi;

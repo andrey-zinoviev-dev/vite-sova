@@ -1,10 +1,11 @@
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { StudentCourseInterface } from "./intefaces/intefaces"
 import { faGear } from "@fortawesome/free-solid-svg-icons"
 import "./TableProfileCourseData.css";
 import ActionButton from "./ActionButton";
 import EditWrapper from "./EditWrapper";
+import { useMemo } from "react";
 
 interface TableProfleButtonInterface {
     item: StudentCourseInterface,
@@ -14,6 +15,18 @@ interface TableProfleButtonInterface {
 
 export default function TableProfleCourseData({ item, tarif }: TableProfleButtonInterface) {
     const navigate = useNavigate();
+
+    //completed lessons
+    const progress = useMemo(() => {
+        return item.modules.reduce((accumulator, calcItem) => {
+            const completedLessons = calcItem.lessons.filter((lesson) => {
+                return lesson.completed;
+            });
+            return accumulator + completedLessons.length;
+        }, 0);
+    }, [item.modules]) 
+
+    // console.log(progress);
 
     return (
         // <button className="button-table" onClick={handleClick}>
@@ -32,31 +45,34 @@ export default function TableProfleCourseData({ item, tarif }: TableProfleButton
                 </span>
                 <span className="button-table__author">{item.author.name}</span>
             </div> */}
+
             <EditWrapper>
-                <h3>{item.title}</h3>
+                <div className="button-table__bot-wrapper">
+                    {/* <span>Старт курса: {item.startDate}</span> */}
+                    <span>Тариф: {tarif}</span>
+                </div>
                 <ActionButton>
                     <FontAwesomeIcon icon={faGear} />
                 </ActionButton>
             </EditWrapper>
-            <div className="button-table__bot-wrapper">
-                <span>Старт курса: {item.startDate}</span>
-                <span>Тариф: {tarif}</span>
-            </div>
+
+            <h3>{item.title}</h3>
+
             <p className="button-table__desc">{item.description}</p>
             
             <div className="button-table__progress-wrapper">
                 <span>Пройдено</span>
                 <div className="button-table__progress">
-                <div className="button-table__progress-div">
-                <div className="button-table__progress-div-inner" style={{width: "35%"}}></div>
+                    <div className="button-table__progress-div">
+                    <div className="button-table__progress-div-inner" style={{width: `${progress}%`}}></div>
                 </div>
-                <span>35%</span>
-            </div>
+                    <span>{progress}%</span>
+                </div>
             </div>
             <ActionButton onClick={() => {
                 navigate(`../courses/${item._id}/modules`)
             }}>
-                Продолжить
+                {progress > 0 ? "Продолжить" : "Приступить"}
             </ActionButton>
         </>
 

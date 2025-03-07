@@ -26,6 +26,7 @@ export interface LessonInterface {
   _id: string,
   title: string,
   available: boolean,
+  completed: boolean,
 }
 
 export interface TarifInterface {

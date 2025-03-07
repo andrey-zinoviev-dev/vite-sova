@@ -39,7 +39,7 @@ export default function AddCourseModules() {
                         <div>
                             <h3>{item.title}</h3>
                             <button onClick={() => {
-                                item.title && dispatch(removeModule(item.title));
+                                dispatch(removeModule(item.title));
                             }}>
                                 <FontAwesomeIcon icon={faTrash} />
                             </button>

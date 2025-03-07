@@ -1,6 +1,6 @@
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { Outlet, useParams } from "react-router";
-import { CourseInterface, ModuleExtInterface } from "./store/features/courseSlice";
+import { CourseInterface, ModuleExtInterface } from "./intefaces/intefaces";
 // import SideBar from "./SideBar";
 
 import "./Lesson.css"

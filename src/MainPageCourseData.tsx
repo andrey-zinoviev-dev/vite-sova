@@ -26,21 +26,22 @@ export default function MainPageCourseData({ item }: MainPageCourseDataInterface
         <>
             
             {/* <span className="button-table__category">Поток: Britney</span> */}
-            <div className="button-table__top-wrapper">
-                {/* <span className="button-table__title">{item.title}</span> */}
-                <EditWrapper>
-                    <span className="button-table__title">{item.title}</span>
+            <EditWrapper>
+                    <div className="button-table__bot-wrapper">
+                        <span>Старт курса: {startTime}</span>
+                        {/* <span>{startTime}</span> */}
+                        {/* <span>Поток: Britney</span> */}
+                    </div>
                     <ActionButton>
                         <FontAwesomeIcon icon={faGear} />
                     </ActionButton>
                 </EditWrapper>
+            <div className="button-table__top-wrapper">
+                {/* <span className="button-table__title">{item.title}</span> */}
+                <span className="button-table__title">{item.title}</span>
                 <span className="button-table__author">{item.author.name}</span>
             </div>
-            <div className="button-table__bot-wrapper">
-                <span>Старт курса: {startTime}</span>
-                {/* <span>{startTime}</span> */}
-                <span>Поток: Britney</span>
-            </div>
+
             <div className="course__description-wrapper">
                 <p className="button-table__desc">{item.description}</p>
                 <span>Модули: {item.modules.length}</span>
