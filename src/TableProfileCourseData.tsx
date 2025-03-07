@@ -17,14 +17,16 @@ export default function TableProfleCourseData({ item, tarif }: TableProfleButton
     const navigate = useNavigate();
 
     //completed lessons
-    const progress = useMemo(() => {
-        return item.modules.reduce((accumulator, calcItem) => {
-            const completedLessons = calcItem.lessons.filter((lesson) => {
-                return lesson.completed;
-            });
-            return accumulator + completedLessons.length;
-        }, 0);
-    }, [item.modules]) 
+    // const progress = useMemo(() => {
+    //     return item.modules.reduce((accumulator, calcItem) => {
+    //         const completedLessons = calcItem.lessons.filter((lesson) => {
+    //             return lesson.completed;
+    //         });
+    //         return accumulator + completedLessons.length;
+    //     }, 0);
+    // }, [item.modules]);
+
+    const progress = 5;
 
     // console.log(progress);
 

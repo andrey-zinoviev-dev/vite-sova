@@ -1,0 +1,37 @@
+.course-info {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 480px 1fr;
+    gap: 30px;
+}
+
+.course-info__dot {
+    width: 7px;
+    aspect-ratio: 1/1;
+    background-color: black;
+    border-radius: 50%;
+    translate: 0 1px;
+}
+
+.course-info__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    text-align: left;
+}
+
+.course-info__text p {
+    margin: 0;
+}
+
+.course-info__action-btn-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+}
+
+.course-info__cover {
+    width: 100%;
+}

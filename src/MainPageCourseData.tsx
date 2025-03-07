@@ -5,6 +5,7 @@ import "./MainPageCourseData.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
+import Highlight from "./Highlight";
 
 interface MainPageCourseDataInterface {
     item: CourseInterface,
@@ -27,11 +28,14 @@ export default function MainPageCourseData({ item }: MainPageCourseDataInterface
             
             {/* <span className="button-table__category">Поток: Britney</span> */}
             <EditWrapper>
-                    <div className="button-table__bot-wrapper">
+                    {/* <div className="button-table__bot-wrapper">
                         <span>Старт курса: {startTime}</span>
-                        {/* <span>{startTime}</span> */}
-                        {/* <span>Поток: Britney</span> */}
-                    </div>
+                        <span>{startTime}</span>
+                        <span>Поток: Britney</span>
+                    </div> */}
+                    <Highlight>
+                        <span>Старт курса: {startTime}</span>
+                    </Highlight>
                     <ActionButton>
                         <FontAwesomeIcon icon={faGear} />
                     </ActionButton>
@@ -56,9 +60,9 @@ export default function MainPageCourseData({ item }: MainPageCourseDataInterface
                 <span>Поток: Britney</span>
             </div> */}
             <ActionButton onClick={() => {
-                navigate(`./courses/${item._id}/modules`);
+                navigate(`./courses/${item._id}`);
             }}>
-                Подробнее
+                Изучить
             </ActionButton>
             {/* <button className="course-data__button_inverted-colors" onClick={handleClick}>Подробнее</button> */}
         </>

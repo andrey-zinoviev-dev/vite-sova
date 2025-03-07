@@ -40,6 +40,10 @@ export default function LessonContent() {
                 <p>Вот тут еще текст</p>
                 <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img>
             </div>
+            <div>
+            <button>
+                Предыдущий урок урок
+            </button>
             <button>
                 Следующий урок
             </button>
@@ -49,6 +53,11 @@ export default function LessonContent() {
                 выполнить задание
                 {/* <FontAwesomeIcon icon={faMessage} /> */}
             </button>
+            </div>
+            {/* <button>
+                Следующий урок
+            </button> */}
+
         </section>
     )
 }

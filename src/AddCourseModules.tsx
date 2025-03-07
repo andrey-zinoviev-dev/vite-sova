@@ -32,6 +32,28 @@ export default function AddCourseModules() {
     return (
         <>
             <h2>Модули курса</h2>
+            <div>
+                    <Label>
+                        Название модуля
+                        <Input onChange={(evt) => {
+                            setNewModule((prevValue) => {
+                                return {...prevValue, title: evt.target.value};
+                            })
+                        }}></Input>
+                    </Label>
+                    <Label>
+                        Описание модуля
+                        <Input onChange={(evt) => {
+                            setNewModule((prevValue) => {
+                                return {...prevValue, description: evt.target.value}
+                            })
+                        }}></Input>
+                    </Label>
+                </div>
+                <button onClick={() => {
+                setPopupSideOpened(true);
+            }}>Добавить модуль</button>
+            
             {newModules.length > 0 && 
             <TableComp items={newModules} renderItem={(item) => {
                 return <TableElement>
@@ -57,13 +79,11 @@ export default function AddCourseModules() {
             //     })}    
             // </ul>
             }
-            <button onClick={() => {
-                setPopupSideOpened(true);
-            }}>Добавить модуль</button>
+            
             <button>Назад</button>
             <button>Вперед</button>
 
-            {popupSideOpened && <PopupRight closePopup={() => {
+            {/* {popupSideOpened && <PopupRight closePopup={() => {
                 setPopupSideOpened(false);
             }}>
                 <h3>Окно добавления нового модуля</h3>
@@ -90,9 +110,8 @@ export default function AddCourseModules() {
                     dispatch(addModule(newModule));
                     setNewModule({title: "", description: "", _id: "", available: false, lessons: []});
                     setPopupSideOpened(false);
-                    // console.log(newModule);
                 }}>Добавить модуль</button>
-            </PopupRight>}
+            </PopupRight>} */}
         </>
     )
 }
