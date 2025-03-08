@@ -6,6 +6,7 @@ import "./LessonContent.css"
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface, LessonInterface, ModuleExtInterface } from "./intefaces/intefaces";
 import { useParams, useNavigate } from "react-router";
+import ActionButton from "./ActionButton";
 
 export default function LessonContent() {
     const navigate = useNavigate();
@@ -47,12 +48,14 @@ export default function LessonContent() {
             <button>
                 Следующий урок
             </button>
-            <button className="lesson__chat-button" onClick={() => {
+            <ActionButton>
+                Выполнить задание
+            </ActionButton>
+            {/* <button className="lesson__chat-button" onClick={() => {
                 navigate("./chat")
             }}>
                 выполнить задание
-                {/* <FontAwesomeIcon icon={faMessage} /> */}
-            </button>
+            </button> */}
             </div>
             {/* <button>
                 Следующий урок

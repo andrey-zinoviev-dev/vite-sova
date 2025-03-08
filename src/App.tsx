@@ -41,10 +41,10 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-            <Route path='/welcome' element={<Welcome></Welcome>}>
+            {/* <Route path='/welcome' element={<Welcome></Welcome>}>
               <Route index element={<Login></Login>}></Route>
               <Route path='register' element={<Register></Register>}></Route>
-            </Route>
+            </Route> */}
             <Route path='/' element={<Home></Home>}>
                 <Route path='/' element={<Courses></Courses>}>
                   <Route path='/' element={<CoursesList></CoursesList>} />

@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 import AddCourseModules from "./AddCourseModules";
+import AddCourseLessons from "./AddCourseLessons";
 
 export default function AddCourse() {
     //state
@@ -38,23 +39,26 @@ export default function AddCourse() {
                         return prevValue + 1;
                     })
                 }}></AddCourseBase>
-                <AddCourseModules>
+                <AddCourseModules handleBack={() => {
+                    setStep((prevValue) => {
+                        return prevValue - 1;
+                    })
+                }} handleNext={() => {
+                    setStep((prevValue) => {
+                        return prevValue + 1;
+                    })
+                }}>
 
                 </AddCourseModules>
-                {/* <>
-                    <h1>Второй этап нового курса</h1>
-                    <button onClick={() => {
-                        setStep((prevValue) => {
-                            return prevValue - 1;
-                        })
-                    }}>Назад</button>
-                    <button onClick={() => {
-                        setStep((prevValue) => {
-                            return prevValue + 1;
-                        })
-                    }}>Далее</button>
-                </> */}
-                <h1>Третий этап нового курса</h1>
+                <AddCourseLessons handleBack={() => {
+                    setStep((prevValue) => {
+                        return prevValue - 1;
+                    })
+                }} handleNext={() => {
+                    setStep((prevValue) => {
+                        return prevValue + 1;
+                    })
+                }}></AddCourseLessons>
             </Wizard>
         </>
 

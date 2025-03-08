@@ -55,35 +55,7 @@ export default function SideBar({ closeSide }: SideBarInterface){
     }
 
     return (
-        // <div className="sidebar">
-        //     <div className="sidebar__right">
-        //         <div className="sidebar__right-navigation">
-        //             <div className="sidebar__right-close">
-        //                 <h3>{course.title}</h3>
-        //                 <button onClick={() => {
-        //                     // setOpenedSideBar(false);
-        //                 }}>
-        //                     <FontAwesomeIcon icon={faXmark} />
-        //                 </button>
-        //             </div>
-        //             {course.modules && <RowList items={course.modules} renderItem={(item) => {
-        //                 return <NavigationModule module={item}>
-        //                     <RowList items={item.lessons} renderItem={(lesson, index) => {
-        //                         return <LessonButton item={lesson} index={index + 1} handleClick={() => {
-        //                             console.log('navigate to lesson');
-        //                             // closeAndNavigate(`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`);
-        //                         }} available={lesson.available}></LessonButton>
-        //                     }}></RowList>
-        //                 </NavigationModule>
-        //             }}>
-        //             </RowList>}
-        //         </div>
-        //     </div>
-        // </div>
         <div className="sidebar__right">
-            {/* <div className="sidebar__right-close">
-
-                </div> */}
             <h3>{data.title}</h3>
                 {data.modules && <RowList items={data.modules} renderItem={(item) => {
                     return <NavigationModule module={item}>
@@ -95,29 +67,6 @@ export default function SideBar({ closeSide }: SideBarInterface){
                     </NavigationModule>
                 }}>
                 </RowList>}
-
-                
-            {/* <div className="sidebar__right-navigation">
-                <div className="sidebar__right-close">
-                    <h3>{course.title}</h3>
-                    <button onClick={() => {
-                        // setOpenedSideBar(false);
-                    }}>
-                        <FontAwesomeIcon icon={faXmark} />
-                    </button>
-                </div>
-                {course.modules && <RowList items={course.modules} renderItem={(item) => {
-                    return <NavigationModule module={item}>
-                        <RowList items={item.lessons} renderItem={(lesson, index) => {
-                            return <LessonButton item={lesson} index={index + 1} handleClick={() => {
-                                console.log('navigate to lesson');
-                                // closeAndNavigate(`../courses/${course._id}/modules/${item._id}/lessons/${lesson._id}`);
-                            }} available={lesson.available}></LessonButton>
-                        }}></RowList>
-                    </NavigationModule>
-                }}>
-                </RowList>}
-            </div> */}
         </div>
     )
 }

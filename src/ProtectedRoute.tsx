@@ -20,6 +20,6 @@ export default function ProtectedRoute() {
     }
 
     if(isError || !data._id) {
-        return <Navigate to={"/welcome"} replace />
+        return <Navigate to={"/"} replace />
     }
 }

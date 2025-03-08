@@ -6,7 +6,12 @@ import { useState } from "react";
 import { useRegisterUserMutation } from "./store/features/apiSlice";
 import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
 import { useAppSelector } from "./hooks";
-export default function Register() {
+
+interface RegisterInterface {
+    closePopup: () => void,
+}
+
+export default function Register({ closePopup }: RegisterInterface) {
     //redux
     const user = useAppSelector((state) => {
         return state.user;
@@ -48,10 +53,10 @@ export default function Register() {
         <>
             <Form isLoading={isLoading} isSuccess={isSuccess} className="" text="Зарегистрироваться">
                 <ErrorSpan text={error.message} />
-                {/* <Input type="email" updateValue={setRegisterData} name="email" placeholder="Почта"></Input> 
-                <Input type="password" hidden updateValue={setRegisterData} name="password" placeholder="Пароль"></Input>
-                <Input type="text" updateValue={setRegisterData} name="name" placeholder="Имя"></Input> */}
-                <Link to="..">Есть учетная запись? Войдите!</Link>
+                <Input type="email" name="email" placeholder="Почта"></Input> 
+                <Input type="password" name="password" placeholder="Пароль"></Input>
+                <Input type="text" name="name" placeholder="Имя"></Input>
+                {/* <Link to="..">Есть учетная запись? Войдите!</Link> */}
             </Form>
         </>
     )

@@ -12,7 +12,12 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import EditWrapper from "./EditWrapper";
 import ActionButton from "./ActionButton";
 
-export default function AddCourseModules() {
+interface AddCourseModulesInterface {
+    handleBack: () => void,
+    handleNext: () => void,
+}
+
+export default function AddCourseModules({ handleBack, handleNext }:AddCourseModulesInterface) {
     const newModules = useAppSelector((state) => {
         return state.newCourse.modules;
     });
@@ -86,8 +91,8 @@ export default function AddCourseModules() {
             // </ul>
             }
             
-            <button>Назад</button>
-            <button>Вперед</button>
+            <button onClick={handleBack}>Назад</button>
+            <button onClick={handleNext}>Вперед</button>
 
             {/* {popupSideOpened && <PopupRight closePopup={() => {
                 setPopupSideOpened(false);

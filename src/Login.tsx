@@ -9,7 +9,11 @@ import { Link, useNavigate } from "react-router";
 
 // import "./Login.css";
 
-export default function Login() {
+interface LoginInterface {
+    closePopup: () => void,
+}
+
+export default function Login({ closePopup }: LoginInterface) {
     //navigate
     const navigate = useNavigate();
     //RTK
@@ -26,6 +30,7 @@ export default function Login() {
 
         submitLoginFunction(logindData).unwrap()
         .then(() => {
+            closePopup()
             navigate("/profile");
         })
         .catch((error) => {
@@ -50,7 +55,7 @@ export default function Login() {
                         return {...prevValue, password: evt.target.value}
                     })
                 }} name="password" placeholder="Пароль"></Input>
-                <Link to="./register">Нет учетной записи? Зарегистрируйтесь!</Link>
+                {/* <Link to="./register">Нет учетной записи? Зарегистрируйтесь!</Link> */}
             </Form>
        
     )
