@@ -1,8 +1,6 @@
 import Input from "./Input"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrash } from "@fortawesome/free-solid-svg-icons"
 import { useAppDispatch, useAppSelector } from "./hooks"
-import { addBaseInfo, removeTarif } from "./store/features/newCourseFeature"
+import { addBaseInfo } from "./store/features/newCourseFeature"
 import TableComp from "./TableComp"
 import NewTarif from "./NewTarif"
 // import TableButton from "./TableButton"
@@ -12,6 +10,7 @@ import TableElement from "./TableElement"
 import "./AddCourseBase.css";
 import Label from "./Label"
 import Textarea from "./Textarea"
+import TarifData from "./TarifData"
 
 interface AddCourseBaseInterface {
     handleNext: () => void,
@@ -23,7 +22,7 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
         return state.newCourse;
     });
 
-    const startDate = new Date(newCourseState.startDate);
+    // const startDate = new Date(newCourseState.startDate);
     // console.log(startDate);
     // console.log(newCourseState);
     //dispatch
@@ -36,9 +35,9 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
         dispatch(addBaseInfo({key: evt.target.name, value: evt.target.value}))
     };
 
-    function deleteTarif(tarifId: string) {
-        dispatch(removeTarif(tarifId))
-    }
+    // function deleteTarif(tarifId: string) {
+    //     dispatch(removeTarif(tarifId))
+    // }
 
     return (
         <div className="addStep">
@@ -59,7 +58,8 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
             <NewTarif></NewTarif>
             {newCourseState.tarifs.length > 0 && <TableComp items={newCourseState.tarifs} renderItem={(tarif) => {
                 return <TableElement>
-                    <div>
+                    <TarifData item={tarif} tarifStart={newCourseState.startDate}></TarifData>
+                    {/* <div>
                         <div>
                             <span>{tarif.title}</span>
                             <button onClick={() => { deleteTarif(tarif._id) }}>
@@ -67,7 +67,7 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
                             </button>
                         </div>
                         <span>{startDate.toLocaleDateString()} - {new Date(tarif.end).toLocaleDateString()}</span>
-                    </div>
+                    </div> */}
                 </TableElement>
             }}></TableComp>}
             <button onClick={handleNext}>Далее</button>

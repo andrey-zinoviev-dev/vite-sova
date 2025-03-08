@@ -6,6 +6,12 @@
     grid-template-columns: 1fr;
 }
 
+.tarif-new__wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
 .tarif-new__button-submit {
     margin: 0 auto 0 0;
     display: flex;

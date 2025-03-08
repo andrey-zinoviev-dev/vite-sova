@@ -32,6 +32,7 @@ export default function NewTarif() {
 
     return (
         <div className="tarif-new">
+            <div className="tarif-new__wrapper">
                 <Label>
                     Название тарифа
                     <Input value={newTarif.title} onChange={(evt) => {
@@ -49,6 +50,8 @@ export default function NewTarif() {
                     }} id="tarifEnd" type="date">
                     </Input>
                 </Label>
+            </div>
+
 
             <button className="tarif-new__button-submit" onClick={(addNewTarif)} type="button">
                 <FontAwesomeIcon icon={faPlusCircle} />

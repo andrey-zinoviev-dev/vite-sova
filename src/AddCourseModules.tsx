@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks"
-import PopupRight from "./PopupRight";
+// import PopupRight from "./PopupRight";
 import Label from "./Label";
 import Input from "./Input";
 import { ModuleExtInterface } from "./intefaces/intefaces";
@@ -9,6 +9,8 @@ import TableComp from "./TableComp";
 import TableElement from "./TableElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import EditWrapper from "./EditWrapper";
+import ActionButton from "./ActionButton";
 
 export default function AddCourseModules() {
     const newModules = useAppSelector((state) => {
@@ -17,7 +19,7 @@ export default function AddCourseModules() {
     // console.log(newModules);
 
     //state
-    const [popupSideOpened, setPopupSideOpened] = useState<boolean>(false);
+    // const [popupSideOpened, setPopupSideOpened] = useState<boolean>(false);
 
     const [newModule, setNewModule] = useState<ModuleExtInterface>({
         title: "",
@@ -50,25 +52,29 @@ export default function AddCourseModules() {
                         }}></Input>
                     </Label>
                 </div>
-                <button onClick={() => {
-                setPopupSideOpened(true);
+            <button onClick={() => {
+                dispatch(addModule(newModule));
+                setNewModule({title: "", description: "", _id: "", available: false, lessons: []});
+                // setPopupSideOpened(false);
             }}>Добавить модуль</button>
             
             {newModules.length > 0 && 
             <TableComp items={newModules} renderItem={(item) => {
                 return <TableElement>
-                    <div>
-                        <div>
+                    <>
+                        <EditWrapper>
                             <h3>{item.title}</h3>
-                            <button onClick={() => {
+                            <ActionButton onClick={() => {
+                                // console.log(item);
                                 dispatch(removeModule(item.title));
                             }}>
                                 <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                        </div>
+                            </ActionButton>
+                        </EditWrapper>
+
                         <p>{item.description}</p>
                         <span>Уроки: {item.lessons.length}</span>
-                    </div>
+                    </>
                 </TableElement>
             }}></TableComp>
             // <ul>
