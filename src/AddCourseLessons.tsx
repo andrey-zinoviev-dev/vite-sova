@@ -1,9 +1,4 @@
-interface AddCourseLessonInterface {
-    handleBack: () => void,
-    handleNext: () => void,
-}
-
-export default function AddCourseLessons({handleBack, handleNext}: AddCourseLessonInterface) {
+export default function AddCourseLessons() {
     return (
         <>
             <h2>Вот тут будет форма добавления уроков в модули</h2>

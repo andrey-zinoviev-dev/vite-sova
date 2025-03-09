@@ -3,13 +3,13 @@ import "./Wizard.css"
 
 interface WizardInterface {
     children: React.ReactNode[],
-    currentStep: number,
+    // currentStep: number,
     // step: number,
 }
 
-export default function Wizard({ children, currentStep }: WizardInterface) {
+export default function Wizard({ children }: WizardInterface) {
 
-    // const [currentStep, setCurrentStep] = useState<number>(0);
+    const [currentStep, setCurrentStep] = useState<number>(0);
 
     const childToRender = Array.from(children)[currentStep];
 
@@ -25,16 +25,19 @@ export default function Wizard({ children, currentStep }: WizardInterface) {
             </ul>
             {childToRender}
             {/* <span>{currentStep}</span> */}
-            {/* <button className="" disabled={currentStep === 0} onClick={() => {
-                setCurrentStep((prevValue) => {
-                    return prevValue - 1;
-                })
-            }}>Назад</button>
-            <button className="" disabled={currentStep === children.length - 1} onClick={() => {
-                setCurrentStep((prevValue) => {
-                    return prevValue + 1;
-                })
-            }}>Далее</button> */}
+            <div>
+                <button className="" disabled={currentStep === 0} onClick={() => {
+                    setCurrentStep((prevValue) => {
+                        return prevValue - 1;
+                    })
+                }}>Назад</button>
+                <button className="" disabled={currentStep === children.length - 1} onClick={() => {
+                    setCurrentStep((prevValue) => {
+                        return prevValue + 1;
+                    })
+                }}>Далее</button>
+            </div>
+
         </div>
     )
 }

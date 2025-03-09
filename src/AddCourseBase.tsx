@@ -12,11 +12,7 @@ import Label from "./Label"
 import Textarea from "./Textarea"
 import TarifData from "./TarifData"
 
-interface AddCourseBaseInterface {
-    handleNext: () => void,
-}
-
-export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
+export default function AddCourseBase() {
     //redux
     const newCourseState = useAppSelector((state) => {
         return state.newCourse;
@@ -40,7 +36,7 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
     // }
 
     return (
-        <div className="addStep">
+        <>
             <h2>Основные данные нового курса</h2>
             <Label>
                 Как называется новый курс?
@@ -70,7 +66,7 @@ export default function AddCourseBase({ handleNext }: AddCourseBaseInterface) {
                     </div> */}
                 </TableElement>
             }}></TableComp>}
-            <button onClick={handleNext}>Далее</button>
-        </div>
+            {/* <button onClick={handleNext}>Далее</button> */}
+        </>
     )
 }

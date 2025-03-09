@@ -1,7 +1,7 @@
 import Wizard from "./Wizard";
 
 import AddCourseBase from "./AddCourseBase";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
@@ -10,7 +10,7 @@ import AddCourseLessons from "./AddCourseLessons";
 
 export default function AddCourse() {
     //state
-    const [step, setStep] = useState<number>(0);
+    // const [step, setStep] = useState<number>(0);
 
     const navigate = useNavigate();
 
@@ -33,32 +33,10 @@ export default function AddCourse() {
                 Назад в профиль
             </button>
             <h2>Добавление нового курса</h2>
-            <Wizard currentStep={step}>
-                <AddCourseBase handleNext={() => {
-                    setStep((prevValue) => {
-                        return prevValue + 1;
-                    })
-                }}></AddCourseBase>
-                <AddCourseModules handleBack={() => {
-                    setStep((prevValue) => {
-                        return prevValue - 1;
-                    })
-                }} handleNext={() => {
-                    setStep((prevValue) => {
-                        return prevValue + 1;
-                    })
-                }}>
-
-                </AddCourseModules>
-                <AddCourseLessons handleBack={() => {
-                    setStep((prevValue) => {
-                        return prevValue - 1;
-                    })
-                }} handleNext={() => {
-                    setStep((prevValue) => {
-                        return prevValue + 1;
-                    })
-                }}></AddCourseLessons>
+            <Wizard>
+                <AddCourseBase></AddCourseBase>
+                <AddCourseModules></AddCourseModules>
+                <AddCourseLessons></AddCourseLessons>
             </Wizard>
         </>
 
