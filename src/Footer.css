@@ -1,5 +1,6 @@
 .footer {
-  background-color: #151618;
+  /* background-color: #151618; */
+  border-top: 1px solid #888;
 }
 
 .footer img {

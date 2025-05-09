@@ -4,7 +4,7 @@
     width: 100%;
 }
 
-@media screen and (max-width: 1439px) {
+/* @media screen and (max-width: 1439px) {
     .container {
         max-width: 1024px;
     }
@@ -14,7 +14,6 @@
     .container {
         max-width: 768px;
 
-        /* max-width: 425px; */
     }
 }
 
@@ -22,4 +21,4 @@
     .container {
         max-width: 540px;
     }
-}
+} */

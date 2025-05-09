@@ -1,9 +1,45 @@
 .button-action {
     background-color: #646cff;
     color: white;
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        align-self: stretch;
+    transition: all 0.15s ease-in-out;
 }
 
 .button-action:hover {
     background-color: white;
     color: black;
+}
+
+.button-action_new {
+    background-color: transparent;
+    border: 1px dashed #f3f3f3;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-action:disabled {
+    pointer-events: none;
+    /* background-color: #f3f3f3;
+    color: #646cff; */
+    background-color: #888;
+    color: #f3f3f3;
+    cursor: not-allowed;
+}
+
+.button-action_svg {
+    padding: 0;
+    background-color: transparent;
+    transition: color 0.15s ease-in-out;
+}
+
+.button-action_svg:hover {
+    background-color: transparent;
+    color: #646cff;
+    
 }

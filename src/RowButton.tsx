@@ -25,8 +25,11 @@ export default function RowButton({ children, ...props }: RowButtonType) {
     // const navigate = useNavigate();
 
     return (
-        <button className={buttonClass} {...rest}>
-            {children}
-        </button>
-    )
+      // <button className={buttonClass} {...rest}>
+      //     {children}
+      // </button>
+      <button className={buttonClass} {...rest}>
+        {children}
+      </button>
+    );
 }

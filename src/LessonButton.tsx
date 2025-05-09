@@ -29,7 +29,7 @@ export default function LessonButton({ item, index, available, handleClick, edit
   // console.log(classStr);
 
   return (
-    <RowButton className={classStr} onClick={handleClick} disabled={!available}>
+    <RowButton className={classStr} onClick={handleClick}>
       <div className="button-row__title-wrapper">
 
         <span className="button-row__index">0{index}.</span>
@@ -38,9 +38,9 @@ export default function LessonButton({ item, index, available, handleClick, edit
       <div className="button-row__svg-wrapper">
          {/* <FontAwesomeIcon icon={faCheck} /> */}
         <FontAwesomeIcon icon={available ?  faArrowRight : faLock} />
-        {edit && <ActionButton>
+        {/* {edit && <ActionButton>
           <FontAwesomeIcon icon={faGear} />  
-        </ActionButton>}
+        </ActionButton>} */}
       </div>
     </RowButton>
   )

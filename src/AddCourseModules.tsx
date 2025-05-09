@@ -1,73 +1,84 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "./hooks"
+import { useAppDispatch, useAppSelector } from "./hooks";
 // import PopupRight from "./PopupRight";
-import Label from "./Label";
-import Input from "./Input";
-import { removeModule } from "./store/features/newCourseFeature";
+// import Label from "./Label";
+// import Input from "./Input";
+import { 
+    // addLesson, 
+    removeModule } from "./store/features/newCourseFeature";
 import TableComp from "./TableComp";
 import TableElement from "./TableElement";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+//   faPlusCircle,
+  faTrash,
+//   faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import EditWrapper from "./EditWrapper";
 import ActionButton from "./ActionButton";
-import PopupRight from "./PopupRight";
+// import PopupRight from "./PopupRight";
+// import NewModule from "./NewModule";
+import NewLesson from "./NewLesson";
 import NewModule from "./NewModule";
+// import RowList from "./RowList";
+// import RowButton from "./RowButton";
 
-export default function AddCourseModules() {
-    const newModules = useAppSelector((state) => {
-        return state.newCourse.modules;
-    });
+interface ModulesInterface {
+    headline: string
+}
 
-    //state
-    const [popupSideOpened, setPopupSideOpened] = useState<boolean>(false);
+export default function AddCourseModules({ headline }: ModulesInterface) {
+  const newModules = useAppSelector((state) => {
+    return state.newCourse.modules;
+  });
 
+  //state
+  const [moduleId, setModuleId] = useState<string | null>(null);
 
+  const dispatch = useAppDispatch();
 
-    const dispatch = useAppDispatch();
+  // console.log(moduleId);
 
-    return (
-        <>
-            <h2>Модули курса</h2>
+  return (
+    <>
+      {/* <h2>Модули курса</h2> */}
 
-            <NewModule></NewModule>
-            
-            {newModules.length > 0 && 
-            <TableComp items={newModules} renderItem={(item) => {
-                return <TableElement>
-                    <>
-                        <EditWrapper>
-                            <h3>{item.title}</h3>
-                            <ActionButton onClick={() => {
-                                dispatch(removeModule(item.title));
-                            }}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </ActionButton>
-                        </EditWrapper>
+      {/* <NewModule></NewModule> */}
 
-                        <p>{item.description}</p>
-                        <span>Уроки: {item.lessons.length}</span>
-                        <ActionButton onClick={() => {
-                            setPopupSideOpened(true);
-                        }}>
-                            добавить урок
-                        </ActionButton>
-                    </>
-                </TableElement>
-            }}></TableComp>}
-           
-            {popupSideOpened && <PopupRight closePopup={() => {
-                setPopupSideOpened(false)
-            }}>
-                <h3>Новый урок</h3>
+      {/* {newModules.length > 0 &&  */}
+      <h2>{headline}</h2>
+
+      <NewModule></NewModule>
+
+      <TableComp
+        items={newModules}
+        renderItem={(item) => {
+          // console.log(item.lessons);
+          return (
+            <TableElement>
+              <>
+                <EditWrapper>
+                  <h3>{item.title}</h3>
+                  <ActionButton
+                    onClick={() => {
+                      if (item._id) {
+                        dispatch(removeModule(item._id));
+                      }
+                    }}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  </ActionButton>
+                </EditWrapper>
                 <div>
-                    <Label>
-                        Название урока
-                        <Input placeholder="Название урока"></Input>
-                    </Label>
-                    <p>вот тут компонент контента урока будет</p>
+                  <p>{item.description}</p>
 
+                  <span>Уроки: {item.lessons.length}</span>
                 </div>
-            </PopupRight>}
-        </>
-    )
+              </>
+            </TableElement>
+          );
+        }}
+      ></TableComp>
+    </>
+  );
 }

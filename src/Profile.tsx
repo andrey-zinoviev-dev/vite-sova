@@ -1,13 +1,16 @@
 // import { Container } from "./Container";
 import "./Profile.css"
 
-import { Outlet } from "react-router";
+import { Outlet, ScrollRestoration } from "react-router";
 
 export default function Profile() {
 
     return (
-        <section className="profile">
+        // <section className="profile">
+        <>
+            <ScrollRestoration />
             <Outlet></Outlet>
-        </section>
+        </>
+        // </section>
     )
 }

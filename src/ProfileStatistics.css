@@ -1,0 +1,16 @@
+.profile-statistics {
+    /* min-width: 360px;
+    border: 1px solid white; */
+}
+
+@media screen and (max-width: 767px) {
+    .profile-statistics {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile-statistics {
+        min-width: 0;
+    }
+}

@@ -1,7 +1,5 @@
 .profile-data {
-    display: grid
-;
-    /* grid-template-columns: 1fr 210px; */
+    display: grid;
     grid-template-columns: 1fr;
     gap: 30px;
 }
@@ -14,9 +12,27 @@
         justify-content: space-between;
 }
 
+.profile-data__wrapper {
+    display: grid;
+    gap: 15px;
+    align-self: flex-start;
+}
+
 .profile-data__headline {
     margin: 0;
     font-size: 32px;
+    width: fit-content;
+    text-align: left;
+}
+
+.profile-data__calendar-wrapper {
+    /* display: flex;
+    justify-content: space-between; */
+    /* flex-direction: column; */
+    display: grid;
+    /* grid-template-columns: repeat(2, 1fr); */
+    grid-template-columns: 420px 1fr;
+    gap: 30px;
 }
 
 .profile-data__addCourse-button {
@@ -29,4 +45,29 @@
 
 .profile-data__addCourse-button:hover {
     background-color: #1a1a1a;
+}
+
+@media screen and (max-width: 1279px) {
+    .profile-data {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-data__courses {
+        order: 2;
+    }
+
+    .profile-data__calendar {
+        order: 1;
+    }
+
+    /* .profile-data__calendar-wrapper {
+        flex-direction: row;
+    } */
+}
+
+@media screen and (max-width: 767px) {
+    .profile-data__calendar-wrapper { 
+        grid-template-columns: 1fr;
+        /* align-items: center; */
+    }
 }

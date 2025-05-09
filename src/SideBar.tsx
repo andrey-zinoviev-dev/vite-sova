@@ -1,72 +1,96 @@
-// import { useState } from "react"
-import { useNavigate } from "react-router";
-import "./Sidebar.css"
-// import Logo from "./Logo";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { } from "@fortawesome/free-solid-svg-icons";
-import { CourseInterface } from "./intefaces/intefaces";
+import { Link } from "react-router";
+import "./Sidebar.css";
+import { ModuleExtInterface } from "./intefaces/intefaces";
 import RowList from "./RowList";
-// import RowButton from "./RowButton";
 import NavigationModule from "./NavigationModule";
-import LessonButton from "./LessonButton";
+// import LessonButton from "./LessonButton";
 
 import { useParams } from "react-router";
-import { useShowCoursesQuery } from "./store/features/apiSlice";
+// import { useShowCoursesQuery } from "./store/features/apiSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
+import { faBars, faLock } from "@fortawesome/free-solid-svg-icons";
+import PopupRight from "./PopupRight";
 
 // import NavigationLink from "./NavigationLink";
 
 interface SideBarInterface {
-    // course: CourseInterface,
-    // module: ModuleExtInterface,
-    closeSide: () => void,
-};
+  // course: CourseInterface,
+  // module: ModuleExtInterface,
+  // closeSide: () => void,
+  courseTitle: string;
+  modules: ModuleExtInterface[];
+}
 
-export default function SideBar({ closeSide }: SideBarInterface){
+export default function SideBar({ courseTitle, modules }: SideBarInterface) {
+  //state
+  const [openedSideBar, setOpenedSideBar] = useState<boolean>(false);
 
-    //state
-    // const [ openedSideBar, setOpenedSideBar ] = useState<boolean>(false);
+  const { lessonId, moduleId, courseId } = useParams();
 
-    //navigate
-    const navigate = useNavigate();
+  //functions
+  function openSideBar() {
+    setOpenedSideBar(true);
+  }
+  function closeAndNavigate() {
+    setOpenedSideBar(false);
+  }
 
-    const { courseId } = useParams();
-
-    const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
-      selectFromResult: ({data}) => ({
-          data: data?.find((course) => {
-            return course._id === courseId;
-        })
-      })
-    });
-  
-    // const module = data.modules && data.modules.find((module) => {
-    //   return module._id === moduleId;
-    // }) as ModuleExtInterface;
-  
-    // const lesson = module?.lessons.find((lesson) => {
-    //   return lesson._id === lessonId;
-    // }) as LessonInterface; 
-
-    //functions
-    function closeAndNavigate(link: string) {
-        navigate(link);
-        closeSide();
-        // setOpenedSideBar(false);
-    }
-
-    return (
-        <div className="sidebar__right">
-            <h3>{data.title}</h3>
-                {data.modules && <RowList items={data.modules} renderItem={(item) => {
-                    return <NavigationModule module={item}>
-                        <RowList items={item.lessons} renderItem={(lesson, index) => {
-                            return <LessonButton item={lesson} index={index + 1} handleClick={() => {
-                                closeAndNavigate(`../courses/${data._id}/modules/${item._id}/lessons/${lesson._id}`);
-                            }} available={lesson.available}></LessonButton>
-                        }}></RowList>
-                    </NavigationModule>
-                }}>
-                </RowList>}
-        </div>
-    )
+  return (
+    <>
+      <button onClick={openSideBar}>
+        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
+      </button>
+      {openedSideBar && (
+        <PopupRight closePopup={closeAndNavigate}>
+          <div className="sidebar">
+            <h3>{courseTitle}</h3>
+            <span>Модули</span>
+            <RowList
+              items={modules}
+              renderItem={(module) => {
+                return (
+                  <NavigationModule module={module}>
+                    <RowList
+                      items={module.lessons}
+                      renderItem={(lesson) => {
+                        return (
+                          <>
+                            <Link
+                              className={`navigation-lesson-button ${
+                                !lesson.available
+                                  ? "navigation-lesson-button_disabled"
+                                  : ""
+                              } ${
+                                lessonId === lesson._id
+                                  ? "navigation-lesson-button_active"
+                                  : ""
+                              }`}
+                              onClick={closeAndNavigate}
+                              to={`/courses/${courseId}/modules/${moduleId}/lessons/${lesson._id}`}
+                              reloadDocument
+                            >
+                              <span className="navigation-lesson-button__title">
+                                {lesson.title}
+                              </span>
+                              {!lesson.available && (
+                                <FontAwesomeIcon
+                                  icon={faLock}
+                                ></FontAwesomeIcon>
+                              )}
+                            </Link>
+                          </>
+                        );
+                      }}
+                    ></RowList>
+                  </NavigationModule>
+                );
+              }}
+            ></RowList>
+          </div>
+        </PopupRight>
+      )}
+    </>
+    // <span>SideBar</span>
+  );
 }

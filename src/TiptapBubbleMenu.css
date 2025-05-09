@@ -1,0 +1,28 @@
+.bubble-menu {
+    background-color: #2C2A28;
+    box-sizing: border-box;
+    border-radius: 9px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    width: fit-content;
+}
+
+.bubble-menu .button-action {
+    padding: 5px 10px;
+}
+
+.bubble-menu__link {
+    display: flex
+;
+    align-items: center;
+    gap: 15px;
+}
+
+.bubble-menu__link label {
+    min-width: 360px;
+    display: flex
+;
+    align-items: center;
+}

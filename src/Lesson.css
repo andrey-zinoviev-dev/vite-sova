@@ -1,7 +1,42 @@
+.lesson {
+    /* height: 100svh; */
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: flex-start;
+    position: relative;
+    overflow: auto;
+    /* gap: 30px; */
+    box-sizing: border-box;
+    padding: 50px 0;
+    /* max-height: calc(100svh - 85px);
+    overflow: auto; */
+}
+
+.lesson .breadcrumbs {
+    margin: 0 auto 30px auto;
+}
+
+.navigation-lesson-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 15px; */
+}
+
+.navigation-lesson-button:hover {
+    color: white;
+}
 
 .popup__close-wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
+}
+
+@media screen and (max-width: 767px) {
+    .lesson {
+        padding: 15px 10px;
+    }
 }

@@ -17,11 +17,6 @@ export default function Welcome({ closePopup }: WelcomeInterface) {
         <section className="welcome">
             <h1>Привет!</h1>
             <p>Добро пожаловать в Школу Экстремального вокала Саши Совы.</p>
-            {/* <button className="welcome__mode-btn" onClick={() => {
-                setLoginMode(!loginMode);
-            }}>
-                <span>{loginMode ? "Нет учетной записи? Зарегистрируйтесь!" : "Есть учетная запись? Водите!" }</span>
-            </button> */}
 
             {loginMode ? <Login closePopup={closePopup} /> : <Register closePopup={closePopup} />}
             <span className="welcome__span-mode">{loginMode ? "Нет учетной записи?" : "Есть учетная запись?" }

@@ -5,7 +5,8 @@
     flex-direction: column;
     justify-content: center;
     gap: 15px;
-    min-height: 100svh;
+    /* min-height: 100svh; */
+    padding: 15px;
     /* background-color: #2C2A28; */
 }
 
@@ -35,7 +36,8 @@
 .welcome form {
     display: grid;
     grid-template-columns: 1fr;
-    min-width: 360px;
+    width: 100%;
+    /* min-width: 360px; */
     gap: 15px;
     /* margin: 10px 0 0 0; */
 }
@@ -49,4 +51,10 @@
     border: 1px solid white;
     color: white;
     caret-color: white;
+}
+
+@media screen and (max-width: 767px) {
+    .welcome__span-mode {
+        flex-direction: column;
+    }
 }

@@ -1,0 +1,11 @@
+.addCourse-headline-wrapper {
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+}
+
+.addCourse-headline-wrapper button {
+    position: absolute;
+    left: 0;
+}

@@ -5,12 +5,14 @@ import { faGear } from "@fortawesome/free-solid-svg-icons"
 import ActionButton from "./ActionButton"
 import EditWrapper from "./EditWrapper"
 import { useNavigate } from "react-router"
-
+import CardHeadline from "./CardHeadline"
+// import "./ModuleData.css"
 interface ModuleDataInterface {
+  courseTitle: string,
   item: ModuleExtInterface,
 }
 
-export default function ModuleData({ item }: ModuleDataInterface) {
+export default function ModuleData({ courseTitle, item }: ModuleDataInterface) {
   const navigate = useNavigate();
 
   return (
@@ -24,20 +26,23 @@ export default function ModuleData({ item }: ModuleDataInterface) {
         </Link>
       </div> */}
       <EditWrapper>
-        <h3>{item.title}</h3>
-        <ActionButton>
+        {/* <h3>{item.title}</h3> */}
+        <CardHeadline title={item.title}></CardHeadline>
+        <ActionButton className="button-action_svg">
           <FontAwesomeIcon icon={faGear} />
         </ActionButton>
       </EditWrapper>
-      <div>
-        <p>Модуль про стабильное и уверенное расщепление на 3 смыканиях за 8 недель</p>
-      </div>
+      <p>{item.description}</p>
+
       <span>Пройдено 0 из {item.lessons.length} уроков</span>
-      <ActionButton onClick={() => {
-        navigate(`./${item._id}`)
-      }}>
+      <ActionButton
+        disabled={!item.available}
+        onClick={() => {
+          navigate(`./${item._id}`, {state: {courseTitle: courseTitle}});
+        }}
+      >
         Открыть
       </ActionButton>
     </>
-  )
+  );
 }

@@ -1,0 +1,14 @@
+.edit-form {
+    /* max-width: 720px; */
+    margin: 0 auto;
+    /* display: grid;
+    gap: 15px; */
+}
+
+.edit-form-buttons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* gap: 15px; */
+}

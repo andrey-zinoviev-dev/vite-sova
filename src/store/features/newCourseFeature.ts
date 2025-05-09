@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CourseInterface, ModuleExtInterface } from "../../intefaces/intefaces";
+import { LessonInterface, ModuleExtInterface, TarifInterface } from "../../intefaces/intefaces";
 
-type NewCourseType = Omit<CourseInterface, "_id">
+import { NewCourseType } from "../../intefaces/intefaces";
 
 type NewCourseTextType = Pick<NewCourseType, "title" | "description" | "startDate"> 
 
@@ -32,11 +32,8 @@ const newCourse = createSlice({
 
             return state;
         },
-        addTarif: (state, action: PayloadAction<{tarif: { 
-            title: string,
-            end: string,
-        }, _id: string}>) => {
-            state.tarifs = [...state.tarifs, {...action.payload.tarif, _id: action.payload._id}]
+        addTarif: (state, action: PayloadAction<TarifInterface>) => {
+            state.tarifs = [...state.tarifs, action.payload]
         },
         removeTarif: (state, action: PayloadAction<string>) => {
             state.tarifs = state.tarifs.filter((tarif) => {
@@ -49,13 +46,27 @@ const newCourse = createSlice({
         },
         removeModule: (state, action: PayloadAction<string>) => {
             state.modules = state.modules.filter((module) => {
-                return module.title !== action.payload;
+                return module._id !== action.payload;
             });
             return state;
-        }
+        },
+        addLesson: (state, action: PayloadAction<{moduleId: string, lesson: LessonInterface}>) => {
+            state.modules = state.modules.map((module) => {
+                return module._id === action.payload.moduleId? {...module, lessons: [...module.lessons, action.payload.lesson]} : module
+            });
+            return state;
+        },
+        removeLesson: (state, action: PayloadAction<{moduleId: string, lessonTitle: string}>) => {
+            state.modules = state.modules.map((module) => {
+                return module._id === action.payload.moduleId ? {...module, lessons: module.lessons.filter((lesson) => {
+                    return lesson.title !== action.payload.lessonTitle;
+                })} : module;
+            });
+            return state;
+        },
     },
 });
 
-export const { addBaseInfo, addTarif, removeTarif, addModule, removeModule } = newCourse.actions;
+export const { addBaseInfo, addTarif, removeTarif, addModule, removeModule, addLesson, removeLesson } = newCourse.actions;
 
 export default newCourse.reducer;

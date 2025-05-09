@@ -1,72 +1,124 @@
-import Input from "./Input"
-import { useAppDispatch, useAppSelector } from "./hooks"
-import { addBaseInfo } from "./store/features/newCourseFeature"
-import TableComp from "./TableComp"
-import NewTarif from "./NewTarif"
+import Input from "./Input";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { addBaseInfo } from "./store/features/newCourseFeature";
+import TableComp from "./TableComp";
+// import NewTarif from "./NewTarif"
 // import TableButton from "./TableButton"
-import TableElement from "./TableElement"
+import TableElement from "./TableElement";
 // import TableButton from "./TableButton"
 // import Form from "./Form"
 import "./AddCourseBase.css";
-import Label from "./Label"
-import Textarea from "./Textarea"
-import TarifData from "./TarifData"
+import Label from "./Label";
+import Textarea from "./Textarea";
+import TarifData from "./TarifData";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPlus } from "@fortawesome/free-solid-svg-icons";
+// import ActionButton from "./ActionButton";
+// import PopupRight from "./PopupRight";
+import NewTarif from "./NewTarif";
+// import { useState } from "react";
 
-export default function AddCourseBase() {
-    //redux
-    const newCourseState = useAppSelector((state) => {
-        return state.newCourse;
-    });
+interface TestInterface {
+  headline: string;
+}
 
-    // const startDate = new Date(newCourseState.startDate);
-    // console.log(startDate);
-    // console.log(newCourseState);
-    //dispatch
-    const dispatch = useAppDispatch();
+export default function AddCourseBase({ headline }: TestInterface) {
+  //redux
+  const newCourseState = useAppSelector((state) => {
+    return state.newCourse;
+  });
 
+  // const startDate = new Date(newCourseState.startDate);
+  // console.log(startDate);
+  // console.log(newCourseState);
+  //dispatch
+  const dispatch = useAppDispatch();
 
-    
-    //functions
-    function handleInputChange(evt: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) {
-        dispatch(addBaseInfo({key: evt.target.name, value: evt.target.value}))
-    };
+  //state
+  // const [popupOpened, setPopupOpened] = useState<boolean>(false);
 
-    // function deleteTarif(tarifId: string) {
-    //     dispatch(removeTarif(tarifId))
-    // }
+  //functions
+  function handleInputChange(
+    evt:
+      | React.ChangeEvent<HTMLInputElement>
+      | React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    dispatch(addBaseInfo({ key: evt.target.name, value: evt.target.value }));
+  }
 
-    return (
-        <>
-            <h2>Основные данные нового курса</h2>
-            <Label>
-                Как называется новый курс?
-                <Input defaultValue={newCourseState.title ? newCourseState.title : ""} name="title" onChange={handleInputChange} placeholder="Название курса"></Input>
-            </Label>
-            <Label>
-                О чем будет новый курс?
-                <Textarea name="description" defaultValue={newCourseState.description} onChange={handleInputChange} placeholder="Описание курса"></Textarea>
-                {/* <Input defaultValue={newCourseState.description} name="description" onChange={handleInputChange} placeholder="Описание курса"></Input> */}
-            </Label>
-            <Label>
-                Начало курса
-                <Input defaultValue={newCourseState.startDate} id="accessStart" name="startDate" onChange={handleInputChange} type="date" placeholder="Дата начала курса"></Input>
-            </Label>
-            <NewTarif></NewTarif>
-            {newCourseState.tarifs.length > 0 && <TableComp items={newCourseState.tarifs} renderItem={(tarif) => {
-                return <TableElement>
-                    <TarifData item={tarif} tarifStart={newCourseState.startDate}></TarifData>
-                    {/* <div>
-                        <div>
-                            <span>{tarif.title}</span>
-                            <button onClick={() => { deleteTarif(tarif._id) }}>
-                                <FontAwesomeIcon icon={faTrash} />
-                            </button>
-                        </div>
-                        <span>{startDate.toLocaleDateString()} - {new Date(tarif.end).toLocaleDateString()}</span>
-                    </div> */}
+  // function deleteTarif(tarifId: string) {
+  //     dispatch(removeTarif(tarifId))
+  // }
+
+  return (
+    <>
+      <h2>{headline}</h2>
+      <Label>
+        Как называется новый курс?
+        <Input
+          defaultValue={newCourseState.title ? newCourseState.title : ""}
+          name="title"
+          onChange={handleInputChange}
+          placeholder="Название курса"
+        ></Input>
+      </Label>
+      <Label>
+        О чем будет новый курс?
+        <Textarea
+          name="description"
+          defaultValue={newCourseState.description}
+          onChange={handleInputChange}
+          placeholder="Описание курса"
+        ></Textarea>
+        {/* <Input defaultValue={newCourseState.description} name="description" onChange={handleInputChange} placeholder="Описание курса"></Input> */}
+      </Label>
+      <Label>
+        Начало курса
+        <Input
+          defaultValue={newCourseState.startDate}
+          id="accessStart"
+          name="startDate"
+          onChange={handleInputChange}
+          type="date"
+          placeholder="Дата начала курса"
+        ></Input>
+      </Label>
+      <NewTarif></NewTarif>
+
+      <div className="newItem__wrapper">
+        {/* <span>Тарифы</span> */}
+        <p>Тарифы</p>
+
+        {/* <ActionButton onClick={() => {
+            setPopupOpened(true);
+          }}>
+            <FontAwesomeIcon icon={faPlus} />
+            Добавить тариф
+          </ActionButton> */}
+        {newCourseState.tarifs.length > 0 && (
+          <TableComp
+            items={newCourseState.tarifs}
+            renderItem={(tarif) => {
+              return (
+                <TableElement>
+                  <TarifData
+                    item={tarif}
+                    tarifStart={newCourseState.startDate}
+                    removeTarif={() => {
+                      console.log("remove tarif");
+                    }}
+                  ></TarifData>
                 </TableElement>
-            }}></TableComp>}
-            {/* <button onClick={handleNext}>Далее</button> */}
-        </>
-    )
+              );
+            }}
+          ></TableComp>
+        )}
+      </div>
+      {/* {popupOpened && <PopupRight closePopup={() => {
+            setPopupOpened(false);
+        }}>
+            <NewTarif></NewTarif>
+        </PopupRight>} */}
+    </>
+  );
 }

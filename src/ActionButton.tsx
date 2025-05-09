@@ -4,9 +4,9 @@ import "./ActionButton.css"
 type ActionButtonInterface = ComponentPropsWithoutRef<"button">;
 
 export default function ActionButton({...props}: ActionButtonInterface) {
-    return (
-        <button className="button-action" {...props}>
-            
-        </button>
-    )
+  return (
+    <button className={`button-action ${props.className}`} {...props}>
+      {props.children}
+    </button>
+  );
 }

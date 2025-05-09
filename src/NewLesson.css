@@ -1,0 +1,6 @@
+.new-lesson {
+    min-width: 540px;
+    width: 100%;
+    display: grid;
+    gap: 30px;
+}

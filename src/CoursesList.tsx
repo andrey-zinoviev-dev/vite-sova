@@ -3,7 +3,7 @@
 import "./CoursesList.css"
 // import { useAppSelector } from "./hooks";
 // import TableButton from "./TableButton";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faArrowRight, faLock } from "@fortawesome/free-solid-svg-icons";
 import TableComp from "./TableComp";
@@ -12,8 +12,9 @@ import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./intefaces/intefaces";
 import TableElement from "./TableElement";
 import MainPageCourseData from "./MainPageCourseData";
-
-
+import ActionButton from "./ActionButton";
+import Highlight from "./Highlight";
+import { useNavigate } from "react-router";
 export default function CoursesList() {
   // const courses = useAppSelector((state) => {
   //   return state.courses.courses;
@@ -26,22 +27,32 @@ export default function CoursesList() {
   const navigate = useNavigate();
 
   return (
-    // <div className="courses-list-wrapper">
-    //   <h2>Доступные курсы</h2>
-
-    //   <TableComp items={data} renderItem={(item) => {
-    //     return <TableElement>
-    //       <MainPageCourseData item={item}></MainPageCourseData>
-    //     </TableElement>
-    //   }} />
-    // </div>
-    <>
+    <section>
       <h2>Доступные курсы</h2>
       <TableComp items={data} renderItem={(item) => {
-        return <TableElement>
-          <MainPageCourseData item={item}></MainPageCourseData>
-        </TableElement>
+        return (
+          <TableElement>
+            <Highlight>
+              <span>Старт курса: {item.startDate}</span>
+            </Highlight>
+            <div className="button-table__top-wrapper">
+              <span className="button-table__title">{item.title}</span>
+              <span className="button-table__author">{item.author.name}</span>
+            </div>
+
+            <p className="button-table__desc">{item.description}</p>
+
+            <ActionButton
+              onClick={() => {
+                navigate(`./courses/${item._id}`);
+              }}
+            >
+              Изучить
+            </ActionButton>
+            {/* <MainPageCourseData item={item}></MainPageCourseData> */}
+          </TableElement>
+        );
       }} />
-    </>
+    </section>
   )
 };

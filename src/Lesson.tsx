@@ -1,54 +1,44 @@
-import { useShowCoursesQuery } from "./store/features/apiSlice";
-import { Outlet, useParams } from "react-router";
-import { CourseInterface, ModuleExtInterface } from "./intefaces/intefaces";
-// import SideBar from "./SideBar";
-
-import "./Lesson.css"
-import CourseLocation from "./CourseLocation";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faBars, faBook, faMessage, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useShowCurrentLessonQuery } from "./store/features/apiSlice";
+import { Outlet, ScrollRestoration, useParams } from "react-router";
+import { LessonInterface } from "./intefaces/intefaces";
+import "./Lesson.css";
 import Header from "./Header";
-// import { useState } from "react";
-// import PopupRight from "./PopupRight.tsx";
-// import { useAppDispatch, useAppSelector } from "./hooks.ts";
-// import { toggleMenu } from "./store/features/sideMenuSlice.ts";
+import BreadCrumbs from "./Breadcrumbs";
+import SideBar from "./SideBar";
 
 export default function Lesson() {
-  //location
-  // const location = useLocation();
-  // console.log(location);
-
-  //navigate
-  // const navigate = useNavigate();
 
   const { courseId, moduleId, lessonId } = useParams();
 
-  const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
-    selectFromResult: ({data}) => ({
-        data: data?.find((course) => {
-          return course._id === courseId;
-      })
-    })
+  const { data = {} as LessonInterface } = useShowCurrentLessonQuery({
+    lessonId: lessonId,
   });
 
-  const module = data.modules && data.modules.find((module) => {
-    return module._id === moduleId;
-  }) as ModuleExtInterface;
-
-  const lesson = module?.lessons.find((lesson) => {
-    return lesson._id === lessonId;
-  }); 
+  const crumbs = data._id
+    ? [
+        {
+          label: data.module.course.title,
+          path: `/courses/${courseId}/modules`,
+        },
+        {
+          label: data.module.title,
+          path: `/courses/${courseId}/modules/${moduleId}`,
+        },
+        { label: data.title, path: "" },
+      ]
+    : [];
 
   return (
     <>
       <Header>
-        <></>
-        {data && module && lesson && <CourseLocation course={data} module={module} lesson={lesson}></CourseLocation>}
-
+        {data._id && <SideBar courseTitle={data.module.course.title} modules={data.module.course.modules}></SideBar>}
       </Header>
+      <section className="lesson">
+        <BreadCrumbs items={crumbs}></BreadCrumbs>
+        <ScrollRestoration></ScrollRestoration>
+        <Outlet></Outlet>
+      </section>
 
-      <Outlet></Outlet>
     </>
-    
-  )
+  );
 }

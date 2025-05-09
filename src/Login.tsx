@@ -6,6 +6,7 @@ import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
 import { useState } from "react";
 import ErrorSpan from "./ErrorSpan";
 import { Link, useNavigate } from "react-router";
+import ActionButton from "./ActionButton";
 
 // import "./Login.css";
 
@@ -31,7 +32,7 @@ export default function Login({ closePopup }: LoginInterface) {
         submitLoginFunction(logindData).unwrap()
         .then(() => {
             closePopup()
-            navigate("/profile");
+            // navigate("/profile");
         })
         .catch((error) => {
             const errMsg = isFetchBaseQueryError(error) &&  error.data;
@@ -43,7 +44,7 @@ export default function Login({ closePopup }: LoginInterface) {
             <Form onSubmit={(evt) => {
                 evt.preventDefault();
                 submitLogin();
-            }} isSuccess={isSuccess} isLoading={isLoading} className="" text="Войти">
+            }} className="">
                 <ErrorSpan text={error.message} />
                 <Input type="email" onChange={(evt) => {
                     setLoginData((prevValue) => {
@@ -55,6 +56,7 @@ export default function Login({ closePopup }: LoginInterface) {
                         return {...prevValue, password: evt.target.value}
                     })
                 }} name="password" placeholder="Пароль"></Input>
+                <ActionButton>Войти</ActionButton>
                 {/* <Link to="./register">Нет учетной записи? Зарегистрируйтесь!</Link> */}
             </Form>
        

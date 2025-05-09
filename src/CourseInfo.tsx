@@ -8,9 +8,18 @@ import Highlight from "./Highlight";
 import ActionButton from "./ActionButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
+import PopupRight from "./PopupRight";
+import Welcome from "./Welcome";
+import { useAppSelector } from "./hooks";
 
 export default function CourseInfo() {
     const { courseId } = useParams();
+
+    //redux
+    const userLoggedIn = useAppSelector((state) => {
+      return state.user._id;
+    })
 
     const { data = {} as CourseInterface } = useShowCoursesQuery(undefined, {
         selectFromResult: ({data}) => ({
@@ -21,6 +30,14 @@ export default function CourseInfo() {
     });
 
     const startDate = new Date(data.startDate).toLocaleDateString();
+
+    //state
+    const [loginOpened, setLoginOpened] = useState<boolean>(false);
+
+    //functions
+    function closePopup() {
+      setLoginOpened(false);
+    }
 
     return (
         <>
@@ -35,7 +52,9 @@ export default function CourseInfo() {
               <p>Научитесь экстремальному вокалу без вреда для здоровья и отрыву от привычного образа жизни. Весь курс- это практика</p>
               <p>{data.description}</p>
               <span>Ближайший старт курса: {startDate}</span>
-              <ActionButton>
+              <ActionButton onClick={() => {
+                // !userLoggedIn ? setLoginOpened(true) : setLoginOpened(false);
+              }}>
                 <div className="course-info__action-btn-wrapper">
                   <span>      
                     Попробовать бесплатно
@@ -46,6 +65,9 @@ export default function CourseInfo() {
             </div>
             <img className="course-info__cover" src={tempCover}></img>
           </section>
+          {loginOpened && <PopupRight closePopup={closePopup}>
+              <Welcome closePopup={closePopup}></Welcome>
+            </PopupRight>}
         </>
     )
 }

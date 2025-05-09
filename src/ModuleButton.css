@@ -1,8 +1,0 @@
-.module-button:disabled {
-    pointer-events: none;
-}
-
-.module-button_active {
-    color: white;
-}
-

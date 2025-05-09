@@ -8,55 +8,59 @@ import { addTarif } from "./store/features/newCourseFeature";
 
 import "./NewTarif.css"
 import Label from "./Label";
+import { TarifInterface } from "./intefaces/intefaces";
+import ActionButton from "./ActionButton";
+import TableElement from "./TableElement";
 
 export default function NewTarif() {
     //dispatch
     const dispatch = useAppDispatch();
 
     //state
-    const [newTarif, setNewTarif] = useState<{
-        title: string,
-        end: string,
-    }>({
+    const [newTarif, setNewTarif] = useState<TarifInterface>({
         title: "",
-        end: "",
+        expire: "",
+        _id: "",
     });
 
     //functions
     function addNewTarif() {
         const tarifId = uuid();
-
-        dispatch(addTarif({tarif: newTarif, _id: tarifId}));
-        setNewTarif({title: "", end: ""})
+        const tarifObj = {...newTarif, _id: tarifId} as TarifInterface; 
+        dispatch(addTarif(tarifObj));
+        setNewTarif({title: "", expire: "", _id: ""})
     };
 
     return (
-        <div className="tarif-new">
-            <div className="tarif-new__wrapper">
-                <Label>
-                    Название тарифа
-                    <Input value={newTarif.title} onChange={(evt) => {
-                        setNewTarif((prevValue) => {
-                            return {...prevValue, title: evt.target.value};
-                        })
-                    }} placeholder="Тариф"></Input>
-                </Label>
-                <Label>
-                    Конец доступа тарифа
-                    <Input value={newTarif.end} onChange={(evt) => {
-                        setNewTarif((prevValue) => {
-                            return {...prevValue, end: evt.target.value};
-                        })
-                    }} id="tarifEnd" type="date">
-                    </Input>
-                </Label>
-            </div>
-
-
-            <button className="tarif-new__button-submit" onClick={(addNewTarif)} type="button">
-                <FontAwesomeIcon icon={faPlusCircle} />
-                <span>Добавить новый тариф</span>
-            </button>
+      <>
+        <div className="tarif-new__wrapper">
+          <Label>
+            Название тарифа
+            <Input
+              value={newTarif.title}
+              onChange={(evt) => {
+                setNewTarif((prevValue) => {
+                  return { ...prevValue, title: evt.target.value };
+                });
+              }}
+              placeholder="Тариф"
+            ></Input>
+          </Label>
+          <Label>
+            Конец доступа тарифа
+            <Input
+              value={newTarif.expire}
+              onChange={(evt) => {
+                setNewTarif((prevValue) => {
+                  return { ...prevValue, expire: evt.target.value };
+                });
+              }}
+              id="tarifEnd"
+              type="date"
+            ></Input>
+          </Label>
+          <ActionButton onClick={addNewTarif}>Добавить тариф</ActionButton>
         </div>
-    )
+      </>
+    );
 }

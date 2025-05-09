@@ -1,7 +1,8 @@
 .edit-wrapper {
     display: flex;
     /* align-items: center; */
-    align-items: stretch;
+    /* align-items: stretch; */
+    align-items: flex-start;
     justify-content: space-between;
     gap: 10px;
 }

@@ -1,0 +1,136 @@
+.day-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #888;
+}
+
+.day-button_active{
+    background: #646cff;
+    border: 1px solid transparent;
+}
+
+.profile-calendar {
+    width: 100%;
+    /* max-width: 420px; */
+    /* min-width: 360px; */
+    /* display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px; */
+}
+
+.events-list-wrapper__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.events-list-wrapper {
+    display: grid;
+    gap: 30px;
+}
+
+.events-list {
+    display: grid;
+    width: fit-content;
+    gap: 5px;
+    /* gap: 15px; */
+    box-sizing: border-box;
+    /* background: #151618; */
+    /* padding: 16px; */
+    /* border-radius: 10px; */
+    width: 100%;
+}
+
+.event-list__item {
+    display: flex;
+    align-items: center;
+    /* background: #151618; */
+    /* border-radius: 10px;
+    box-sizing: border-box;
+    padding: 10px; */
+    justify-content: space-between;
+    gap: 5px;
+    width: 100%;
+    /* gap: 10px; */
+}
+
+.event-list__item-day {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    border-right: 1px solid #888;
+    box-sizing: border-box;
+    padding: 0 5px;
+}
+
+.event-list__item-wrapper {
+    display: flex;
+    align-items: flex-start;
+    /* align-items: center; */
+    /* align-items: flex-start; */
+    width: 100%;
+    gap: 5px;
+    /* gap: 10px; */
+}
+
+.event-list__item-time {
+    font-size: 12px;
+    /* color: #888; */
+}
+
+/* .event-list__item-day {
+    font-size: 20px;
+    box-sizing: border-box;
+    padding: 5px;
+        min-width: 36px;
+} */
+
+.event-list__item-info {
+    width: 100%;
+    box-sizing: border-box;
+    /* padding: 5px; */
+    display: flex;
+    align-items: center;
+    /* gap: 10px; */
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    /* display: grid; */
+    /* text-align: left; */
+
+}
+
+.event-list__item-description {
+    font-size: 12px;
+    color: #888;
+}
+
+.event-list__item-info {
+    font-size: 14px;
+}
+
+.event-list__item-time {
+        white-space: nowrap;
+    /* min-width: 85px; */
+}
+
+@media screen and (max-width: 1279px) {
+    .profile-calendar {
+        /* order: 1; */
+    }
+    .events-list-wrapper     {
+        max-width: 420px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .profile-calendar {
+        max-width: 100%;
+    }
+}

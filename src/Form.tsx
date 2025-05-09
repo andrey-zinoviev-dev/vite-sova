@@ -1,15 +1,15 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { IconProp } from "@fortawesome/fontawesome-svg-core";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import './Form.css'
 
 type FormType = React.ComponentPropsWithoutRef<"form"> & {
     // submitFunction: () => void,
-    text?: string,
+    // text?: string,
     children: React.ReactNode | React.ReactNode[],
     className: string,
-    isLoading: boolean,
-    isSuccess: boolean,
-    icon? : IconProp,
+    // isLoading: boolean,
+    // isSuccess: boolean,
+    // icon? : IconProp,
 };
 
 // interface FormInterface {
@@ -22,7 +22,7 @@ type FormType = React.ComponentPropsWithoutRef<"form"> & {
 //     icon? : IconProp,
 // }
 
-export default function Form({children, isLoading, isSuccess, icon, text, ...props }: FormType) {
+export default function Form({children, ...props }: FormType) {
 
     const { className, ...rest } = props;
 
@@ -31,7 +31,7 @@ export default function Form({children, isLoading, isSuccess, icon, text, ...pro
     return (
         <form className={classStr} {...rest}>
             {children}
-            <button style={{pointerEvents: isLoading ? "none" : "all"}} disabled={isLoading}>{isSuccess ? "Успешно" : icon ? <FontAwesomeIcon icon={icon} /> : text}</button>
+            {/* <button style={{pointerEvents: isLoading ? "none" : "all"}} disabled={isLoading}>{isSuccess ? "Успешно" : icon ? <FontAwesomeIcon icon={icon} /> : text}</button> */}
         </form>
     )
 }

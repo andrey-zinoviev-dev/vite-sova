@@ -1,10 +1,10 @@
 import Form from "./Form";
 import ErrorSpan from "./ErrorSpan";
 import Input from "./Input";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useState } from "react";
 import { useRegisterUserMutation } from "./store/features/apiSlice";
-import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
+// import { isFetchBaseQueryError } from "./helpers/rtkErrorHelper";
 import { useAppSelector } from "./hooks";
 
 interface RegisterInterface {
@@ -51,7 +51,7 @@ export default function Register({ closePopup }: RegisterInterface) {
 
     return (
         <>
-            <Form isLoading={isLoading} isSuccess={isSuccess} className="" text="Зарегистрироваться">
+            <Form className="">
                 <ErrorSpan text={error.message} />
                 <Input type="email" name="email" placeholder="Почта"></Input> 
                 <Input type="password" name="password" placeholder="Пароль"></Input>

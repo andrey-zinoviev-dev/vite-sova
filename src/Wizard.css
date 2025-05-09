@@ -1,15 +1,29 @@
 .wizard {
+    /* max-width: 1024px; */
     max-width: 720px;
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
 }
+
+.wizard h2 {
+    text-align: left;
+}
+
 .wizard-progress {
     display: flex;
+    /* justify-content: flex-start; */
     justify-content: space-between;
     align-items: center;
     /* width: fit-content; */
+    
+    /* width: fit-content; */
     width: 100%;
-    max-width: 210px;
-        margin: 0 auto;
+    gap: 40px;
+    /* margin: 0; */
+    /* max-width: 210px; */
+    margin: 25px auto;
         /* gap: 10px;
         gap: 30px; */
         color: #888;
@@ -18,7 +32,13 @@
 .wizard-progress li {
     display: flex;
     align-items: center;
-    width: 100%;
+    /* width: 100%; */
+    width: fit-content;
+        gap: 10px
+}
+
+.wizard-progress li.li_active {
+    color: white;
 }
 
 .wizard-progress__span {
@@ -31,35 +51,65 @@
         border: 2px solid #888;
 }
 
-.wizard-progress__span_active {
+.wizard-progress li.li_active .wizard-progress__span {
     border-color: #646cff;
+        /* background-color: #646cff; */
+        color: white;
+}
+
+.wizard-progress li.li_completed {
     color: white;
 }
 
-.wizard-progress__span_completed {
+.wizard-progress li.li_completed .wizard-progress__span {
+    background-color: #646cff;
+        color: white;
+        border-color: #646cff;
+}
+
+/* .wizard-progress__span_active {
+    border-color: #646cff;
+    background-color: #646cff;
+    color: white;
+} */
+
+/* .wizard-progress__span_completed {
     background-color: #646cff;
     color: white;
     border-color: #646cff;
-}
+} */
 
-.wizard-progress__dash {
+/* .wizard-progress__dash {
     width: 100%;
     height: 2px;
     background-color: #888;
 }
 
-.wizard-progress__dash_active {
-    /* background-color: #646cff; */
-}
-
 .wizard-progress__dash_completed {
     background-color: #646cff;
-}
+} */
 
-.wizard-progress li:last-of-type {
-    width: fit-content;
+.wizard-progress li:last-of-type svg{
+    /* width: fit-content; */
+    display: none;
 }
 
 .wizard-progress li:last-of-type .wizard-progress__dash {
     width: 0;
 }
+
+.wizard__navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50px 0 0 0;
+}
+
+.wizard__btn_hidden {
+    display: none;
+}
+
+.wizard__navigation button:last-of-type {
+    margin: 0 0 0 auto;
+}
+
