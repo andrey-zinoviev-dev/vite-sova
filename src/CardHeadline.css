@@ -5,4 +5,5 @@
     text-overflow: ellipsis;
     overflow: hidden;
     min-height: 56px;
+    max-width: 180px;
 }

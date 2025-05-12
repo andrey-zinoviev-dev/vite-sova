@@ -17,23 +17,23 @@ export default function NewTarif() {
     const dispatch = useAppDispatch();
 
     //state
-    const [newTarif, setNewTarif] = useState<TarifInterface>({
-        title: "",
-        expire: "",
-        _id: "",
-    });
+    // const [newTarif, setNewTarif] = useState<TarifInterface>({
+    //     title: "",
+    //     expire: "",
+    //     _id: "",
+    // });
 
     //functions
     function addNewTarif() {
-        const tarifId = uuid();
-        const tarifObj = {...newTarif, _id: tarifId} as TarifInterface; 
-        dispatch(addTarif(tarifObj));
-        setNewTarif({title: "", expire: "", _id: ""})
+        // const tarifId = uuid();
+        // const tarifObj = {...newTarif, _id: tarifId} as TarifInterface; 
+        // dispatch(addTarif(tarifObj));
+        // setNewTarif({title: "", expire: "", _id: ""})
     };
 
     return (
       <>
-        <div className="tarif-new__wrapper">
+        {/* <div className="tarif-new__wrapper">
           <Label>
             Название тарифа
             <Input
@@ -60,7 +60,7 @@ export default function NewTarif() {
             ></Input>
           </Label>
           <ActionButton onClick={addNewTarif}>Добавить тариф</ActionButton>
-        </div>
+        </div> */}
       </>
     );
 }

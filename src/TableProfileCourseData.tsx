@@ -50,7 +50,7 @@ export default function TableProfleCourseData({
 
       <span>{item.title}</span>
 
-      {/* <p className="button-table__desc">{item.description}</p> */}
+      <p className="button-table__desc">{item.description}</p>
 
       <div className="button-table__progress-wrapper">
         <span>Пройдено</span>

@@ -8,7 +8,7 @@ import NewLesson from "./NewLesson";
 import RowList from "./RowList";
 import TableComp from "./TableComp";
 import TableElement from "./TableElement";
-import PopupRight from "./PopupRight";
+// import PopupRight fzrom "./PopupRight";
 import RowButton from "./RowButton";
 import Popup from "./Popup";
 // import EditWrapper from "./EditWrapper";

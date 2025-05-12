@@ -1,4 +1,9 @@
 .profile-statistics {
+    background-color: #151618;
+    border-radius: 12px;
+    box-sizing: border-box;
+    padding: 10px;
+    min-height: 210px;
     /* min-width: 360px;
     border: 1px solid white; */
 }

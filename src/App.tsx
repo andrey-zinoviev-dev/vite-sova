@@ -28,7 +28,7 @@ import ModuleEdit from "./ModuleEdit";
 import EditCourseGeneral from "./EditCourseGeneral";
 import EditCourseModules from "./EditCourseModules";
 import EditCourseStudentsTarifs from "./EditCourseTarifs";
-
+import EditCourseAccess from "./EditCourseAccess";
 function App() {
   const router = createBrowserRouter([
     {
@@ -63,7 +63,10 @@ function App() {
                   path: "students",
                   element: <EditCourseStudentsTarifs></EditCourseStudentsTarifs>
                 },
-                
+                {
+                  path: "access",
+                  element: <EditCourseAccess></EditCourseAccess>
+                }
               ]
             },
             {
@@ -83,10 +86,10 @@ function App() {
                 return [{ path: "/profile", label: "Ваши курсы" }];
               },
             },
-            {
-              path: "courses/:courseId/modules/:moduleId/edit",
-              element: <ModuleEdit />
-            },
+            // {
+            //   path: "courses/:courseId/modules/:moduleId/edit",
+            //   element: <ModuleEdit />
+            // },
             // {
             //   path: "courses/:courseId/modules/:moduleId/lessons/:lessonId",
             //   element: <Lesson></Lesson>,

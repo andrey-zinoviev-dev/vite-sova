@@ -34,8 +34,9 @@ export interface LessonInterface {
 
 export interface TarifInterface {
   title: string,
-  expire: string,
-  _id: string
+  endDate: string,
+  _id: string,
+  course: string,
 }
 
 export interface EventInterface {
@@ -47,4 +48,12 @@ export interface EventInterface {
   length: number,
 }
 
-export type NewCourseType = Omit<CourseInterface, "_id">
+export type NewCourseType = Omit<CourseInterface, "_id" | "tarifs"> & {
+  tarifs: NewTarifType[]
+}
+
+export type NewModuleType = Omit<ModuleExtInterface, "_id" | "course"> & { course: string }
+
+// export type 
+
+export type NewTarifType = Omit<TarifInterface, "_id">

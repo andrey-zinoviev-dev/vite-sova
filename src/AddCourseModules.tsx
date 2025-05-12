@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
 // import PopupRight from "./PopupRight";
 // import Label from "./Label";
@@ -18,8 +18,8 @@ import EditWrapper from "./EditWrapper";
 import ActionButton from "./ActionButton";
 // import PopupRight from "./PopupRight";
 // import NewModule from "./NewModule";
-import NewLesson from "./NewLesson";
-import NewModule from "./NewModule";
+// import NewLesson from "./NewLesson";
+// import NewModule from "./NewModule";
 // import RowList from "./RowList";
 // import RowButton from "./RowButton";
 
@@ -33,7 +33,7 @@ export default function AddCourseModules({ headline }: ModulesInterface) {
   });
 
   //state
-  const [moduleId, setModuleId] = useState<string | null>(null);
+  // const [moduleId, setModuleId] = useState<string | null>(null);
 
   const dispatch = useAppDispatch();
 
@@ -48,7 +48,7 @@ export default function AddCourseModules({ headline }: ModulesInterface) {
       {/* {newModules.length > 0 &&  */}
       <h2>{headline}</h2>
 
-      <NewModule></NewModule>
+      {/* <NewModule></NewModule> */}
 
       <TableComp
         items={newModules}

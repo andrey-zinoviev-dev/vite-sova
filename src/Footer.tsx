@@ -1,5 +1,5 @@
-import GenericList from "./GenericList";
-import logo from "./assets/image 2.svg";
+// import GenericList from "./GenericList";
+// import logo from "./assets/image 2.svg";
 import "./Footer.css"
 import { Container } from "./Container";
 
@@ -8,10 +8,6 @@ export default function Footer() {
       <footer className="footer">
         <Container>
           <div className="footer__wrapper">
-            {/* <div className="footer__wrapper-logo-wrapper">
-                        <img src={logo}></img>
-                        
-                    </div> */}
             <span>2023-2025 SOVA</span>
             <span>Самый легкий путь в экстрим вокал</span>
             {/* <GenericList items={["vk", "inst", "tg", "zoom"]} className="footer__links" renderItem={(item) => {

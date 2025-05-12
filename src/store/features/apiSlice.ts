@@ -5,12 +5,15 @@ import {
   EventInterface,
   LessonInterface,
   ModuleExtInterface,
+  NewModuleType,
+  NewTarifType,
+  TarifInterface,
 } from "../../intefaces/intefaces";
 // import { RootState } from "../store";
 
 export const sliceApi = createApi({
   reducerPath: "api",
-  tagTypes: ["User"],
+  tagTypes: ["User", "Tarifs", "Modules"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
     // // prepareHeaders: (headers, { getState }) => {
@@ -70,6 +73,13 @@ export const sliceApi = createApi({
         credentials: "include",
       }),
     }),
+    showCurrentCourseModules: builder.query<ModuleExtInterface[], string>({
+      query: (courseId) => ({
+        url: `/courses/${courseId}/modules`,
+        credentials: "include",
+      }),
+      providesTags: ["Modules"],
+    }),
     showCurrentModule: builder.query<
       ModuleExtInterface,
       { moduleId: string | undefined }
@@ -78,6 +88,32 @@ export const sliceApi = createApi({
         url: `/modules/${moduleId}`,
         credentials: "include",
       }),
+    }),
+    addModule: builder.mutation<ModuleExtInterface, NewModuleType>({
+      query: (module) => ({
+        url: `/modules`,
+        method: "POST",
+        body: module,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Modules"],
+    }),
+    editModule: builder.mutation<ModuleExtInterface, ModuleExtInterface>({
+      query: (module) => ({
+        url: `/modules/${module._id}`,
+        method: "PUT",
+        body: module,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Modules"],
+    }),
+    deleteModule: builder.mutation<{ docId: string }, string>({
+      query: (moduleId) => ({
+        url: `/modules/${moduleId}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["Modules"],
     }),
     showCurrentLesson: builder.query<
       LessonInterface,
@@ -104,8 +140,41 @@ export const sliceApi = createApi({
         credentials: "include",
       }),
     }),
+    showTarifs: builder.query<TarifInterface[], string>({
+      query: (courseId) => ({
+        url: `/tarifs/${courseId}`,
+        credentials: "include",
+      }),
+      providesTags: ["Tarifs"],
+    }),
+    addTarif: builder.mutation<TarifInterface, NewTarifType>({
+      query: (tarif) => ({
+        url: "/tarifs",
+        method: "POST",
+        body: tarif,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Tarifs"],
+    }),
+    updateTarif: builder.mutation<TarifInterface, TarifInterface>({
+      query: (tarif) => ({
+        url: `/tarifs/${tarif._id}`,
+        method: "PUT",
+        body: tarif,
+      }),
+      invalidatesTags: ["Tarifs"],
+    }),
+    deleteTarif: builder.mutation<TarifInterface, string>({
+      query: (tarifId) => ({
+        url: `/tarifs/${tarifId}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["Tarifs"],
+    }),
   }),
 });
+
 export const {
   useLoginUserMutation,
   useRegisterUserMutation,
@@ -116,4 +185,12 @@ export const {
   useShowCurrentLessonQuery,
   useCompleteLessonMutation,
   useShowEventsQuery,
+  useAddTarifMutation,
+  useShowTarifsQuery,
+  useDeleteTarifMutation,
+  useUpdateTarifMutation,
+  useAddModuleMutation,
+  useEditModuleMutation,
+  useDeleteModuleMutation,
+  useShowCurrentCourseModulesQuery,
 } = sliceApi;

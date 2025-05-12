@@ -4,8 +4,12 @@ import "./ActionButton.css"
 type ActionButtonInterface = ComponentPropsWithoutRef<"button">;
 
 export default function ActionButton({...props}: ActionButtonInterface) {
+  const { className, ...restProps } = props;
+
+  const classStr = "button-action " + (className || "");
+
   return (
-    <button className={`button-action ${props.className}`} {...props}>
+    <button className={classStr} {...restProps}>
       {props.children}
     </button>
   );

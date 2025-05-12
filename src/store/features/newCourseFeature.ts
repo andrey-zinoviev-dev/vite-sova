@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LessonInterface, ModuleExtInterface, TarifInterface } from "../../intefaces/intefaces";
+import { LessonInterface, ModuleExtInterface, NewTarifType} from "../../intefaces/intefaces";
 
 import { NewCourseType } from "../../intefaces/intefaces";
+// import NewTarif from "../../NewTarif";
 
 type NewCourseTextType = Pick<NewCourseType, "title" | "description" | "startDate"> 
 
@@ -16,6 +17,7 @@ const initialState: NewCourseType = {
     students: [],
     tarifs: [],
     startDate: "",
+    events: [],
 };
 
 const newCourse = createSlice({
@@ -32,12 +34,12 @@ const newCourse = createSlice({
 
             return state;
         },
-        addTarif: (state, action: PayloadAction<TarifInterface>) => {
+        addTarif: (state, action: PayloadAction<NewTarifType>) => {
             state.tarifs = [...state.tarifs, action.payload]
         },
         removeTarif: (state, action: PayloadAction<string>) => {
             state.tarifs = state.tarifs.filter((tarif) => {
-                return tarif._id !== action.payload;
+                return tarif.title !== action.payload;
             });
         },
         addModule: (state, action: PayloadAction<ModuleExtInterface>) => {

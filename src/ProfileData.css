@@ -33,6 +33,7 @@
     /* grid-template-columns: repeat(2, 1fr); */
     grid-template-columns: 420px 1fr;
     gap: 30px;
+    align-items: flex-start;
 }
 
 .profile-data__addCourse-button {

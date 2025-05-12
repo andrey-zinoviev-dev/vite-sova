@@ -12,12 +12,14 @@ import TableElement from "./TableElement";
 // import Calendar from "./Calendar";
 import ProfileCalendar from "./ProfileCalendar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import ProfileStatistics from "./ProfileStatistics";
 import ActionButton from "./ActionButton";
 import EditWrapper from "./EditWrapper";
-import Highlight from "./Highlight";  
+import Highlight from "./Highlight";
 import CardHeadline from "./CardHeadline";
+import EditButton from "./EditButton";
+
 export default function ProfileData() {
   //navigate
   const navigate = useNavigate();
@@ -30,8 +32,6 @@ export default function ProfileData() {
     return state.user.courses;
   });
 
-  // console.log(userCourses);
-
   const profileCourses = userCourses.map((course) => {
     return course.course;
   }) as StudentCourseInterface[];
@@ -39,8 +39,6 @@ export default function ProfileData() {
   const tarifs = userCourses.map((course) => {
     return course.tarif;
   }) as string[];
-
-  // const userTarifs
 
   return (
     <section className="profile-data">
@@ -60,29 +58,21 @@ export default function ProfileData() {
           renderItem={(item, index) => {
             const tarif = tarifs[index];
             return (
-              <TableElement
-                // onClick={() => {
-                //   navigate(`/courses/${item._id}/modules`);
-                // }}
-              >
-                {/* <TableProfleCourseData item={item} tarif={tarif} /> */}
+              <TableElement>
                 <EditWrapper>
                   <Highlight>
                     <span>Тариф: {tarif}</span>
                   </Highlight>
-                  <ActionButton
-                    className="button-action_svg"
+                  <EditButton
                     onClick={() => {
                       navigate(`/courses/${item._id}/edit/general`);
                     }}
-                  >
-                    <FontAwesomeIcon icon={faPen} />
-                  </ActionButton>
+                  />
                 </EditWrapper>
 
                 <CardHeadline title={item.title}></CardHeadline>
 
-                {/* <p className="button-table__desc">{item.description}</p> */}
+                <p className="button-table__desc">{item.description}</p>
 
                 {/* <div className="button-table__progress-wrapper">
                   <span>Пройдено</span>
@@ -116,13 +106,6 @@ export default function ProfileData() {
           >
             Добавить новый курс <FontAwesomeIcon icon={faPlus} />
           </ActionButton>
-          {/* <button
-            onClick={() => {
-              navigate(`./addCourse`);
-            }}
-          >
-            Добавить новый курс <FontAwesomeIcon icon={faPlus} />
-          </button> */}
         </TableComp>
       </div>
     </section>

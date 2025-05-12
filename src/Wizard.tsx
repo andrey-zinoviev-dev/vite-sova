@@ -5,6 +5,7 @@ import { useAppSelector } from "./hooks";
 import { NewCourseType } from "./intefaces/intefaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import BackButton from "./BackButton";
 
 interface WizardInterface {
   children: React.ReactNode[];
@@ -25,6 +26,8 @@ export default function Wizard({ children, onSubmit }: WizardInterface) {
 
   return (
     <div className="wizard">
+      <BackButton href='/profile' text="Назад в профиль" />
+      <h2>Новый курс</h2>
       {/* <h2>{childToRender}</h2> */}
       <div>
         <ul className="wizard-progress">

@@ -8,17 +8,17 @@ import { CourseInterface } from "./intefaces/intefaces";
 
 import TableComp from "./TableComp";
 // import BackButton from "./BackButton";
-import ModuleData from "./ModuleData";
+// import ModuleData from "./ModuleData";
 import TableElement from "./TableElement";
 import ActionButton from "./ActionButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faGear, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import EditWrapper from "./EditWrapper";
 import HeadlineWrapper from "./HeadlineWrapper";
 import CardHeadline from "./CardHeadline";
 // import BreadCrumbs from "./Breadcrumbs";
 // import ActionButton from "./ActionButton";
-
+import EditButton from "./EditButton";
 export default function Course() {
   const { courseId } = useParams();
 
@@ -73,9 +73,12 @@ export default function Course() {
                 <EditWrapper>
                   {/* <h3>{item.title}</h3> */}
                   <CardHeadline title={item.title}></CardHeadline>
-                  <ActionButton className="button-action_svg">
+                  <EditButton onClick={() => {
+                    navigate(`/courses/${data._id}/edit/modules`);
+                  }} />
+                  {/* <ActionButton className="button-action_svg">
                     <FontAwesomeIcon icon={faPen} />
-                  </ActionButton>
+                  </ActionButton> */}
                 </EditWrapper>
                 <p>{item.description}</p>
 

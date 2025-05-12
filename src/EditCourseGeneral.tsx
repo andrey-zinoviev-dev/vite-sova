@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Switch from "./Switch";
 import EditElementWrapper from "./EditElementWrapper";
-import HeadlineWrapper from "./HeadlineWrapper";
+// import HeadlineWrapper from "./HeadlineWrapper";
 
 export default function EditCourseGeneral() {
   const { courseId } = useParams();
