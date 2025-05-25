@@ -24,11 +24,14 @@ import ProfileData from "./ProfileData";
 import CourseInfo from "./CourseInfo";
 // import EditComp from "./EditComp";
 import EditCourse from "./EditCourse";
-import ModuleEdit from "./ModuleEdit";
+// import ModuleEdit from "./ModuleEdit";
 import EditCourseGeneral from "./EditCourseGeneral";
 import EditCourseModules from "./EditCourseModules";
 import EditCourseStudentsTarifs from "./EditCourseTarifs";
 import EditCourseAccess from "./EditCourseAccess";
+import EditCourseStreams from "./EditCourseStreams";
+import EditCourseLessons from "./EditCourseLessons";
+
 function App() {
   const router = createBrowserRouter([
     {
@@ -60,12 +63,20 @@ function App() {
                   element: <EditCourseModules></EditCourseModules>
                 },
                 {
+                  path: "lessons",
+                  element: <EditCourseLessons></EditCourseLessons>
+                },
+                {
                   path: "students",
                   element: <EditCourseStudentsTarifs></EditCourseStudentsTarifs>
                 },
                 {
                   path: "access",
                   element: <EditCourseAccess></EditCourseAccess>
+                },
+                {
+                  path: "streams",
+                  element: <EditCourseStreams></EditCourseStreams>
                 }
               ]
             },
@@ -182,47 +193,6 @@ function App() {
   return (
     <>
       <RouterProvider router={router}></RouterProvider>
-      {/* <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home></Home>}>
-            <Route path="/" element={<Courses></Courses>}>
-              <Route path="/" element={<CoursesList></CoursesList>} />
-
-              <Route
-                path="/courses/:courseId"
-                element={<CourseInfo></CourseInfo>}
-              ></Route>
-
-              <Route element={<ProtectedRoute></ProtectedRoute>}>
-                <Route
-                  path="courses/:courseId/modules"
-                  element={<Course></Course>}
-                />
-
-                <Route
-                  path="courses/:courseId/modules/:moduleId"
-                  element={<Module></Module>}
-                />
-              </Route>
-            </Route>
-            <Route element={<ProtectedRoute></ProtectedRoute>}>
-              <Route path="profile" element={<Profile></Profile>}>
-                <Route index element={<ProfileData></ProfileData>} />
-                <Route path="addCourse" element={<AddCourse></AddCourse>} />
-              </Route>
-            </Route>
-          </Route>
-          <Route element={<ProtectedRoute></ProtectedRoute>}>
-            <Route
-              path="courses/:courseId/modules/:moduleId/lessons/:lessonId"
-              element={<Lesson></Lesson>}
-            >
-              <Route index element={<LessonContent></LessonContent>} />
-              <Route path="chat" element={<Chat />} />
-            </Route>
-          </Route>
-        </Routes>
-      </BrowserRouter> */}
     </>
   );
 }

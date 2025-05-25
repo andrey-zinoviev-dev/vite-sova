@@ -9,16 +9,21 @@ import { CourseInterface } from "./intefaces/intefaces";
 import TableComp from "./TableComp";
 // import BackButton from "./BackButton";
 // import ModuleData from "./ModuleData";
-import TableElement from "./TableElement";
+// import TableElement from "./TableElement";
 import ActionButton from "./ActionButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import EditWrapper from "./EditWrapper";
-import HeadlineWrapper from "./HeadlineWrapper";
-import CardHeadline from "./CardHeadline";
+import { faArrowLeft, faLock } from "@fortawesome/free-solid-svg-icons";
+// import EditWrapper from "./EditWrapper";
+// import HeadlineWrapper from "./HeadlineWrapper";
+// import CardHeadline from "./CardHeadline";
 // import BreadCrumbs from "./Breadcrumbs";
 // import ActionButton from "./ActionButton";
-import EditButton from "./EditButton";
+// import EditButton from "./EditButton";
+// import ModuleCard from "./ModuleCard";
+import CommonCard from "./CommonCard";
+import { useAppSelector } from "./hooks";
+// import EditElementWrapper from "./EditElementWrapper";
+import SectionHeadline from "./SectionHeadline";
 export default function Course() {
   const { courseId } = useParams();
 
@@ -32,6 +37,10 @@ export default function Course() {
   // });
 
   // console.log(data);
+
+  const isAdmin = useAppSelector((state) => {
+    return state.user.roles.includes("admin");
+  });
 
   const { data = {} as CourseInterface } =
     useShowCurrentCourseQuery({courseId: courseId});
@@ -47,53 +56,45 @@ export default function Course() {
 
   return (
     <section>
-      {/* <BackButton text="Назад"></BackButton> */}
-      {/* <BreadCrumbs items={crumbs}></BreadCrumbs> */}
-      {/* <h3>{data.title}</h3> */}
-      {/* <ActionButton>
-        <span>Мероприятия</span>
-      </ActionButton> */}
-      {/* <h2>Модули курса</h2> */}
       {data.modules && (
         <>
-          <HeadlineWrapper>
-            <ActionButton onClick={() => {
-              navigate(`/profile`);
-            }}>
+          <SectionHeadline>
+            <ActionButton
+              onClick={() => {
+                navigate(`/profile`);
+              }}
+            >
               <FontAwesomeIcon icon={faArrowLeft} />
               Назад
             </ActionButton>
             <h2>{data.title}</h2>
-          </HeadlineWrapper>
+          </SectionHeadline>
           <TableComp
             items={data.modules}
-          renderItem={(item) => {
-            return (
-              <TableElement>
-                <EditWrapper>
-                  {/* <h3>{item.title}</h3> */}
-                  <CardHeadline title={item.title}></CardHeadline>
-                  <EditButton onClick={() => {
-                    navigate(`/courses/${data._id}/edit/modules`);
-                  }} />
-                  {/* <ActionButton className="button-action_svg">
-                    <FontAwesomeIcon icon={faPen} />
-                  </ActionButton> */}
-                </EditWrapper>
-                <p>{item.description}</p>
-
-                <span>Пройдено 0 из {item.lessons.length} уроков</span>
-                <ActionButton
-                  disabled={!item.available}
+            renderItem={(item, index) => {
+              return (
+                <CommonCard
+                  isAdmin={isAdmin}
+                  index={`${index + 1}`}
+                  title={item.title}
                   onClick={() => {
-                    navigate(`./${item._id}`);
+                    console.log('edit item', item);
+                    // navigate(`/courses/${data._id}/modules/${item._id}`);
                   }}
                 >
-                  Открыть
-                </ActionButton>
-                {/* <ModuleData courseTitle={data.title} item={item}></ModuleData> */}
-              </TableElement>
-            );
+                  <p>{item.description}</p>
+                  <span>Пройдено 0 из {item.lessons.length} уроков</span>
+                  <ActionButton
+                    disabled={!item.available}
+                    onClick={() => {
+                      navigate(`/courses/${data._id}/modules/${item._id}`);
+                    }}
+                  >
+                    <span>{item.available ? "Открыть" : `Недоступно `}</span>
+                    {!item.available ? <FontAwesomeIcon icon={faLock} /> : null}
+                  </ActionButton>
+                </CommonCard>
+              );
             }}
           ></TableComp>
         </>

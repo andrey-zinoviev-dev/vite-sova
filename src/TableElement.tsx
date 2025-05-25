@@ -1,7 +1,3 @@
-
-// interface TableElementInterface {
-//     // buttonText: string,
-// };
 import { ComponentPropsWithoutRef } from "react";
 import "./TableElement.css";
 
@@ -14,7 +10,6 @@ export default function TableElement({ children, ...props }: TableElementProps) 
     return (
         <article className={`table-article ${className}`} {...rest}>
             {children}
-            {/* <button>{buttonText}</button> */}
         </article>
     )
 }

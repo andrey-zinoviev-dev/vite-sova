@@ -5,6 +5,10 @@
     width: fit-content;
 }
 
+.switch-container_invert .switch {
+    background-color: #2C2A28;
+}
+
 .switch {
     display: flex;
     min-width: 48px;
@@ -25,7 +29,7 @@
     /* background-color: #FFFFFF; */
 }
 
-.switch_active {
+.switch_active, .switch-container_invert .switch_active {
     /* background-color: #fff; */
     background-color: #646cff;
     justify-content: flex-end;

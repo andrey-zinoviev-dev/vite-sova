@@ -27,8 +27,10 @@
     pointer-events: none;
     /* background-color: #f3f3f3;
     color: #646cff; */
-    background-color: #888;
-    color: #f3f3f3;
+    /* background-color: #888;
+    color: #f3f3f3; */
+    background-color: #2C2A28;
+    color: #888;
     cursor: not-allowed;
 }
 

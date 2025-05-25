@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router";
 import ActionButton from "./ActionButton";
 import { LessonInterface } from "./intefaces/intefaces";
 import LinkComp from "./LinkComp";
+import TipTap from "./Tiptap";
 
 export default function LessonContent() {
   const navigate = useNavigate();
@@ -19,18 +20,19 @@ export default function LessonContent() {
     ? data.module.lessons.findIndex((lesson) => lesson._id === lessonId)
     : 0;
 
-  return (
+  return data._id && (
     <>
       <h2 className="lesson-title">{data.title}</h2>
       <div className="lesson__content">
-        <p>
+        <TipTap content={data.content} isEditable={false} />
+        {/* <p>
           Обратите внимание на произношение сложных, парных согласных и
           продолжайте работать над песнями, исходя из этого. Песни на ваш выбор
           тоже можно, если нет проблем по работе с диапазоном.
         </p>
         <img src="https://cdn.mohen-tohen.ru/IMG_20241127_232821_046.jpg"></img>
         <p>Вот тут еще текст</p>
-        <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img>
+        <img src="https://cdn.mohen-tohen.ru/56fa6f6622512890e8bc08085f65ad92.jpg"></img> */}
       </div>
       <div className="lesson__content-buttons">
         {data._id && (

@@ -7,8 +7,8 @@ import { useShowCurrentCourseQuery } from "./store/features/apiSlice";
 import Textarea from "./Textarea";
 import ActionButton from "./ActionButton";
 import "./EditCourseGeneral.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Switch from "./Switch";
 import EditElementWrapper from "./EditElementWrapper";
 // import HeadlineWrapper from "./HeadlineWrapper";
@@ -26,6 +26,14 @@ export default function EditCourseGeneral() {
         <EditElementWrapper>
           <h3>Общие данные</h3>
           <p>Настройте название, описание, начало курса и доступ к нему</p>
+        </EditElementWrapper>
+        <EditElementWrapper>
+          <h3>Доступ к курсу</h3>
+          <Switch
+            isActive={data.available}
+            text={["Доступ к курсу открыт", "Доступ к курсу закрыт"]}
+            onChange={() => {}}
+          ></Switch>
         </EditElementWrapper>
         <EditElementWrapper>
           <Form
@@ -48,20 +56,6 @@ export default function EditCourseGeneral() {
             </Label>
             <ActionButton>Обновить {data.title}</ActionButton>
           </Form>
-        </EditElementWrapper>
-        <EditElementWrapper>
-          <h3>Доступ к курсу</h3>
-          <Switch
-            isActive={data.available}
-            text="Открыть доступ к курсу"
-          ></Switch>
-        </EditElementWrapper>
-        <EditElementWrapper>
-          <h3>Ученики</h3>
-          <span>Сейчас на курсе студентов: {data.students.length}</span>
-          <ActionButton>
-            Добавить студентов <FontAwesomeIcon icon={faPlus} />
-          </ActionButton>
         </EditElementWrapper>
       </>
     )

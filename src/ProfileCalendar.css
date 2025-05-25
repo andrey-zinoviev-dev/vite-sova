@@ -17,6 +17,8 @@
 
 .profile-calendar {
     width: 100%;
+    display: grid;
+    gap: 30px;
     /* max-width: 420px; */
     /* min-width: 360px; */
     /* display: grid;
@@ -32,7 +34,13 @@
 
 .events-list-wrapper {
     display: grid;
-    gap: 30px;
+    gap: 15px;
+        /* border-radius: 12px; */
+            width: 100%;
+            /* box-sizing: border-box;
+            background-color: #151618;
+            padding: 15px; */
+    /* gap: 30px; */
 }
 
 .events-list {
@@ -118,6 +126,11 @@
 .event-list__item-time {
         white-space: nowrap;
     /* min-width: 85px; */
+}
+
+.event-list__item-empty-span {
+    text-align: center;
+    margin: auto;
 }
 
 @media screen and (max-width: 1279px) {

@@ -1,6 +1,10 @@
 .navigation-module-container {
     display: grid;
     gap: 15px;
+    border-bottom: 1px solid #8888;
+    box-sizing: border-box;
+    padding: 10px 0;
+    margin-bottom: 10px;
 }
 
 .navigation-module-button,

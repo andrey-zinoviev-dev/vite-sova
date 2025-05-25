@@ -1,0 +1,12 @@
+.section-headline {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #8888;
+    padding-bottom: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    gap: 30px;
+    margin-top: 15px;
+}

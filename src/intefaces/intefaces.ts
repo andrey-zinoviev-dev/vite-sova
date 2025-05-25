@@ -1,3 +1,5 @@
+import { JSONContent } from "@tiptap/react";
+
 export interface CourseInterface {
   _id: string,
   title: string,
@@ -15,7 +17,9 @@ export interface CourseInterface {
   // lessons: string[]
 };
 
-export type StudentCourseInterface = Pick<CourseInterface, "_id" | "title" | "available" | "description" | 'modules' | "startDate" | "events">
+export type StudentCourseInterface = Pick<CourseInterface, "_id" | "title" | "available" | "description" | 'modules' | "startDate" | "events"> & {
+  tarif: string
+}
 
 export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">;
 
@@ -30,13 +34,14 @@ export interface LessonInterface {
   available: boolean,
   completed: boolean,
   module: ModuleExtInterface,
+  content: JSONContent,
 }
 
 export interface TarifInterface {
   title: string,
   endDate: string,
   _id: string,
-  course: string,
+  course: StudentCourseInterface,
 }
 
 export interface EventInterface {
@@ -48,6 +53,18 @@ export interface EventInterface {
   length: number,
 }
 
+export interface StreamInterface {
+  _id: string,
+  title: string,
+  startDate: string,
+  lessons: StreamLessonInterface[],
+  // course: CourseInterface,
+}
+
+export type StreamLessonInterface = Pick<LessonInterface, "_id" | "title" | "module" | "available" | "content"> & {
+  active: boolean,
+}
+
 export type NewCourseType = Omit<CourseInterface, "_id" | "tarifs"> & {
   tarifs: NewTarifType[]
 }
@@ -56,4 +73,10 @@ export type NewModuleType = Omit<ModuleExtInterface, "_id" | "course"> & { cours
 
 // export type 
 
-export type NewTarifType = Omit<TarifInterface, "_id">
+export type NewTarifType = Omit<TarifInterface, "_id" | "course"> & { course: string }
+
+export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "active"> & { module: string }
+
+export type NewStreamType = Omit<StreamInterface, "_id" | "lessons"> & {
+  course: string,
+}

@@ -2,24 +2,27 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 // import type { PayloadAction } from "@reduxjs/toolkit";
 import { sliceApi } from "./apiSlice";
-import { StudentCourseInterface } from "../../intefaces/intefaces";
+import { TarifInterface } from "../../intefaces/intefaces";
 
 export interface UserInterface {
     _id: string | null,
     email: string | null,
-    courses: {course: StudentCourseInterface, tarif: string}[],
+    // courses: {course: StudentCourseInterface, tarif: string}[],
     loggedIn: boolean,
     accessToken: string | null,
     name: string,
+    tarifs: TarifInterface[],
+    roles: string[],
 }
 
 const initialState:UserInterface = {
     _id: null,
     email: null,
-    courses: [],
+    tarifs: [],
     loggedIn: false,
     accessToken: null,
     name: "",
+    roles: [],
 };
 
 export const userSlice = createSlice({
@@ -50,7 +53,8 @@ export const userSlice = createSlice({
                 state._id = action.payload._id;
                 state.name = action.payload.name;
                 state.email = action.payload.email;
-                state.courses = action.payload.courses;
+                state.tarifs = action.payload.tarifs;
+                state.roles = action.payload.roles;
             },
         )
     }

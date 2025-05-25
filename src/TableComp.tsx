@@ -6,12 +6,15 @@ import {
   StudentCourseInterface,
   TarifInterface,
   NewTarifType,
+  EventInterface,
+  StreamInterface,
+  StreamLessonInterface,
 } from "./intefaces/intefaces";
 // import TableButton from "./TableButton"
 // import { useNavigate } from "react-router"
 import "./TableComp.css";
 
-interface TableCompInterface<T> {
+export interface TableCompInterface<T> {
   items: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   children?: React.ReactNode;
@@ -25,14 +28,17 @@ export default function TableComp<
     | TarifInterface
     | NewTarifType
     | LessonInterface
+    | EventInterface
+    | StreamInterface
+    | StreamLessonInterface
 >({ items, renderItem, children }: TableCompInterface<T>) {
   return (
     <ul className="table-ul">
-      {children}
       {items.map((item, index) => {
         return <li key={item.title}>{renderItem(item, index)}</li>;
         // return <li key={item._id}>{renderItem(item, index)}</li>;
       })}
+      {children}
     </ul>
   );
 }

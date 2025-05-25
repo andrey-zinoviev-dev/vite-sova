@@ -23,8 +23,8 @@
     width: 100%;
     aspect-ratio: 16/10;
     object-fit: contain;
-    /* background-color: #151618; */
-    background-color: #242328;
+    background-color: #151618;
+    /* background-color: #242328; */
     border-radius: 9px;
     box-sizing: border-box;
     padding: 10px;
@@ -60,7 +60,7 @@
 .lesson__content-buttons-navigation-button {
     color: white;
     /* background-color: #1a1a1a; */
-    background-color: #242328;
+    /* background-color: #242328; */
     border-radius: 8px;
     padding: 10px;
     text-align: center;

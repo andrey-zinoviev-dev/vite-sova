@@ -4,6 +4,6 @@
     -webkit-line-clamp: 2;
     text-overflow: ellipsis;
     overflow: hidden;
-    min-height: 56px;
-    max-width: 180px;
+    /* min-height: 56px;
+    max-width: 180px; */
 }

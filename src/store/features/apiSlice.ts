@@ -5,15 +5,19 @@ import {
   EventInterface,
   LessonInterface,
   ModuleExtInterface,
+  NewLessonType,
   NewModuleType,
+  NewStreamType,
   NewTarifType,
+  StreamInterface,
+  StreamLessonInterface,
   TarifInterface,
 } from "../../intefaces/intefaces";
 // import { RootState } from "../store";
 
 export const sliceApi = createApi({
   reducerPath: "api",
-  tagTypes: ["User", "Tarifs", "Modules"],
+  tagTypes: ["User", "Tarifs", "Modules", "Streams", "Lessons"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
     // // prepareHeaders: (headers, { getState }) => {
@@ -115,6 +119,13 @@ export const sliceApi = createApi({
       }),
       invalidatesTags: ["Modules"],
     }),
+    showCurrentCourseLessons: builder.query<StreamLessonInterface[], string>({
+      query: (courseId) => ({
+        url: `/courses/${courseId}/lessons`,
+        credentials: "include",
+      }),
+      providesTags: ["Lessons"],
+    }),
     showCurrentLesson: builder.query<
       LessonInterface,
       { lessonId: string | undefined }
@@ -133,6 +144,24 @@ export const sliceApi = createApi({
         method: "PUT",
         credentials: "include",
       }),
+    }),
+    editLesson: builder.mutation<StreamLessonInterface, StreamLessonInterface>({
+      query: (lesson) => ({
+        url: `/lessons/${lesson._id}`,
+        method: "PUT",
+        body: lesson,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Lessons"],
+    }),
+    addLesson: builder.mutation<StreamLessonInterface, NewLessonType>({
+      query: (lesson) => ({
+        url: `/lessons`,
+        method: "POST",
+        body: lesson,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Lessons"],
     }),
     showEvents: builder.query<EventInterface[], void>({
       query: () => ({
@@ -172,6 +201,42 @@ export const sliceApi = createApi({
       }),
       invalidatesTags: ["Tarifs"],
     }),
+    showStreams: builder.query<StreamInterface[], string>({
+      query: (courseId) => ({
+        url: `/streams/${courseId}`,
+        credentials: "include",
+      }),
+      providesTags: ["Streams"],
+    }),
+    addStream: builder.mutation<StreamInterface, NewStreamType>({
+      query: (stream) => ({
+        url: "/streams",
+        method: "POST",
+        body: stream,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Streams"],
+    }),
+    editLessonStreams: builder.mutation<
+      StreamInterface,
+      { streamId: string; lessons: StreamLessonInterface[] }
+    >({
+      query: (stream) => ({
+        url: `/lessons/streams`,
+        method: "PUT",
+        body: stream,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Streams"],
+    }),
+    deleteStream: builder.mutation<StreamInterface, string>({
+      query: (streamId) => ({
+        url: `/streams/${streamId}`,
+        method: "DELETE",
+        credentials: "include",
+      }),
+      invalidatesTags: ["Streams"],
+    }),
   }),
 });
 
@@ -193,4 +258,12 @@ export const {
   useEditModuleMutation,
   useDeleteModuleMutation,
   useShowCurrentCourseModulesQuery,
+  useAddStreamMutation,
+  useShowStreamsQuery,
+  useShowCurrentCourseLessonsQuery,
+  // useEditStreamMutation,
+  useEditLessonStreamsMutation,
+  useDeleteStreamMutation,
+  useEditLessonMutation,
+  useAddLessonMutation,
 } = sliceApi;

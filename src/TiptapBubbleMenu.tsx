@@ -2,10 +2,10 @@ import { faArrowLeft, faCheck, faLink, faXmark } from "@fortawesome/free-solid-s
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { BubbleMenu, useCurrentEditor } from "@tiptap/react"
 import "./TiptapBubbleMenu.css"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Label from "./Label";
 import Input from "./Input";
-import TipTapLink from "./TipTapLink";
+// import TipTapLink from "./TipTapLink";
 
 import ActionButton from "./ActionButton";
 
@@ -20,10 +20,6 @@ export default function TipTapBubbleMenu() {
     function closeLink() {
         setLinkClicked(false);
     }
-
-    // useEffect(() => {
-    //     console.log(linkClicked);
-    // }, [linkClicked])
 
     if(!editor) {
         return null;

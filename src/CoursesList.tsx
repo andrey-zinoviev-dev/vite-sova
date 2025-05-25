@@ -11,10 +11,11 @@ import TableComp from "./TableComp";
 import { useShowCoursesQuery } from "./store/features/apiSlice";
 import { CourseInterface } from "./intefaces/intefaces";
 import TableElement from "./TableElement";
-import MainPageCourseData from "./MainPageCourseData";
+// import MainPageCourseData from "./MainPageCourseData";
 import ActionButton from "./ActionButton";
 import Highlight from "./Highlight";
 import { useNavigate } from "react-router";
+import CardHeadline from "./CardHeadline";
 export default function CoursesList() {
   // const courses = useAppSelector((state) => {
   //   return state.courses.courses;
@@ -35,10 +36,12 @@ export default function CoursesList() {
             <Highlight>
               <span>Старт курса: {item.startDate}</span>
             </Highlight>
-            <div className="button-table__top-wrapper">
+            <CardHeadline title={item.title}></CardHeadline>
+
+            {/* <div className="button-table__top-wrapper">
               <span className="button-table__title">{item.title}</span>
               <span className="button-table__author">{item.author.name}</span>
-            </div>
+            </div> */}
 
             <p className="button-table__desc">{item.description}</p>
 

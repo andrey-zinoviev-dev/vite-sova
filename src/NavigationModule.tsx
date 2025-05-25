@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { ModuleExtInterface } from "./intefaces/intefaces";
-import ModuleButton from "./ModuleButton";
+// import ModuleButton from "./ModuleButton";
 import { useParams } from "react-router";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight, faChevronUp, faLock } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronRight, faLock } from "@fortawesome/free-solid-svg-icons";
 import RowButton from "./RowButton";
 import "./NavigationModule.css";
 interface NavigationModuleInterface {
