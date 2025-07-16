@@ -24,7 +24,7 @@ export default function EditCourse() {
               { title: "Потоки и ученики", link: "streams" },
               { title: "Модули", link: "modules" },
               { title: "Уроки", link: "lessons" },
-              { title: "Тарифы", link: "students" },
+              { title: "Тарифы", link: "tarifs" },
             ]}
             activeTab={activeTab}
             setActiveTab={setActiveTab}

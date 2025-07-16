@@ -41,10 +41,10 @@ export default function Login({ closePopup }: LoginInterface) {
     };
 
     return (
-            <Form onSubmit={(evt) => {
+            <Form className="welcome_form" onSubmit={(evt) => {
                 evt.preventDefault();
                 submitLogin();
-            }} className="">
+            }}>
                 <ErrorSpan text={error.message} />
                 <Input type="email" onChange={(evt) => {
                     setLoginData((prevValue) => {

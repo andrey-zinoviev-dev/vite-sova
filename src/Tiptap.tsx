@@ -6,9 +6,11 @@ import Placeholder from "@tiptap/extension-placeholder";
 import "./Tiptap.css";
 import TipTapBubbleMenu from "./TiptapBubbleMenu";
 import TiptapFloatingMenu from "./TiptapFloatingMenu";
+import { useContext } from "react";
+import { CourseFilesContext } from "./contexts/courseFilesContext";
 // import ActionButton from "./ActionButton";
 
-import Image from "@tiptap/extension-image";
+// import Image from "@tiptap/extension-image";
 
 interface TipTapProps {
   updateContent?: (content: JSONContent) => void;
@@ -21,15 +23,78 @@ export default function TipTap({
   content,
   isEditable = false,
 }: TipTapProps) {
-  // const [content, setContent] = useState("");
+  const { setFiles } = useContext(CourseFilesContext);
 
   const handleUpdate = ({ editor }: { editor: Editor }) => {
     const content = editor.getJSON();
+
+    // Update content
     updateContent?.(content);
+
+    // Filter files based on current content
+    if (isEditable) {
+      filterFilesFromContent(content);
+    }
   };
 
-  //audio ext
+  const filterFilesFromContent = (currentContent: JSONContent) => {
+    if (!currentContent || !currentContent.content) return;
 
+    const contentFileIds = new Set<string>();
+
+    const extractFileIds = (nodes: JSONContent["content"]) => {
+      nodes?.forEach((node) => {
+        if (node.type === "image" && node.attrs?.fileId) {
+          contentFileIds.add(node.attrs.fileId);
+        } else if (node.type === "video" && node.attrs?.fileId) {
+          contentFileIds.add(node.attrs.fileId);
+        } else if (node.type === "audio" && node.attrs?.fileId) {
+          contentFileIds.add(node.attrs.fileId);
+        }
+      });
+    };
+
+    extractFileIds(currentContent.content);
+
+    setFiles((prevFiles) => {
+      return prevFiles.filter((file) => {
+        return contentFileIds.has(file.fileId);
+      });
+    });
+  };
+
+  //img ext
+  const Image = Node.create({
+    name: "image",
+    group: "block",
+    selectable: true,
+    atom: true,
+    parseHTML() {
+      return [
+        {
+          tag: "img",
+        },
+      ];
+    },
+    addAttributes() {
+      return {
+        src: {
+          default: null,
+        },
+        title: {
+          default: null,
+        },
+        fileId: {
+          default: null,
+        },
+      };
+    },
+    renderHTML({ HTMLAttributes }) {
+      return ["img", mergeAttributes(HTMLAttributes)];
+    },
+  });
+
+  //audio ext
   const Audio = Node.create({
     name: "audio",
     group: "block",
@@ -60,6 +125,9 @@ export default function TipTap({
           default: null,
         },
         type: {
+          default: null,
+        },
+        fileId: {
           default: null,
         },
       };
@@ -98,6 +166,9 @@ export default function TipTap({
         title: {
           default: null,
         },
+        fileId: {
+          default: null,
+        },
       };
     },
     renderHTML({ HTMLAttributes }) {
@@ -119,9 +190,9 @@ export default function TipTap({
     }),
   ];
 
-  // const content = "";
-
-  //test purposes
+  // useEffect(() => {
+  //   console.log(content);
+  // }, [content]);
 
   return (
     <EditorProvider
@@ -130,6 +201,9 @@ export default function TipTap({
       slotBefore={<TiptapFloatingMenu />}
       onUpdate={handleUpdate}
       editable={isEditable}
+      editorContainerProps={{
+        className: isEditable ? "tiptap_editable" : "tiptap_readonly",
+      }}
     >
       <TipTapBubbleMenu />
     </EditorProvider>

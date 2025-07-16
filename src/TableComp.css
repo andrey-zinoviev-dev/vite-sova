@@ -10,3 +10,7 @@
   overflow: auto;
   /* min-height: 180px; */
 }
+
+.table-ul_row {
+  grid-template-columns: 1fr
+}

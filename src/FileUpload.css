@@ -1,0 +1,13 @@
+.file-upload-item {
+    display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: 15px;
+}
+
+.file-upload-item__name {
+        width: 100%;
+            display: grid;
+            gap: 5px;
+}

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LessonInterface, ModuleExtInterface, NewTarifType} from "../../intefaces/intefaces";
+// import { LessonInterface, ModuleExtInterface, NewTarifType} from "../../intefaces/intefaces";
 
 import { NewCourseType } from "../../intefaces/intefaces";
 // import NewTarif from "../../NewTarif";
@@ -9,15 +9,15 @@ type NewCourseTextType = Pick<NewCourseType, "title" | "description" | "startDat
 const initialState: NewCourseType = {
     title: "",
     description: "",
-    author: {
-        name: ""
-    },
-    available: false,
-    modules: [],
-    students: [],
+    // author: {
+    //     name: ""
+    // },
+    // available: false,
+    // modules: [],
+    // students: [],
     tarifs: [],
     startDate: "",
-    events: [],
+    // events: [],
 };
 
 const newCourse = createSlice({
@@ -34,41 +34,41 @@ const newCourse = createSlice({
 
             return state;
         },
-        addTarif: (state, action: PayloadAction<NewTarifType>) => {
-            state.tarifs = [...state.tarifs, action.payload]
-        },
-        removeTarif: (state, action: PayloadAction<string>) => {
-            state.tarifs = state.tarifs.filter((tarif) => {
-                return tarif.title !== action.payload;
-            });
-        },
-        addModule: (state, action: PayloadAction<ModuleExtInterface>) => {
-            state.modules = [...state.modules, action.payload];
-            return state;
-        },
-        removeModule: (state, action: PayloadAction<string>) => {
-            state.modules = state.modules.filter((module) => {
-                return module._id !== action.payload;
-            });
-            return state;
-        },
-        addLesson: (state, action: PayloadAction<{moduleId: string, lesson: LessonInterface}>) => {
-            state.modules = state.modules.map((module) => {
-                return module._id === action.payload.moduleId? {...module, lessons: [...module.lessons, action.payload.lesson]} : module
-            });
-            return state;
-        },
-        removeLesson: (state, action: PayloadAction<{moduleId: string, lessonTitle: string}>) => {
-            state.modules = state.modules.map((module) => {
-                return module._id === action.payload.moduleId ? {...module, lessons: module.lessons.filter((lesson) => {
-                    return lesson.title !== action.payload.lessonTitle;
-                })} : module;
-            });
-            return state;
-        },
+        // addTarif: (state, action: PayloadAction<NewTarifType>) => {
+        //     state.tarifs = [...state.tarifs, action.payload]
+        // },
+        // removeTarif: (state, action: PayloadAction<string>) => {
+        //     state.tarifs = state.tarifs.filter((tarif) => {
+        //         return tarif.title !== action.payload;
+        //     });
+        // },
+        // addModule: (state, action: PayloadAction<ModuleExtInterface>) => {
+        //     state.modules = [...state.modules, action.payload];
+        //     return state;
+        // },
+        // removeModule: (state, action: PayloadAction<string>) => {
+        //     state.modules = state.modules.filter((module) => {
+        //         return module._id !== action.payload;
+        //     });
+        //     return state;
+        // },
+        // addLesson: (state, action: PayloadAction<{moduleId: string, lesson: LessonInterface}>) => {
+        //     state.modules = state.modules.map((module) => {
+        //         return module._id === action.payload.moduleId? {...module, lessons: [...module.lessons, action.payload.lesson]} : module
+        //     });
+        //     return state;
+        // },
+        // removeLesson: (state, action: PayloadAction<{moduleId: string, lessonTitle: string}>) => {
+        //     state.modules = state.modules.map((module) => {
+        //         return module._id === action.payload.moduleId ? {...module, lessons: module.lessons.filter((lesson) => {
+        //             return lesson.title !== action.payload.lessonTitle;
+        //         })} : module;
+        //     });
+        //     return state;
+        // },
     },
 });
 
-export const { addBaseInfo, addTarif, removeTarif, addModule, removeModule, addLesson, removeLesson } = newCourse.actions;
+export const { addBaseInfo } = newCourse.actions;
 
 export default newCourse.reducer;

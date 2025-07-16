@@ -1,9 +1,9 @@
 import RowButton from "./RowButton";
-import { UserInterface } from "./store/features/userSlice";
+// import { UserInterface } from "./store/features/userSlice";
 import "./ContactButton.css";
 
 interface ContactButtonInterface {
-  contact: UserInterface,
+  contact: {name: string, _id: string},
   handleClick: () => void,
   active?: boolean
 }

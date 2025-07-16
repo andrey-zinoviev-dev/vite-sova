@@ -9,14 +9,15 @@ interface RowListInterface<T> {
   // handleClick: (item: T) => void,
   renderItem: (item: T, index: number) => React.ReactNode,
   children?: React.ReactNode,
+  draggable?: boolean,
 }
 
-export default function RowList<T extends {title: string, _id: string} | ModuleExtInterface | UserInterface | ExtFileType>({items, renderItem, children}: RowListInterface<T>) {
+export default function RowList<T extends {title: string, _id: string} | ModuleExtInterface | UserInterface | ExtFileType>({items, renderItem, children, draggable}: RowListInterface<T>) {
   return (
     <ul className="list-row">
       {children}
       {items.map((item, index) => {
-        return <li key={item._id}>
+        return <li draggable={draggable} key={item._id}>
           {renderItem(item, index)}
         </li>
       })}

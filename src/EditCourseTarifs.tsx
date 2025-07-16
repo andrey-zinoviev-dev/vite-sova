@@ -21,7 +21,7 @@ import Input from "./Input";
 // import EditButton from "./EditButton";
 // import TarifCard from "./TarifCard";
 import EditCard from "./EditCard";
-export default function EditCourseStudentsTarifs() {
+export default function EditCourseTarifs() {
   const { courseId } = useParams();
 
   // const { data = {} as CourseInterface } = useShowCurrentCourseQuery({
@@ -50,7 +50,7 @@ export default function EditCourseStudentsTarifs() {
   // console.log(selectedTarif);
 
   return (
-    data.length > 0 && (
+    
       <>
         <EditElementWrapper>
           <h3>Тарифы</h3>
@@ -61,13 +61,21 @@ export default function EditCourseStudentsTarifs() {
             const endDate = new Date(item.endDate).toLocaleDateString();
 
             return (
-              <EditCard title={item.title} index={`${index + 1}`} onClick={() => {
-                setTarifId(item._id);
-              }} onDeleteClick={() => {
-                console.log('delete tarif', item);
-              }} buttonText="Удалить тариф">
-                <p>Истекает: {endDate}</p>
-              </EditCard>
+              <li key={item._id}>
+                <EditCard
+                  title={item.title}
+                  index={`${index + 1}`}
+                  onClick={() => {
+                    setTarifId(item._id);
+                  }}
+                  onDeleteClick={() => {
+                    console.log("delete tarif", item);
+                  }}
+                  buttonText="Удалить тариф"
+                >
+                  <p>Истекает: {endDate}</p>
+                </EditCard>
+              </li>
             );
           }}
         >
@@ -156,5 +164,4 @@ export default function EditCourseStudentsTarifs() {
         )}
       </>
     )
-  );
 }

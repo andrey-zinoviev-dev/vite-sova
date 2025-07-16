@@ -42,8 +42,9 @@ export default function Course() {
     return state.user.roles.includes("admin");
   });
 
-  const { data = {} as CourseInterface } =
-    useShowCurrentCourseQuery({courseId: courseId});
+  const { data = {} as CourseInterface } = useShowCurrentCourseQuery({
+    courseId: courseId,
+  });
 
   // console.log(data);
 
@@ -73,27 +74,31 @@ export default function Course() {
             items={data.modules}
             renderItem={(item, index) => {
               return (
-                <CommonCard
-                  isAdmin={isAdmin}
-                  index={`${index + 1}`}
-                  title={item.title}
-                  onClick={() => {
-                    console.log('edit item', item);
-                    // navigate(`/courses/${data._id}/modules/${item._id}`);
-                  }}
-                >
-                  <p>{item.description}</p>
-                  <span>Пройдено 0 из {item.lessons.length} уроков</span>
-                  <ActionButton
-                    disabled={!item.available}
+                <li key={item._id}>
+                  <CommonCard
+                    isAdmin={isAdmin}
+                    index={`${index + 1}`}
+                    title={item.title}
                     onClick={() => {
-                      navigate(`/courses/${data._id}/modules/${item._id}`);
+                      console.log("edit item", item);
+                      // navigate(`/courses/${data._id}/modules/${item._id}`);
                     }}
                   >
-                    <span>{item.available ? "Открыть" : `Недоступно `}</span>
-                    {!item.available ? <FontAwesomeIcon icon={faLock} /> : null}
-                  </ActionButton>
-                </CommonCard>
+                    <p>{item.description}</p>
+                    <span>Пройдено 0 из {item.lessons.length} уроков</span>
+                    <ActionButton
+                      disabled={!item.available}
+                      onClick={() => {
+                        navigate(`/courses/${data._id}/modules/${item._id}`);
+                      }}
+                    >
+                      <span>{item.available ? "Открыть" : `Недоступно `}</span>
+                      {!item.available ? (
+                        <FontAwesomeIcon icon={faLock} />
+                      ) : null}
+                    </ActionButton>
+                  </CommonCard>
+                </li>
               );
             }}
           ></TableComp>

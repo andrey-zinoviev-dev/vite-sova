@@ -1,0 +1,141 @@
+/* .lessons-container {
+  margin-top: 20px;
+} */
+
+.lessons-container h4 {
+  margin-bottom: 15px;
+  color: #e0e0e0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.lessons-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #404040;
+  background: #2a2a2a;
+}
+
+.lesson-item {
+  background: #151618;
+  border-bottom: 1px solid #404040;
+  transition: all 0.15s ease;
+  cursor: grab;
+  position: relative;
+}
+
+.lesson-item:last-child {
+  border-bottom: none;
+}
+
+.lesson-item:hover {
+  background-color: #404040;
+  /* transform: translateY(-1px); */
+  /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
+}
+
+.lesson-item:active {
+  cursor: grabbing;
+}
+
+/* Dragging state */
+.lesson-item.dragging {
+  opacity: 0.5;
+  /* transform: rotate(2deg) scale(0.95); */
+  background-color: #1a1a1a;
+  border: 2px dashed #666;
+  z-index: 1000;
+  position: relative;
+}
+
+/* Drag over state - subtle indicator */
+/* .lesson-item.drag-over {
+  background-color: #404040;
+  border-left: 4px solid #888;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+} */
+
+.lesson-content {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  gap: 12px;
+}
+
+.lesson-index {
+  font-weight: 600;
+  color: #aaa;
+  min-width: 30px;
+  font-size: 14px;
+}
+
+.lesson-title {
+  flex: 1;
+  font-size: 14px;
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.drag-handle {
+  color: #888;
+  cursor: grab;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.drag-handle:hover {
+  color: #ccc;
+  background-color: #555;
+}
+
+.lesson-item:hover .drag-handle {
+  color: #ccc;
+}
+
+/* Smooth transitions for all state changes */
+.lesson-item,
+.lesson-item * {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus states for accessibility */
+.lesson-item:focus {
+  outline: 2px solid #888;
+  outline-offset: 2px;
+}
+
+/* Animation for new items being added */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lesson-item {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .lesson-content {
+    padding: 10px 12px;
+  }
+  
+  .lesson-title {
+    font-size: 13px;
+  }
+  
+  .lesson-index {
+    min-width: 25px;
+    font-size: 13px;
+  }
+} 

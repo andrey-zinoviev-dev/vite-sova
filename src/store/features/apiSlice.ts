@@ -5,6 +5,7 @@ import {
   EventInterface,
   LessonInterface,
   ModuleExtInterface,
+  NewCourseType,
   NewLessonType,
   NewModuleType,
   NewStreamType,
@@ -17,7 +18,7 @@ import {
 
 export const sliceApi = createApi({
   reducerPath: "api",
-  tagTypes: ["User", "Tarifs", "Modules", "Streams", "Lessons"],
+  tagTypes: ["User", "Tarifs", "Modules", "Streams", "Lessons", "Courses", "Lesson", "Module"],
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000",
     // // prepareHeaders: (headers, { getState }) => {
@@ -77,6 +78,15 @@ export const sliceApi = createApi({
         credentials: "include",
       }),
     }),
+    addCourse: builder.mutation<CourseInterface, NewCourseType>({
+      query: (course) => ({
+        url: "/courses/add",
+        method: "POST",
+        body: course,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Courses"],
+    }),
     showCurrentCourseModules: builder.query<ModuleExtInterface[], string>({
       query: (courseId) => ({
         url: `/courses/${courseId}/modules`,
@@ -92,6 +102,13 @@ export const sliceApi = createApi({
         url: `/modules/${moduleId}`,
         credentials: "include",
       }),
+    }),
+    showCurrentModuleLessons: builder.query<StreamLessonInterface[], string>({
+      query: (moduleId) => ({
+        url: `/modules/${moduleId}/lessons`,
+        credentials: "include",
+      }),
+      providesTags: ["Module"],
     }),
     addModule: builder.mutation<ModuleExtInterface, NewModuleType>({
       query: (module) => ({
@@ -134,6 +151,7 @@ export const sliceApi = createApi({
         url: `/lessons/${lessonId}`,
         credentials: "include",
       }),
+      providesTags: ["Lesson"],
     }),
     completeLesson: builder.mutation<
       LessonInterface,
@@ -152,13 +170,21 @@ export const sliceApi = createApi({
         body: lesson,
         credentials: "include",
       }),
-      invalidatesTags: ["Lessons"],
+      invalidatesTags: ["Lessons", "Lesson"],
     }),
     addLesson: builder.mutation<StreamLessonInterface, NewLessonType>({
       query: (lesson) => ({
         url: `/lessons`,
         method: "POST",
         body: lesson,
+        credentials: "include",
+      }),
+      invalidatesTags: ["Lessons"],
+    }),
+    deleteLesson: builder.mutation<StreamLessonInterface, string>({
+      query: (lessonId) => ({
+        url: `/lessons/${lessonId}`,
+        method: "DELETE",
         credentials: "include",
       }),
       invalidatesTags: ["Lessons"],
@@ -247,6 +273,7 @@ export const {
   useShowCoursesQuery,
   useShowCurrentCourseQuery,
   useShowCurrentModuleQuery,
+  useShowCurrentModuleLessonsQuery,
   useShowCurrentLessonQuery,
   useCompleteLessonMutation,
   useShowEventsQuery,
@@ -266,4 +293,6 @@ export const {
   useDeleteStreamMutation,
   useEditLessonMutation,
   useAddLessonMutation,
+  useAddCourseMutation,
+  useDeleteLessonMutation,
 } = sliceApi;

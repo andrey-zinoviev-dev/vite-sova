@@ -11,16 +11,31 @@
 .tiptap {
     /* width: 100%;
     height: 100%; */
+    /* border: 1px solid white; */
+    /* border-radius: 12px; */
+    box-sizing: border-box;
+    /* padding: 15px; */
+    /* background-color: #151618; */
+    /* max-width: 540px; */
+    min-height: 45px;
+    /* min-height: 240px; */
+    outline: none;
+    /* max-height: 480px; */
+    /* overflow: auto; */
+}
+
+.tiptap_editable {
     border: 1px solid white;
     border-radius: 12px;
     box-sizing: border-box;
     padding: 15px;
     background-color: #151618;
-    max-width: 540px;
-    min-height: 240px;
-    max-height: 480px;
-    overflow: auto;
 }
+
+.tiptap_editable:focus-within {
+    border-color: #646cff;
+}
+
 
 .tiptap p.is-editor-empty:first-child::before {
     color: #adb5bd;

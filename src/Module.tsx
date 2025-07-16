@@ -49,26 +49,28 @@ export default function Module() {
             items={data.lessons}
             renderItem={(item, index) => {
               return (
-                <CommonCard
-                  isAdmin={isAdmin}
-                  title={item.title}
-                  index={`${index + 1}`}
-                  onClick={() => {
-                    console.log("edit item", item);
-                  }}
-                >
-                  <ActionButton
-                    disabled={!item.available}
+                <li key={item._id}>
+                  <CommonCard
+                    isAdmin={isAdmin}
+                    title={item.title}
+                    index={`${index + 1}`}
                     onClick={() => {
-                      navigate(
-                        `/courses/${courseId}/modules/${moduleId}/lessons/${item._id}`
-                      );
+                      console.log("edit item", item);
                     }}
                   >
-                    {item.available ? "Открыть" : "Недоступно"}
-                    {!item.available && <FontAwesomeIcon icon={faLock} />}
-                  </ActionButton>
-                </CommonCard>
+                    <ActionButton
+                      disabled={!item.available}
+                      onClick={() => {
+                        navigate(
+                          `/courses/${courseId}/modules/${moduleId}/lessons/${item._id}`
+                        );
+                      }}
+                    >
+                      {item.available ? "Открыть" : "Недоступно"}
+                      {!item.available && <FontAwesomeIcon icon={faLock} />}
+                    </ActionButton>
+                  </CommonCard>
+                </li>
               );
             }}
           ></TableComp>

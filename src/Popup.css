@@ -43,6 +43,7 @@
 
 .popup_high .popup__container {
   height: 100%;
+  overflow: auto;
 }
 
 .popup_right .popup__container {

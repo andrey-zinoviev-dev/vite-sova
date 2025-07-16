@@ -18,10 +18,11 @@ import {
   useDeleteModuleMutation,
   useShowCurrentCourseModulesQuery,
   useAddModuleMutation,
-  useEditModuleMutation,
+  // useEditModuleMutation,
 } from "./store/features/apiSlice";
 import EditCard from "./EditCard";
-import Switch from "./Switch";
+// import Switch from "./Switch";
+import EditModule from "./EditModule";
 
 export default function EditCourseModules() {
   const { courseId } = useParams();
@@ -47,9 +48,9 @@ export default function EditCourseModules() {
 
   const [deleteModule] = useDeleteModuleMutation();
   const [addModule] = useAddModuleMutation();
-  const [editModule] = useEditModuleMutation();
+  // const [editModule] = useEditModuleMutation();
 
-  const [moduleToEdit, setModuleToEdit] = useState<ModuleExtInterface | null>(
+  const [moduleToEdit, setModuleToEdit] = useState<{title: string, _id: string, description: string} | null>(
     null
   );
   const [moduleToDelete, setModuleToDelete] =
@@ -65,17 +66,23 @@ export default function EditCourseModules() {
         items={data}
         renderItem={(module, index) => {
           return (
-            <EditCard
-              title={module.title}
-              index={`${index + 1}`}
-              onClick={() => {
-                setModuleToEdit(module);
-              }}
-              onDeleteClick={() => {}}
-              buttonText="Удалить модуль"
-            >
-              <p>{module.description}</p>
-            </EditCard>
+            <li key={module._id}>
+              <EditCard
+                title={module.title}
+                index={`${index + 1}`}
+                onClick={() => {
+                  setModuleToEdit({
+                    title: module.title,
+                    _id: module._id,
+                    description: module.description,
+                  });
+                }}
+                onDeleteClick={() => {}}
+                buttonText="Удалить модуль"
+              >
+                <p>{module.description}</p>
+              </EditCard>
+            </li>
           );
         }}
       >
@@ -141,7 +148,8 @@ export default function EditCourseModules() {
 
       {moduleToEdit && (
         <PopupRight closePopup={() => setModuleToEdit(null)}>
-          <h3>Редактировать модуль</h3>
+          <EditModule module={moduleToEdit} />
+          {/* <h3>Редактировать модуль</h3>
           <Switch
             isActive={moduleToEdit.available ? true : false}
             text={["Доступен", "Не доступен"]}
@@ -191,8 +199,8 @@ export default function EditCourseModules() {
                 defaultValue={moduleToEdit.description}
               />
             </Label>
-            <ActionButton type="submit">Редактировать модуль</ActionButton>
           </Form>
+          <ActionButton>Редактировать модуль</ActionButton> */}
         </PopupRight>
       )}
 

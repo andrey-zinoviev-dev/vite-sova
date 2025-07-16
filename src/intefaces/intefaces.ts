@@ -21,10 +21,12 @@ export type StudentCourseInterface = Pick<CourseInterface, "_id" | "title" | "av
   tarif: string
 }
 
-export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title">;
+export type ModuleInterface = Pick<CourseInterface, "_id" | "available" | "description" | "title"> & {
+  lessons: StreamLessonInterface[],
+}
 
 export interface ModuleExtInterface extends ModuleInterface {
-  lessons: LessonInterface[],
+  // lessons: StreamLessonInterface[],
   course: CourseInterface,
 }
 
@@ -58,14 +60,19 @@ export interface StreamInterface {
   title: string,
   startDate: string,
   lessons: StreamLessonInterface[],
+  // updatedAt: string,
   // course: CourseInterface,
 }
 
-export type StreamLessonInterface = Pick<LessonInterface, "_id" | "title" | "module" | "available" | "content"> & {
-  active: boolean,
-}
+export type StreamLessonInterface = Pick<
+  LessonInterface,
+  "_id" | "title" | "module" | "available" | "content"
+> & {
+  active: boolean;
+  createdAt?: string;
+};
 
-export type NewCourseType = Omit<CourseInterface, "_id" | "tarifs"> & {
+export type NewCourseType = Omit<CourseInterface, "_id" | "tarifs" | "modules" | "events" | "author" | "available" | "students"> & {
   tarifs: NewTarifType[]
 }
 
@@ -79,4 +86,10 @@ export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "acti
 
 export type NewStreamType = Omit<StreamInterface, "_id" | "lessons"> & {
   course: string,
+}
+
+export type FileExtInterface = {
+  file: File,
+  _id: string,
+  progress?: number,
 }

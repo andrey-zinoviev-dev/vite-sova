@@ -5,7 +5,6 @@ import "./TiptapBubbleMenu.css"
 import { useState } from "react";
 import Label from "./Label";
 import Input from "./Input";
-// import TipTapLink from "./TipTapLink";
 
 import ActionButton from "./ActionButton";
 
@@ -69,30 +68,6 @@ export default function TipTapBubbleMenu() {
                         </ActionButton>
                     </Label>
                 </div>}
-                
-                    {/* <div className="bubble-menu__link">
-                        {!linkClicked ? <button onClick={() => {
-                            setLinkClicked(true);
-                        }}>
-                            <FontAwesomeIcon icon={faLink} />
-                        </button> : <>
-                            <button onClick={closeLink}>
-                                <FontAwesomeIcon icon={faArrowLeft} />
-                            </button>
-                            <Label>
-                                Ссылка
-                                <Input onChange={(evt) => {
-                                    setUrl(evt.target.value);
-                                }} placeholder="Например, google.com"></Input>
-                                <ActionButton onClick={() => {
-                                    url && editor?.chain().focus().extendMarkRange("link").setLink({href: url}).run();
-                                }}>
-                                    <FontAwesomeIcon icon={faCheck} />
-                                </ActionButton>
-                            </Label>
-                        </>}
-                    </div> */}
-                    
             </div>
 
         </BubbleMenu>

@@ -50,14 +50,17 @@ export default function Register({ closePopup }: RegisterInterface) {
     };
 
     return (
-        <>
-            <Form className="">
-                <ErrorSpan text={error.message} />
-                <Input type="email" name="email" placeholder="Почта"></Input> 
-                <Input type="password" name="password" placeholder="Пароль"></Input>
-                <Input type="text" name="name" placeholder="Имя"></Input>
-                {/* <Link to="..">Есть учетная запись? Войдите!</Link> */}
-            </Form>
-        </>
-    )
+      <>
+        <Form className="welcome_form" onSubmit={(evt) => {
+          evt.preventDefault();
+        //   handleRegisterSubmit();
+        }}>
+          <ErrorSpan text={error.message} />
+          <Input type="email" name="email" placeholder="Почта"></Input>
+          <Input type="password" name="password" placeholder="Пароль"></Input>
+          <Input type="text" name="name" placeholder="Имя"></Input>
+          {/* <Link to="..">Есть учетная запись? Войдите!</Link> */}
+        </Form>
+      </>
+    );
 }

@@ -78,3 +78,7 @@
 .button-action_delete:hover {
     color: #f64235;
 }
+
+.action-button__popup {
+    margin: auto 0 0 0;
+}

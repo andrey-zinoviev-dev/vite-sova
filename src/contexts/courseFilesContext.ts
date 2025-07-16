@@ -1,3 +1,17 @@
 import { createContext } from "react";
+import { FileExtInterface } from "../intefaces/intefaces";
 
-export const CourseFilesContext = createContext<{ files: File[], updateFunction: (file: File) => void} >({files: [], updateFunction: () => {}});
+interface CourseFilesContextInterface {
+  files: FileExtInterface[];
+  setFiles: React.Dispatch<React.SetStateAction<FileExtInterface[]>>;
+}
+
+// Default setter function
+const defaultSetFiles = () => {
+  console.warn("CourseFilesContext: setFiles called without provider");
+};
+
+export const CourseFilesContext = createContext<CourseFilesContextInterface>({
+  files: [],
+  setFiles: defaultSetFiles,
+});

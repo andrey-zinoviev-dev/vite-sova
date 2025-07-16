@@ -92,20 +92,22 @@ export default function EditCourseStreams() {
         renderItem={(item, index) => {
           const streamStartDate = new Date(item.startDate).toLocaleString();
           return (
-            <EditCard
-              title={item.title}
-              index={(index + 1).toString()}
-              onClick={() => {
-                setStreamToEdit(item);
-              }}
-              buttonText={"Удалить поток"}
-              onDeleteClick={() => {
-                setStreamToDelete(item);
-              }}
-            >
-              <span>Дата начала: {streamStartDate}</span>
-              <span>Уроков в потоке: {item.lessons.length}</span>
-            </EditCard>
+            <li key={item._id}>
+              <EditCard
+                title={item.title}
+                index={(index + 1).toString()}
+                onClick={() => {
+                  setStreamToEdit(item);
+                }}
+                buttonText={"Удалить поток"}
+                onDeleteClick={() => {
+                  setStreamToDelete(item);
+                }}
+              >
+                <span>Дата начала: {streamStartDate}</span>
+                <span>Уроков в потоке: {item.lessons.length}</span>
+              </EditCard>
+            </li>
           );
         }}
       >
@@ -152,15 +154,17 @@ export default function EditCourseStreams() {
               );
 
               return (
-                <SwtichCard
-                  title={item.title}
-                  isActive={lessonInStream ? true : false}
-                  invert={true}
-                  text={["В потоке", "Не в потоке"]}
-                  onChange={() => {
-                    handleLessonToggle(item);
-                  }}
-                ></SwtichCard>
+                <li key={item._id}>
+                  <SwtichCard
+                    title={item.title}
+                    isActive={lessonInStream ? true : false}
+                    invert={true}
+                    text={["В потоке", "Не в потоке"]}
+                    onChange={() => {
+                      handleLessonToggle(item);
+                    }}
+                  ></SwtichCard>
+                </li>
               );
             }}
           ></TableComp>
@@ -185,6 +189,7 @@ export default function EditCourseStreams() {
           </ActionButton>
         </PopupRight>
       )}
+
       {streamToDelete && (
         <PopupRight closePopup={() => setStreamToDelete(null)}>
           <p>Вы действительно хотите удалить поток {streamToDelete.title}?</p>
@@ -227,13 +232,17 @@ export default function EditCourseStreams() {
               />
             </Label>
           </Form>
-          <ActionButton onClick={() => {
-            addStream(newStream)
-              .unwrap()
-              .then(() => {
-                setAddPopupOpened(false);
-              });
-          }}>Добавить поток</ActionButton>
+          <ActionButton
+            onClick={() => {
+              addStream(newStream)
+                .unwrap()
+                .then(() => {
+                  setAddPopupOpened(false);
+                });
+            }}
+          >
+            Добавить поток
+          </ActionButton>
         </PopupRight>
       )}
     </>

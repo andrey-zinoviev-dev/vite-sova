@@ -3,6 +3,7 @@ import "./Welcome.css"
 import { useState } from "react"
 import Login from "./Login";
 import Register from "./Register";
+// import Form from "./Form";
 
 
 interface WelcomeInterface {
@@ -25,5 +26,6 @@ export default function Welcome({ closePopup }: WelcomeInterface) {
             }}>{loginMode ? "Зарегистрируйтесь" : "Войдите"}</button>
             </span>
         </section>
+       
     )
 };

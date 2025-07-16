@@ -15,7 +15,7 @@ import ProtectedRoute from "./ProtectedRoute";
 
 import Profile from "./Profile";
 import Course from "./Course";
-import CoursesList from "./CoursesList";
+// import CoursesList from "./CoursesList";
 import Module from "./Module";
 import Lesson from "./Lesson";
 import LessonContent from "./LessonContent";
@@ -27,10 +27,9 @@ import EditCourse from "./EditCourse";
 // import ModuleEdit from "./ModuleEdit";
 import EditCourseGeneral from "./EditCourseGeneral";
 import EditCourseModules from "./EditCourseModules";
-import EditCourseStudentsTarifs from "./EditCourseTarifs";
-import EditCourseAccess from "./EditCourseAccess";
 import EditCourseStreams from "./EditCourseStreams";
 import EditCourseLessons from "./EditCourseLessons";
+import EditCourseTarifs from "./EditCourseTarifs";
 
 function App() {
   const router = createBrowserRouter([
@@ -38,10 +37,10 @@ function App() {
       path: "/",
       element: <Home></Home>,
       children: [
-        {
-          index: true,
-          element: <CoursesList></CoursesList>,
-        },
+        // {
+        //   index: true,
+        //   element: <CoursesList></CoursesList>,
+        // },
         {
           path: "courses/:courseId",
           element: <CourseInfo></CourseInfo>,
@@ -67,12 +66,8 @@ function App() {
                   element: <EditCourseLessons></EditCourseLessons>
                 },
                 {
-                  path: "students",
-                  element: <EditCourseStudentsTarifs></EditCourseStudentsTarifs>
-                },
-                {
-                  path: "access",
-                  element: <EditCourseAccess></EditCourseAccess>
+                  path: 'tarifs',
+                  element: <EditCourseTarifs></EditCourseTarifs>
                 },
                 {
                   path: "streams",

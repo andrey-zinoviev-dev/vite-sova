@@ -19,6 +19,7 @@ export default function EditCourseGeneral() {
   const { data = {} as CourseInterface } = useShowCurrentCourseQuery({
     courseId: courseId,
   });
+  
 
   return (
     data._id && (

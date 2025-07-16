@@ -1,9 +1,9 @@
 import Input from "./Input";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppSelector } from "./hooks";
 import {
-  addBaseInfo,
-  addTarif,
-  removeTarif,
+  // addBaseInfo,
+  // addTarif,
+  // removeTarif,
 } from "./store/features/newCourseFeature";
 import TableComp from "./TableComp";
 // import NewTarif from "./NewTarif"
@@ -14,7 +14,7 @@ import TableElement from "./TableElement";
 import "./AddCourseBase.css";
 import Label from "./Label";
 import Textarea from "./Textarea";
-import TarifData from "./TarifData";
+// import TarifData from "./TarifData";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // import ActionButton from "./ActionButton";
@@ -27,8 +27,9 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useState, useMemo } from "react";
 import PopupRight from "./PopupRight";
 import Form from "./Form";
-import { NewTarifType } from "./intefaces/intefaces";
+import { NewCourseType, NewTarifType } from "./intefaces/intefaces";
 import EditWrapper from "./EditWrapper";
+import { useAddCourseMutation } from "./store/features/apiSlice";
 
 interface TestInterface {
   headline: string;
@@ -40,11 +41,18 @@ export default function AddCourseBase({ headline }: TestInterface) {
     return state.newCourse;
   });
 
+  const [newCourse, setNewCourse] = useState<NewCourseType>({
+    title: "",
+    description: "",
+    startDate: "",
+    tarifs: [],
+  });
+
   // const startDate = new Date(newCourseState.startDate);
   // console.log(startDate);
   // console.log(newCourseState);
   //dispatch
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
 
   //state
   const [popupOpened, setPopupOpened] = useState<boolean>(false);
@@ -62,16 +70,18 @@ export default function AddCourseBase({ headline }: TestInterface) {
     });
   }, [tarifTitle]);
 
+  const [addCourse] = useAddCourseMutation();
+
   // console.log(tarifToEdit);
 
   //functions
-  function handleInputChange(
-    evt:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
-  ) {
-    dispatch(addBaseInfo({ key: evt.target.name, value: evt.target.value }));
-  }
+  // function handleInputChange(
+  //   evt:
+  //     | React.ChangeEvent<HTMLInputElement>
+  //     | React.ChangeEvent<HTMLTextAreaElement>
+  // ) {
+  //   dispatch(addBaseInfo({ key: evt.target.name, value: evt.target.value }));
+  // }
 
   // function deleteTarif(tarifId: string) {
   //     dispatch(removeTarif(tarifId))
@@ -85,7 +95,10 @@ export default function AddCourseBase({ headline }: TestInterface) {
         <Input
           defaultValue={newCourseState.title ? newCourseState.title : ""}
           name="title"
-          onChange={handleInputChange}
+          onChange={(evt) => {
+            setNewCourse({ ...newCourse, title: evt.target.value });
+          }}
+          // onChange={handleInputChange}
           placeholder="Название курса"
         ></Input>
       </Label>
@@ -94,7 +107,10 @@ export default function AddCourseBase({ headline }: TestInterface) {
         <Textarea
           name="description"
           defaultValue={newCourseState.description}
-          onChange={handleInputChange}
+          onChange={(evt) => {
+            setNewCourse({ ...newCourse, description: evt.target.value });
+          }}
+          // onChange={handleInputChange}
           placeholder="Описание курса"
         ></Textarea>
         {/* <Input defaultValue={newCourseState.description} name="description" onChange={handleInputChange} placeholder="Описание курса"></Input> */}
@@ -105,7 +121,10 @@ export default function AddCourseBase({ headline }: TestInterface) {
           defaultValue={newCourseState.startDate}
           id="accessStart"
           name="startDate"
-          onChange={handleInputChange}
+          onChange={(evt) => {
+            setNewCourse({ ...newCourse, startDate: evt.target.value });
+          }}
+          // onChange={handleInputChange}
           type="date"
           placeholder="Дата начала курса"
         ></Input>
@@ -116,7 +135,7 @@ export default function AddCourseBase({ headline }: TestInterface) {
         <p>Тарифы</p>
         {
           <TableComp
-            items={newCourseState.tarifs}
+            items={newCourse.tarifs}
             renderItem={(tarif) => {
               const endDate = new Date(tarif.endDate).toLocaleString();
 
@@ -127,7 +146,8 @@ export default function AddCourseBase({ headline }: TestInterface) {
                     <ActionButton
                       className="button-action_svg"
                       onClick={() => {
-                        dispatch(removeTarif(tarif.title));
+                        // dispatch(removeTarif(tarif.title));
+                        setNewCourse({ ...newCourse, tarifs: newCourse.tarifs.filter((t) => t.title !== tarif.title) });
                       }}
                     >
                       <FontAwesomeIcon icon={faTrash} />
@@ -169,7 +189,8 @@ export default function AddCourseBase({ headline }: TestInterface) {
               className=""
               onSubmit={(evt) => {
                 evt.preventDefault();
-                dispatch(addTarif(newTarif));
+                setNewCourse({ ...newCourse, tarifs: [...newCourse.tarifs, newTarif] });
+                // dispatch(addTarif(newTarif));
                 setNewTarif({
                   title: "",
                   endDate: "",
@@ -201,12 +222,22 @@ export default function AddCourseBase({ headline }: TestInterface) {
                   }}
                 />
               </Label>
-              <ActionButton type="submit">Добавить модуль</ActionButton>
+              <ActionButton type="submit">Добавить тариф</ActionButton>
             </Form>
           </div>
           {/* <NewTarif></NewTarif> */}
         </PopupRight>
       )}
+
+      <ActionButton onClick={() => {
+        addCourse(newCourse).unwrap().then((res) => {
+          console.log(res);
+        }).catch((err) => {
+          console.log(err);
+        });
+      }}>
+        Создать курс
+      </ActionButton>
 
       {tarifToEdit && (
         <PopupRight
