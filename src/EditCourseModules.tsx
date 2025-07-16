@@ -50,7 +50,7 @@ export default function EditCourseModules() {
   const [addModule] = useAddModuleMutation();
   // const [editModule] = useEditModuleMutation();
 
-  const [moduleToEdit, setModuleToEdit] = useState<{title: string, _id: string, description: string} | null>(
+  const [moduleToEdit, setModuleToEdit] = useState<ModuleExtInterface | null>(
     null
   );
   const [moduleToDelete, setModuleToDelete] =
@@ -71,11 +71,7 @@ export default function EditCourseModules() {
                 title={module.title}
                 index={`${index + 1}`}
                 onClick={() => {
-                  setModuleToEdit({
-                    title: module.title,
-                    _id: module._id,
-                    description: module.description,
-                  });
+                  setModuleToEdit(module);
                 }}
                 onDeleteClick={() => {}}
                 buttonText="Удалить модуль"
@@ -149,58 +145,7 @@ export default function EditCourseModules() {
       {moduleToEdit && (
         <PopupRight closePopup={() => setModuleToEdit(null)}>
           <EditModule module={moduleToEdit} />
-          {/* <h3>Редактировать модуль</h3>
-          <Switch
-            isActive={moduleToEdit.available ? true : false}
-            text={["Доступен", "Не доступен"]}
-            onChange={() => {
-              setModuleToEdit({
-                ...moduleToEdit,
-                available: !moduleToEdit.available,
-              });
-            }}
-          />
-          <Form
-            className=""
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              editModule(moduleToEdit)
-                .unwrap()
-                .then(() => {
-                  setModuleToEdit(null);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }}
-          >
-            <Label>
-              Название модуля
-              <Input
-                type="text"
-                onChange={(evt) =>
-                  setModuleToEdit({
-                    ...moduleToEdit,
-                    title: evt.target.value,
-                  })
-                }
-                defaultValue={moduleToEdit.title}
-              />
-            </Label>
-            <Label>
-              Описание модуля
-              <Textarea
-                onChange={(evt) =>
-                  setModuleToEdit({
-                    ...moduleToEdit,
-                    description: evt.target.value,
-                  })
-                }
-                defaultValue={moduleToEdit.description}
-              />
-            </Label>
-          </Form>
-          <ActionButton>Редактировать модуль</ActionButton> */}
+         
         </PopupRight>
       )}
 
@@ -223,16 +168,7 @@ export default function EditCourseModules() {
                 .catch((error) => {
                   console.log(error);
                 });
-              // console.log(moduleId);
-              // deleteModule(moduleId as string)
-              //   .unwrap()
-              //   .then(() => {
-              //     setIsDelete(false);
-              //     setModuleId(null);
-              //   })
-              //   .catch((error) => {
-              //     console.log(error);
-              //   });
+  
             }}
           >
             Удалить модуль

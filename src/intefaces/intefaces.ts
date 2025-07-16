@@ -82,7 +82,7 @@ export type NewModuleType = Omit<ModuleExtInterface, "_id" | "course"> & { cours
 
 export type NewTarifType = Omit<TarifInterface, "_id" | "course"> & { course: string }
 
-export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "active"> & { module: string }
+export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "active"> & { module: string, course: string }
 
 export type NewStreamType = Omit<StreamInterface, "_id" | "lessons"> & {
   course: string,

@@ -3,43 +3,35 @@ import Label from "./Label";
 import Switch from "./Switch";
 import Textarea from "./Textarea";
 import FormContainer from "./FormContainer";
-import { useShowCurrentModuleLessonsQuery } from "./store/features/apiSlice";
-// import { faBars } from "@fortawesome/free-solid-svg-icons";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
-import { ModuleInterface } from "./intefaces/intefaces";
+import { useState } from "react";
+import { ModuleExtInterface } from "./intefaces/intefaces";
 import "./EditModule.css";
-// import TableComp from "./TableComp";
 import TableDrag from "./TableDrag";
+import { useEditModuleMutation } from "./store/features/apiSlice";
 
 interface EditModuleProps {
-  module: { title: string; _id: string; description: string };
+  module: ModuleExtInterface;
 }
 
 export default function EditModule({ module }: EditModuleProps) {
-  const { data: lessons } = useShowCurrentModuleLessonsQuery(module._id);
+  const [moduleToEdit, setModuleToEdit] = useState<ModuleExtInterface>(module);
 
-  const [moduleToEdit, setModuleToEdit] = useState<ModuleInterface>({
-    title: "",
-    _id: "",
-    available: false,
-    description: "",
-    lessons: [],
-  });
-
-  useEffect(() => {
-    if (lessons) {
-      setModuleToEdit((prev) => ({
-        ...prev,
-        lessons: [...lessons],
-      }));
-    }
-  }, [lessons]);
+  const [editModule] = useEditModuleMutation();
 
   return (
     <FormContainer
       submitText="Редактировать модуль"
-      submitFunc={() => {}}
+      submitFunc={() => {
+        editModule(moduleToEdit)
+          .unwrap()
+          .then(() => {
+            
+            // toast.success("Модуль успешно отредактирован");
+          })
+          .catch(() => {
+            // toast.error("Ошибка при редактировании модуля");
+          });
+      }}
       isLoading={false}
       isSuccess={false}
       closeOnSubmit={() => {}}
@@ -73,7 +65,7 @@ export default function EditModule({ module }: EditModuleProps) {
           />
         </Label>
         <Switch
-          isActive={false}
+          isActive={moduleToEdit.available}
           text={["Доступен", "Не доступен"]}
           onChange={() => {
             setModuleToEdit({
@@ -88,7 +80,12 @@ export default function EditModule({ module }: EditModuleProps) {
 
             <TableDrag
               items={moduleToEdit.lessons}
-              
+              onReorder={(items) => {
+                setModuleToEdit({
+                  ...moduleToEdit,
+                  lessons: items,
+                });
+              }}
               getItemId={(item) => item._id}
             />
           </div>

@@ -14,12 +14,6 @@
     border-bottom: none;
 }
 
-.li-drag:hover {
-    background-color: #404040;
-    /* transform: translateY(-1px); */
-    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); */
-}
-
 .li-drag:active {
     cursor: grabbing;
 }
@@ -27,18 +21,11 @@
 /* Dragging state */
 .li-drag.dragging {
     opacity: 0.5;
-    /* transform: rotate(2deg) scale(0.95); */
-    /* background-color: #1a1a1a; */
+    background-color: #1a1a1a;
     border: 2px dashed #666;
     z-index: 1000;
     position: relative;
-}
-
-.li-drag.drag-over {
-    background-color: #2a2a2a;
-    /* border-left: 3px solid #4CAF50; */
-    transform: translateX(5px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    cursor: grabbing;
 }
 
 .drag-handle {
@@ -49,21 +36,8 @@
     transition: all 0.2s ease;
 }
 
-.drag-handle:hover {
-    color: #ccc;
-    background-color: #555;
-}
-
-.lesson-item:hover .drag-handle {
-    color: #ccc;
-}
-
 .li-drag__content {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-
-/* .li-drag__index {
-    font-weight: 600;
-} */

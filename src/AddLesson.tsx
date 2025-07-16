@@ -1,12 +1,3 @@
-// import Switch from "./Switch";
-// import Form from "./Form";
-// import Label from "./Label";
-// import Input from "./Input";
-// import Select from "./Select";
-// import ActionButton from "./ActionButton";
-// import { CourseFilesContext } from "./contexts/courseFilesContext";
-// import TipTap from "./Tiptap";
-// import { useState } from "react";
 import { useState } from "react";
 import {
   FileExtInterface,
@@ -20,12 +11,16 @@ import Select from "./Select";
 import { CourseFilesContext } from "./contexts/courseFilesContext";
 import TipTap from "./Tiptap";
 import Switch from "./Switch";
-import { useAddLessonMutation } from "./store/features/apiSlice";
+import {
+  useAddLessonMutation,
+  useEditModuleMutation,
+} from "./store/features/apiSlice";
 // import { s3ClientInitiated } from "./utils/s3Client";
 // import { Upload } from "@aws-sdk/lib-storage";
 import FileUpload from "./FileUpload";
 import LoadingStatus from "./LoadingStatus";
 import StatusSuccess from "./StatusSuccess";
+import { useParams } from "react-router";
 
 interface AddLessonInterface {
   modules: ModuleExtInterface[];
@@ -36,6 +31,8 @@ export default function AddLesson({
   modules,
   closeOnSubmit,
 }: AddLessonInterface) {
+  const { courseId } = useParams();
+
   const [newLesson, setNewLesson] = useState<NewLessonType>({
     title: "",
     available: false,
@@ -44,6 +41,7 @@ export default function AddLesson({
       content: [],
     },
     module: "",
+    course: courseId || "",
   });
 
   const [
@@ -54,6 +52,9 @@ export default function AddLesson({
       // reset: resetAddLesson,
     },
   ] = useAddLessonMutation();
+
+  //for test purposes update module after lesson add
+  const [updateModule] = useEditModuleMutation();
 
   const [files, setFiles] = useState<FileExtInterface[]>([]);
   const [uploadInitiated, setUploadInitiated] = useState(false);
@@ -72,7 +73,20 @@ export default function AddLesson({
     addLesson(newLesson)
       .unwrap()
       .then((data) => {
-        console.log(data);
+        // console.log(data);
+        const updatedModule = {
+          ...data.module,
+          lessons: [...data.module.lessons, data],
+        };
+        // console.log(updatedModule);
+        return updateModule(updatedModule)
+          .unwrap()
+          .then(() => {
+            console.log("Module updated");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -81,7 +95,7 @@ export default function AddLesson({
 
   const addLessonStates = {
     loading: () => <LoadingStatus />,
-    success: () => <StatusSuccess text="Урок обновлен" />,
+    success: () => <StatusSuccess text="Урок добавлен" />,
     upload: () => (
       <CourseFilesContext.Provider value={{ files, setFiles }}>
         <FileUpload handleAfterUpload={handleLessonAdd} />
@@ -185,92 +199,6 @@ export default function AddLesson({
         closeOnSubmit={closeOnSubmit}
       >
         {getStateComponent()}
-        {/* {isAddLessonLoading ? (
-          <LoadingStatus />
-        ) : isAddLessonSuccess ? (
-          <StatusSuccess text="Урок добавлен" />
-        ) : uploadInitiated ? (
-          <CourseFilesContext.Provider
-            value={{
-              files: files,
-              setFiles: setFiles,
-            }}
-          >
-            <FileUpload handleAfterUpload={handleLessonAdd} />
-          </CourseFilesContext.Provider>
-        ) : (
-          <>
-            <Label>
-              Название урока
-              <Input
-                type="text"
-                // defaultValue={newLesson.title}
-                placeholder="Название урока"
-                onChange={(e) => {
-                  setNewLesson((prevValue) => {
-                    return {
-                      ...prevValue,
-                      title: e.target.value,
-                    };
-                  });
-                }}
-              />
-            </Label>
-            <Label>
-              Модуль, в котором находится урок
-              <Select
-                onChange={(e) => {
-                  setNewLesson((prevValue) => {
-                    return {
-                      ...prevValue,
-                      module: e.target.value,
-                    };
-                  });
-                }}
-              >
-                <option value="">Выберите модуль</option>
-                {modules.map((module) => {
-                  return (
-                    <option key={module._id} value={module._id}>
-                      {module.title}
-                    </option>
-                  );
-                })}
-              </Select>
-            </Label>
-            <Switch
-              isActive={newLesson.available}
-              text={["Доступен", "Не доступен"]}
-              onChange={() => {
-                setNewLesson({
-                  ...newLesson,
-                  available: !newLesson.available,
-                });
-              }}
-            />
-            <div>
-              <span>Контент урока</span>
-              <CourseFilesContext.Provider
-                value={{
-                  files: files,
-                  setFiles: setFiles,
-                }}
-              >
-                <TipTap
-                  isEditable={true}
-                  updateContent={(content) => {
-                    setNewLesson((prevValue) => {
-                      return {
-                        ...prevValue,
-                        content: content,
-                      };
-                    });
-                  }}
-                ></TipTap>
-              </CourseFilesContext.Provider>
-            </div>
-          </>
-        )} */}
       </FormContainer>
     </>
   );

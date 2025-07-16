@@ -29,6 +29,8 @@ export default function EditCourseLessons() {
     courseId as string
   );
 
+  // console.log(lessons);
+
   const { data: modules = [] as ModuleExtInterface[] } =
     useShowCurrentCourseModulesQuery(courseId as string);
 

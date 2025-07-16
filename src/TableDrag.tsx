@@ -1,6 +1,6 @@
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import TableComp from "./TableComp";
-import { StreamLessonInterface } from "./intefaces/intefaces";
+import { ModuleExtInterface, StreamLessonInterface } from "./intefaces/intefaces";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import "./TableDrag.css";
@@ -9,21 +9,21 @@ interface TableDragInterface<T> {
   getItemId: (item: T) => string;
   items: T[];
   children?: React.ReactNode;
+  onReorder: (items: T[]) => void;
 }
 
-export default function TableDrag<T extends StreamLessonInterface>({
+export default function TableDrag<T extends StreamLessonInterface | ModuleExtInterface>({
   items,
   children,
-  //   onReorder,
+  onReorder,
   getItemId,
 }: TableDragInterface<T>) {
   const [draggedId, setDraggedId] = useState<string | null>(null);
-  const [localItems, setLocalItems] = useState<T[]>(items);
-  //   const [hoverId, setHoverId] = useState<string | null>(null);
+  // const [localItems, setLocalItems] = useState<T[]>(items);
 
   const handleDragStart = (
     e: React.DragEvent,
-    lesson: StreamLessonInterface
+    lesson: StreamLessonInterface | ModuleExtInterface
   ) => {
     setDraggedId(lesson._id);
     e.dataTransfer.effectAllowed = "move";
@@ -36,7 +36,7 @@ export default function TableDrag<T extends StreamLessonInterface>({
     if (draggedId && draggedId !== targetId) {
       //   setHoverId(targetId);
 
-      const newOrder = [...localItems];
+      const newOrder = [...items];
 
       const draggedIndex = newOrder.findIndex(
         (item) => getItemId?.(item) === draggedId
@@ -48,9 +48,8 @@ export default function TableDrag<T extends StreamLessonInterface>({
       if (draggedIndex !== -1 && targetIndex !== -1) {
         const [removed] = newOrder.splice(draggedIndex, 1);
         newOrder.splice(targetIndex, 0, removed);
-        console.log(draggedId, targetId, newOrder);
-        // onReorder?.(newOrder);
-        setLocalItems(newOrder);
+        onReorder?.(newOrder);
+        // setLocalItems(newOrder);
       }
     }
   };
@@ -77,7 +76,7 @@ export default function TableDrag<T extends StreamLessonInterface>({
 
   return (
     <TableComp
-      items={localItems}
+      items={items}
       renderItem={(item, index) => {
         const isDragging = draggedId === getItemId?.(item);
         // const isHovered = hoverId === getItemId?.(item) && !isDragging;
