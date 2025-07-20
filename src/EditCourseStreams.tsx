@@ -22,6 +22,8 @@ import PopupRight from "./PopupRight";
 import SwtichCard from "./SwtichCard";
 import Label from "./Label";
 import Input from "./Input";
+import AddFromContainer from "./AddFromContainer";
+import EditFormContainer from "./EditFormContainer";
 // import Warning from "./Warning";
 export default function EditCourseStreams() {
   const { courseId } = useParams();
@@ -126,7 +128,8 @@ export default function EditCourseStreams() {
             setLessonsToUpdate([]);
           }}
         >
-          <h3>{streamToEdit.title}</h3>
+          <EditFormContainer />
+          {/* <h3>{streamToEdit.title}</h3>
           <Form>
             <Label>
               Название потока
@@ -186,7 +189,7 @@ export default function EditCourseStreams() {
             }}
           >
             Обновить {streamToEdit.title}
-          </ActionButton>
+          </ActionButton> */}
         </PopupRight>
       )}
 
@@ -209,7 +212,8 @@ export default function EditCourseStreams() {
 
       {addPopupOpened && (
         <PopupRight closePopup={() => setAddPopupOpened(false)}>
-          <h3>Добавить поток</h3>
+          <AddFromContainer />
+          {/* <h3>Добавить поток</h3>
           <Form>
             <Label>
               Название потока
@@ -242,7 +246,7 @@ export default function EditCourseStreams() {
             }}
           >
             Добавить поток
-          </ActionButton>
+          </ActionButton> */}
         </PopupRight>
       )}
     </>

@@ -21,6 +21,7 @@ import FileUpload from "./FileUpload";
 import LoadingStatus from "./LoadingStatus";
 import StatusSuccess from "./StatusSuccess";
 import { useParams } from "react-router";
+import AddFromContainer from "./AddFromContainer";
 
 interface AddLessonInterface {
   modules: ModuleExtInterface[];
@@ -70,6 +71,7 @@ export default function AddLesson({
 
   function handleLessonAdd() {
     setUploadInitiated(false);
+    setFiles([]);
     addLesson(newLesson)
       .unwrap()
       .then((data) => {
@@ -189,17 +191,18 @@ export default function AddLesson({
   };
 
   return (
-    <>
-      <h3>Добавить урок</h3>
-      <FormContainer
-        submitFunc={initiateAddLesson}
-        submitText="Добавить урок"
-        isLoading={isAddLessonLoading}
-        isSuccess={isAddLessonSuccess}
-        closeOnSubmit={closeOnSubmit}
-      >
-        {getStateComponent()}
-      </FormContainer>
-    </>
+    <AddFromContainer />
+    // <>
+    //   <h3>Добавить урок</h3>
+    //   <FormContainer
+    //     submitFunc={initiateAddLesson}
+    //     submitText="Добавить урок"
+    //     isLoading={isAddLessonLoading}
+    //     isSuccess={isAddLessonSuccess}
+    //     closeOnSubmit={closeOnSubmit}
+    //   >
+    //     {getStateComponent()}
+    //   </FormContainer>
+    // </>
   );
 }

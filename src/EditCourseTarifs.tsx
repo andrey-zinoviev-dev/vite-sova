@@ -21,6 +21,9 @@ import Input from "./Input";
 // import EditButton from "./EditButton";
 // import TarifCard from "./TarifCard";
 import EditCard from "./EditCard";
+import AddFromContainer from "./AddFromContainer";
+import EditFormContainer from "./EditFormContainer";
+
 export default function EditCourseTarifs() {
   const { courseId } = useParams();
 
@@ -90,7 +93,8 @@ export default function EditCourseTarifs() {
 
         {tarifPopup && (
           <PopupRight closePopup={() => setTarifPopup(false)}>
-            <div className="popup-right__content">
+            <AddFromContainer />
+            {/* <div className="popup-right__content">
               <h3>Добавить тариф</h3>
               <Form
                 className=""
@@ -128,13 +132,14 @@ export default function EditCourseTarifs() {
                 </Label>
                 <ActionButton type="submit">Добавить тариф</ActionButton>
               </Form>
-            </div>
+            </div> */}
           </PopupRight>
         )}
 
         {tarifId && (
           <PopupRight closePopup={() => setTarifId(null)}>
-            <div className="popup-right__content">
+            <EditFormContainer />
+            {/* <div className="popup-right__content">
               <h3>Изменить тариф</h3>
               <Form
                 className=""
@@ -159,7 +164,7 @@ export default function EditCourseTarifs() {
                 </Label>
                 <ActionButton type="submit">Изменить тариф</ActionButton>
               </Form>
-            </div>
+            </div> */}
           </PopupRight>
         )}
       </>

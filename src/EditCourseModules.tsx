@@ -1,6 +1,6 @@
 import TableComp from "./TableComp";
 // import TableElement from "./TableElement";
-import { ModuleExtInterface, NewModuleType } from "./intefaces/intefaces";
+import { ModuleExtInterface } from "./intefaces/intefaces";
 import { useParams } from "react-router";
 import ActionButton from "./ActionButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -9,46 +9,26 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import EditElementWrapper from "./EditElementWrapper";
 import { useState } from "react";
 import PopupRight from "./PopupRight";
-import Label from "./Label";
-import Form from "./Form";
-import Input from "./Input";
-import Textarea from "./Textarea";
 
 import {
   useDeleteModuleMutation,
   useShowCurrentCourseModulesQuery,
-  useAddModuleMutation,
   // useEditModuleMutation,
 } from "./store/features/apiSlice";
 import EditCard from "./EditCard";
 // import Switch from "./Switch";
 import EditModule from "./EditModule";
+import AddModule from "./AddModule";
 
 export default function EditCourseModules() {
   const { courseId } = useParams();
-  // const { data = {} as CourseInterface } = useShowCurrentCourseQuery({
-  //   courseId: courseId,
-  // });
-
-  // console.log(courseId);
 
   const { data = [] as ModuleExtInterface[] } =
     useShowCurrentCourseModulesQuery(courseId ? courseId : "");
-  // console.log(data);
 
   const [modulePopup, setModulePopup] = useState(false);
 
-  const [newModule, setNewModule] = useState<NewModuleType>({
-    title: "",
-    description: "",
-    available: false,
-    lessons: [],
-    course: courseId ? courseId : "",
-  });
-
   const [deleteModule] = useDeleteModuleMutation();
-  const [addModule] = useAddModuleMutation();
-  // const [editModule] = useEditModuleMutation();
 
   const [moduleToEdit, setModuleToEdit] = useState<ModuleExtInterface | null>(
     null
@@ -73,7 +53,9 @@ export default function EditCourseModules() {
                 onClick={() => {
                   setModuleToEdit(module);
                 }}
-                onDeleteClick={() => {}}
+                onDeleteClick={() => {
+                  setModuleToDelete(module);
+                }}
                 buttonText="Удалить модуль"
               >
                 <p>{module.description}</p>
@@ -93,59 +75,19 @@ export default function EditCourseModules() {
 
       {modulePopup && (
         <PopupRight closePopup={() => setModulePopup(false)}>
-          <h3>Добавить модуль</h3>
-          <Form
-            className=""
-            onSubmit={(evt) => {
-              evt.preventDefault();
-              addModule(newModule)
-                .unwrap()
-                .then(() => {
-                  setNewModule({
-                    title: "",
-                    description: "",
-                    available: false,
-                    lessons: [],
-                    course: courseId ? courseId : "",
-                  });
-                  setModulePopup(false);
-                })
-                .catch((error) => {
-                  console.log(error);
-                });
-            }}
-          >
-            <Label>
-              Название модуля
-              <Input
-                type="text"
-                onChange={(evt) =>
-                  setNewModule({ ...newModule, title: evt.target.value })
-                }
-                placeholder={"Название модуля"}
-              />
-            </Label>
-            <Label>
-              Описание модуля
-              <Textarea
-                onChange={(evt) =>
-                  setNewModule({
-                    ...newModule,
-                    description: evt.target.value,
-                  })
-                }
-                placeholder={"Описание модуля"}
-              />
-            </Label>
-            <ActionButton type="submit">Добавить модуль</ActionButton>
-          </Form>
+          <AddModule
+            courseId={courseId ? courseId : ""}
+            closeOnSubmit={() => setModulePopup(false)}
+          />
         </PopupRight>
       )}
 
       {moduleToEdit && (
         <PopupRight closePopup={() => setModuleToEdit(null)}>
-          <EditModule module={moduleToEdit} />
-         
+          <EditModule
+            module={moduleToEdit}
+            closeOnSubmit={() => setModuleToEdit(null)}
+          />
         </PopupRight>
       )}
 
@@ -153,7 +95,6 @@ export default function EditCourseModules() {
         <PopupRight
           closePopup={() => {
             setModuleToDelete(null);
-            // setModuleId(null);
           }}
         >
           <h3>Удалить модуль</h3>
@@ -168,7 +109,6 @@ export default function EditCourseModules() {
                 .catch((error) => {
                   console.log(error);
                 });
-  
             }}
           >
             Удалить модуль

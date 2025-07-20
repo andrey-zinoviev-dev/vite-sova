@@ -13,6 +13,7 @@ export interface CourseInterface {
   tarifs: TarifInterface[],
   startDate: string,
   events: EventInterface[],
+  hidden: boolean,
   // modules: string[],
   // lessons: string[]
 };
@@ -70,6 +71,7 @@ export type StreamLessonInterface = Pick<
 > & {
   active: boolean;
   createdAt?: string;
+  order: number;
 };
 
 export type NewCourseType = Omit<CourseInterface, "_id" | "tarifs" | "modules" | "events" | "author" | "available" | "students"> & {
@@ -82,7 +84,7 @@ export type NewModuleType = Omit<ModuleExtInterface, "_id" | "course"> & { cours
 
 export type NewTarifType = Omit<TarifInterface, "_id" | "course"> & { course: string }
 
-export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "active"> & { module: string, course: string }
+export type NewLessonType = Omit<StreamLessonInterface, "_id" | "module" | "active" | "order"> & { module: string, course: string }
 
 export type NewStreamType = Omit<StreamInterface, "_id" | "lessons"> & {
   course: string,

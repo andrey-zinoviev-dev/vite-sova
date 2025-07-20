@@ -78,6 +78,14 @@ export const sliceApi = createApi({
         credentials: "include",
       }),
     }),
+    editCourse: builder.mutation<CourseInterface, CourseInterface>({
+      query: (course) => ({
+        url: `/courses/${course._id}`,
+        method: "PUT",
+        body: course,
+        credentials: "include",
+      }),
+    }),
     addCourse: builder.mutation<CourseInterface, NewCourseType>({
       query: (course) => ({
         url: "/courses/add",
@@ -144,7 +152,7 @@ export const sliceApi = createApi({
       providesTags: ["Lessons"],
     }),
     showCurrentLesson: builder.query<
-      LessonInterface,
+      StreamLessonInterface,
       { lessonId: string | undefined }
     >({
       query: ({ lessonId }) => ({
@@ -170,7 +178,7 @@ export const sliceApi = createApi({
         body: lesson,
         credentials: "include",
       }),
-      invalidatesTags: ["Lessons", "Lesson"],
+      invalidatesTags: ["Lessons", "Lesson", "Modules"],
     }),
     addLesson: builder.mutation<StreamLessonInterface, NewLessonType>({
       query: (lesson) => ({
@@ -272,6 +280,7 @@ export const {
   useShowCurrentUserQuery,
   useShowCoursesQuery,
   useShowCurrentCourseQuery,
+  useEditCourseMutation,
   useShowCurrentModuleQuery,
   useShowCurrentModuleLessonsQuery,
   useShowCurrentLessonQuery,

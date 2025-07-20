@@ -1,6 +1,6 @@
 // import Wizard from "./Wizard";
 
-import AddCourseBase from "./AddCourseBase";
+// import AddCourseBase from "./AddCourseBase";
 // import { useCallback, useEffect, useMemo, useState } from "react";
 // // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // // import { 
@@ -20,6 +20,7 @@ import "./AddCourse.css"
 // import { Link } from "react-router";
 // import BackButton from "./BackButton";
 // import ActionButton from "./ActionButton";
+import AddFromContainer from "./AddFromContainer";
 
 export default function AddCourse() {
     //state
@@ -57,22 +58,25 @@ export default function AddCourse() {
 
     return (
       <section>
-        <AddCourseBase headline="Информация о курсе"></AddCourseBase>
-        {/* <div className="breadcrumbs">
-          <span>Профиль</span>
-          <FontAwesomeIcon icon={faChevronRight} />
-          <span>Добавление нового курса</span>
-        </div> */}
-        {/* <BreadCrumbs></BreadCrumbs> */}
-        {/* <BackButton text="Назад в профиль"></BackButton> */}
-
-        {/* <CourseFilesContext.Provider value={filesContext}>
-          <Wizard onSubmit={handleSubmitCourse}>
-            <AddCourseBase headline="Информация о курсе"></AddCourseBase>
-            <AddCourseModules headline="Модули курса"></AddCourseModules>
-            <AddCourseLessons headline="Уроки в модулях"></AddCourseLessons>
-          </Wizard>
-        </CourseFilesContext.Provider> */}
+        <AddFromContainer />
       </section>
+      // <section>
+      //   <AddCourseBase headline="Информация о курсе"></AddCourseBase>
+      //   <div className="breadcrumbs">
+      //     <span>Профиль</span>
+      //     <FontAwesomeIcon icon={faChevronRight} />
+      //     <span>Добавление нового курса</span>
+      //   </div>
+      //   <BreadCrumbs></BreadCrumbs>
+      //   <BackButton text="Назад в профиль"></BackButton>
+
+      //   <CourseFilesContext.Provider value={filesContext}>
+      //     <Wizard onSubmit={handleSubmitCourse}>
+      //       <AddCourseBase headline="Информация о курсе"></AddCourseBase>
+      //       <AddCourseModules headline="Модули курса"></AddCourseModules>
+      //       <AddCourseLessons headline="Уроки в модулях"></AddCourseLessons>
+      //     </Wizard>
+      //   </CourseFilesContext.Provider>
+      // </section>
     );
 }

@@ -71,7 +71,7 @@ export default function EditCourseLessons() {
                 }}
                 buttonText="Удалить урок"
               >
-                <span>Модуль: {item.module.title}</span>
+                <span>Модуль: {item.module ? item.module.title : "Выберите модуль"}</span>
                 <span>Доступ: {item.available ? "открыт" : "закрыт"}</span>
               </EditCard>
             </li>

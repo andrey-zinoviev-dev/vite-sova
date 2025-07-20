@@ -1,6 +1,5 @@
 import {
   FileExtInterface,
-  LessonInterface,
   ModuleExtInterface,
   StreamLessonInterface,
 } from "./intefaces/intefaces";
@@ -26,13 +25,14 @@ import { CourseFilesContext } from "./contexts/courseFilesContext";
 
 import LoadingStatus from "./LoadingStatus";
 import StatusSuccess from "./StatusSuccess";
+import EditFormContainer from "./EditFormContainer";
 
 export default function EditLesson({
   lessonId,
   modules,
   closeOnSubmit,
 }: EditLessonInterface) {
-  const { data = {} as LessonInterface } = useShowCurrentLessonQuery({
+  const { data = {} as StreamLessonInterface } = useShowCurrentLessonQuery({
     lessonId: lessonId,
   });
 
@@ -50,6 +50,7 @@ export default function EditLesson({
   const [lessonToEdit, setLessonToEdit] = useState<StreamLessonInterface>({
     ...data,
     active: data.available,
+    order: data.order,
   });
 
   const [isUploadInitiated, setIsUploadInitiated] = useState(false);
@@ -65,10 +66,10 @@ export default function EditLesson({
 
   function handleLessonUpdate() {
     setIsUploadInitiated(false);
+    setFiles([]);
     updateLesson(lessonToEdit)
       .unwrap()
       .then(() => {
-        setFiles([]);
         resetUpdateLesson();
       });
   }
@@ -82,84 +83,85 @@ export default function EditLesson({
       </CourseFilesContext.Provider>
     ),
     idle: () => (
-      <>
-        <h3>Редактировать урок</h3>
-        <Label>
-          Название урока
-          <Input
-            type="text"
-            defaultValue={data.title}
-            placeholder="Название урока"
-            onChange={(e) => {
-              setLessonToEdit((prevValue) => {
-                return {
-                  ...prevValue,
-                  title: e.target.value,
-                };
-              });
-            }}
-          />
-        </Label>
-        <Label>
-          Модуль, в котором находится урок
-          <Select
-            onChange={(e) => {
-              setLessonToEdit((prevValue) => {
-                return {
-                  ...prevValue,
-                  module: modules.find(
-                    (module) => module._id === e.target.value
-                  ) as ModuleExtInterface,
-                };
-              });
-            }}
-            defaultValue={data.module?._id}
-          >
-            <option value="">Выберите модуль</option>
-            {modules.map((module) => {
-              return (
-                <option key={module._id} value={module._id}>
-                  {module.title}
-                </option>
-              );
-            })}
-          </Select>
-        </Label>
-        <Switch
-          isActive={data.available}
-          text={["Доступен", "Не доступен"]}
-          onChange={() => {
-            setLessonToEdit((prevValue) => {
-              return {
-                ...prevValue,
-                available: prevValue.available
-                  ? !prevValue.available
-                  : !data.available,
-              };
-            });
-          }}
-        />
-        <CourseFilesContext.Provider
-          value={{
-            files: files,
-            setFiles: setFiles,
-          }}
-        >
-          <EditTiptap
-            files={files}
-            setFiles={setFiles}
-            updateContent={(content) => {
-              setLessonToEdit((prevValue) => {
-                return {
-                  ...prevValue,
-                  content: content,
-                };
-              });
-            }}
-            content={data.content}
-          />
-        </CourseFilesContext.Provider>
-      </>
+      <EditFormContainer />
+      // <>
+      //   <h3>Редактировать урок</h3>
+      //   <Label>
+      //     Название урока
+      //     <Input
+      //       type="text"
+      //       defaultValue={data.title}
+      //       placeholder="Название урока"
+      //       onChange={(e) => {
+      //         setLessonToEdit((prevValue) => {
+      //           return {
+      //             ...prevValue,
+      //             title: e.target.value,
+      //           };
+      //         });
+      //       }}
+      //     />
+      //   </Label>
+      //   <Label>
+      //     Модуль, в котором находится урок
+      //     <Select
+      //       onChange={(e) => {
+      //         setLessonToEdit((prevValue) => {
+      //           return {
+      //             ...prevValue,
+      //             module: modules.find(
+      //               (module) => module._id === e.target.value
+      //             ) as ModuleExtInterface,
+      //           };
+      //         });
+      //       }}
+      //       defaultValue={data.module?._id}
+      //     >
+      //       <option value="">Выберите модуль</option>
+      //       {modules.map((module) => {
+      //         return (
+      //           <option key={module._id} value={module._id}>
+      //             {module.title}
+      //           </option>
+      //         );
+      //       })}
+      //     </Select>
+      //   </Label>
+      //   <Switch
+      //     isActive={data.available}
+      //     text={["Доступен", "Не доступен"]}
+      //     onChange={() => {
+      //       setLessonToEdit((prevValue) => {
+      //         return {
+      //           ...prevValue,
+      //           available: prevValue.available
+      //             ? !prevValue.available
+      //             : !data.available,
+      //         };
+      //       });
+      //     }}
+      //   />
+      //   <CourseFilesContext.Provider
+      //     value={{
+      //       files: files,
+      //       setFiles: setFiles,
+      //     }}
+      //   >
+      //     <EditTiptap
+      //       files={files}
+      //       setFiles={setFiles}
+      //       updateContent={(content) => {
+      //         setLessonToEdit((prevValue) => {
+      //           return {
+      //             ...prevValue,
+      //             content: content,
+      //           };
+      //         });
+      //       }}
+      //       content={data.content}
+      //     />
+      //   </CourseFilesContext.Provider>
+      // </>
     ),
   };
 
@@ -182,12 +184,16 @@ export default function EditLesson({
         active: data.available,
       });
     }
-    
   }, [data]);
-  
 
   return data._id ? (
-    <FormContainer submitText="Обновить урок" submitFunc={initiateUpdateLesson} isLoading={isUpdateLessonLoading} isSuccess={isUpdateLessonSuccess} closeOnSubmit={closeOnSubmit}>
+    <FormContainer
+      submitText="Обновить урок"
+      submitFunc={initiateUpdateLesson}
+      isLoading={isUpdateLessonLoading}
+      isSuccess={isUpdateLessonSuccess}
+      closeOnSubmit={closeOnSubmit}
+    >
       {getStateComponent()}
     </FormContainer>
   ) : (
